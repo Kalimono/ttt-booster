@@ -39,7 +39,7 @@ public class GridCreator : MonoBehaviour {
         grid[x, y] = cell;
       }
     }
-    transform.position = new Vector3(-3.33f, -5.6f, 1);
+    transform.position = new Vector3(-59, -120, 188);//(-3.33f, -5.6f, 1);
     return grid;
   }
 

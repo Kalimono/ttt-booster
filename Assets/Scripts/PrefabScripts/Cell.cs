@@ -109,7 +109,7 @@ public class Cell : MonoBehaviour {
         soundFxController.PlayWrongResponseSound();
         GetComponent<FlashCell>().FlashRed();
       }
-      gameController.EndTurn(isCorrectMove);
+      gameController.EndTurn();//isCorrectMove); ##
     }
     gridCell.SetInt("DarkCell", 1);
   }

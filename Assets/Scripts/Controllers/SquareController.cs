@@ -41,24 +41,24 @@ public class SquareController : MonoBehaviour {
 
     HashSet<int> positionsTested = new HashSet<int> {};
     int currentSquarePositionIndex = 0;
-    if (gameController.turnNum <= 9 && StimuliSequencer.squarePositionSequence.Count > 0) {
-      while (positionsTested.Count < 4) {
-        squarePositionIndex = StimuliSequencer.squarePositionSequence[currentSquarePositionIndex];
+    // if (gameController.turnNum <= 9 && StimuliSequencer.squarePositionSequence.Count > 0) { ###
+    //   while (positionsTested.Count < 4) {
+    //     squarePositionIndex = StimuliSequencer.squarePositionSequence[currentSquarePositionIndex];
 
-        SetSquareArea(squarePositionIndex);
-        correctCell = currentPosition[stimuliIndex];
-        cellToSkip = GetCellToSkip(currentPosition);
+    //     SetSquareArea(squarePositionIndex);
+    //     correctCell = currentPosition[stimuliIndex];
+    //     cellToSkip = GetCellToSkip(currentPosition);
 
-        if (!gameLogic.TestForWin(correctCell, gridController.grid)) break;
+    //     //if (!gameLogic.TestForWin(correctCell, gridController.grid)) break;
         
-        positionsTested.Add(StimuliSequencer.squarePositionSequence[currentSquarePositionIndex]);
-        currentSquarePositionIndex++;
-      }
-    } else {
+    //     positionsTested.Add(StimuliSequencer.squarePositionSequence[currentSquarePositionIndex]);
+    //     currentSquarePositionIndex++;
+    //   }
+    // } else {
       SetSquareArea(Random.Range(0, 4));
       cellToSkip = GetCellToSkip(currentPosition);
       correctCell = currentPosition[StimuliSequencer.GetRandomCorrectPosition()];
-    }
+    // } ###
     if (StimuliSequencer.squarePositionSequence.Count != 0) StimuliSequencer.squarePositionSequence.RemoveAt(currentSquarePositionIndex);
 
     FadeCellsOutsideSquare(currentPosition);
@@ -114,16 +114,20 @@ public class SquareController : MonoBehaviour {
   }
 
   public void CutGridIntoAreas(Cell[,] grid) {
-    int side = (grid.Length / 4) - 1;
-    ClearPositionLists();
+    // int side = (grid.Length / 4) - 1;
+    // ClearPositionLists();
 
-    foreach (Cell cell in grid) {
-      if (cell.position[0] < side && cell.position[1] < side) positions[0].Add(cell);
-      if (cell.position[0] > side - side && cell.position[1] < side) positions[1].Add(cell);
-      if (cell.position[0] < side && cell.position[1] > side - side) positions[2].Add(cell);
-      if (cell.position[0] > side - side && cell.position[1] > side - side) positions[3].Add(cell);
+    // foreach (Cell cell in grid) {
+    //   if (cell.position[0] < side && cell.position[1] < side) positions[0].Add(cell);
+    //   if (cell.position[0] > side - side && cell.position[1] < side) positions[1].Add(cell);
+    //   if (cell.position[0] < side && cell.position[1] > side - side) positions[2].Add(cell);
+    //   if (cell.position[0] > side - side && cell.position[1] > side - side) positions[3].Add(cell);
+    // }
+
+      foreach(Cell cell in grid){
+        positions[0].Add(cell);
+      }  
     }
-  }
 
   public void PresentStimuli() {
     // StartCoroutine(RunStims(currentCells));
@@ -140,30 +144,32 @@ public class SquareController : MonoBehaviour {
     }
   }
 
-  public void ShowCurrentSquare() {
+  public void ShowCurrentSquare() { 
     currentSquare.enabled = true;
     currentSquare.GetComponent<FocusSquareEnlarger>().Enlarge();
   }
 
   void SetSquareArea(int area) {
-    switch (area) {
-      case 0:
-        currentPosition = positions[0];
-        currentSquare = squarePositions[0];
-        break;
-      case 1:
-        currentPosition = positions[1];
-        currentSquare = squarePositions[1];
-        break;
-      case 2:
-        currentPosition = positions[2];
-        currentSquare = squarePositions[2];
-        break;
-      case 3:
-        currentPosition = positions[3];
-        currentSquare = squarePositions[3];
-        break;
-    }
+    // switch (area) {
+    //   case 0:
+    //     currentPosition = positions[0];
+    //     currentSquare = squarePositions[0];
+    //     break;
+    //   case 1:
+    //     currentPosition = positions[1];
+    //     currentSquare = squarePositions[1];
+    //     break;
+    //   case 2:
+    //     currentPosition = positions[2];
+    //     currentSquare = squarePositions[2];
+    //     break;
+    //   case 3:
+    //     currentPosition = positions[3];
+    //     currentSquare = squarePositions[3];
+    //     break;
+    // }
+    currentPosition = positions[0];
+    currentSquare = squarePositions[0];
   }
 
   public void HideSquares() {

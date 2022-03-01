@@ -111,7 +111,7 @@ public class GameController : MonoBehaviour {
         ActivatePlayerInteraction();
         break;
       case GameEvent.Turn:
-        EndTurn(false);
+        EndTurn();//false); ###
         break;
       case GameEvent.EndTurnDelay:
         PresentBoardState();
@@ -135,7 +135,7 @@ public class GameController : MonoBehaviour {
     gridController.SetCellValueVisibiltyToggle(false);
     roundActive = true;
     squareController.PrepareStimuliPhase();
-    squareController.ShowCurrentSquare();
+    // squareController.ShowCurrentSquare(); ###
     gridController.lastCellInteractedWith = null;
     uiController.ShowTurnPanelActivePlayer(activePlayer);
     // gridController.ClearHoverMarkers();
@@ -174,7 +174,7 @@ public class GameController : MonoBehaviour {
     timer.StartNextTimer();
   }
 
-  public void EndTurn(bool wasCorrectMove) {
+  public void EndTurn(){//bool wasCorrectMove) { ###
     // dataPoster.SendTurn(turnNum, 
     //   currentRound,
     //   dotController.toggleDot,
@@ -189,8 +189,8 @@ public class GameController : MonoBehaviour {
     //   squareController.distractorIndex); 
     
     // reactionTimeStart = 0f;
-    squareController.HideSquares();
-    gridController.FadeCellsExceptLastCellInteractedWith();
+    // squareController.HideSquares(); ###
+    // gridController.FadeCellsExceptLastCellInteractedWith(); ###
     gridController.SetCellValueVisibiltyToggle(false);
     uiController.ToggleTurnPanels(false);
     timer.TimerBarDisplay(false);
@@ -198,21 +198,21 @@ public class GameController : MonoBehaviour {
     gridController.SetBoardInteractable(false);
     soundFxController.StopClock();
 
-    if (wasCorrectMove) UpdateScore(activePlayer);
+    // if (wasCorrectMove) UpdateScore(activePlayer); ###
 
     // if(CheckIfPassedThreshold(activePlayer.score) && !gameLogic.checkGridForWin(gridController.grid)) timer.pausForThresholdEvent = true;
-    if (gameLogic.checkGridForWin(gridController.grid)) {
-      activePlayer.nRoundsWon++;
-      winningPlayer = activePlayer;
-    } else {
-      gridController.SetBoardInteractable(false);
+    // if (gameLogic.checkGridForWin(gridController.grid)) { ###
+    //   activePlayer.nRoundsWon++;
+    //   winningPlayer = activePlayer;
+    // } else {
+    //   gridController.SetBoardInteractable(false);
     turnNum++;
-    }
+    // } ###
     timer.StartNextTimer();
   }
 
   void PresentBoardState() {
-    activePlayer = (activePlayer == playerX) ? playerO : playerX;
+    //activePlayer = (activePlayer == playerX) ? playerO : playerX; ###
     gridController.SetCellValueVisibiltyToggle(true);
     gridController.SetBoardInteractable(false);
     

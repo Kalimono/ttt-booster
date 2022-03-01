@@ -10,7 +10,7 @@ public class GameLogic : MonoBehaviour {
   public int rowLenToWin = 3;
 
   bool isWithinRange(int x, int y) {
-    return x >= 0 && x < 4 && y >= 0 && y < 4;
+    return x >= 0 && x < 3 && y >= 0 && y < 3;
   }
 
   public List<List<Cell>> GetPossibleRows(Cell[,] grid) {
