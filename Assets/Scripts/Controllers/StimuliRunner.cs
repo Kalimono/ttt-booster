@@ -6,6 +6,7 @@ using System.Linq;
 public class StimuliRunner : MonoBehaviour {
     List<Cell> cellList;
     float timeInBetween = 1f;
+    float highlightTime = 1f;
     float startTime;
     int indexCounter;
     
@@ -22,7 +23,7 @@ public class StimuliRunner : MonoBehaviour {
         if(runningStims) {
             
             if (Time.time - startTime > timeInBetween) {
-                cellList[indexCounter].HighlightMe(.75f);
+                cellList[indexCounter].HighlightMe(highlightTime);
                 indexCounter++;
                 startTime = Time.time;
                 soundFxController.PlayStimuliSound();
@@ -37,7 +38,7 @@ public class StimuliRunner : MonoBehaviour {
         startTime = Time.time;
         runningStims = true;
         soundFxController.PlayStimuliSound();
-        cellList[0].HighlightMe(.75f);
+        cellList[0].HighlightMe(highlightTime);
 
         
 
