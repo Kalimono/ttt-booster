@@ -35,7 +35,10 @@ public class RotateMe : MonoBehaviour {
   void Update() {
     if (rotationActive) {
       currentLerpTime += Time.unscaledDeltaTime;
-
+      // Debug.Log(targetPosition.x);
+      // Debug.Log(targetPosition.y);
+      // Debug.Log(targetPosition.z);
+      // Debug.Log("yep");
       if(currentLerpTime/lerpTime < 1 && frameCounter % 2 == 0) {
         // currentAngle = Vector3.Lerp(startAngle, targetAngle, currentLerpTime/lerpTime);
         // currentAngle = new Vector3(
@@ -50,7 +53,6 @@ public class RotateMe : MonoBehaviour {
 
         transform.eulerAngles = Vector3.Lerp(startAngle, targetAngle, currentLerpTime/lerpTime);//currentAngle;
         transform.position = Vector3.Lerp(startPosition, targetPosition, currentLerpTime/lerpTime);//currentPosition;
-        Debug.Log(transform.position);
       }
       
       if (currentLerpTime / lerpTime >= 1) {
@@ -81,8 +83,8 @@ public class RotateMe : MonoBehaviour {
     targetAngle = new Vector3(0f, 180f, 0f);
     rotationActive = true;
     currentLerpTime = 0;
-    targetPosition = new Vector3(2.2f, 4.5f, -100f); //(0f, 0f, -5f);
-    startPosition = transform.localPosition;
+    targetPosition = new Vector3(0f, 0f, 0f);
+    startPosition = transform.position;
     currentPosition = startPosition;
   }
 

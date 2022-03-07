@@ -14,7 +14,7 @@ public class AutoTurnEnderController : MonoBehaviour {
 
   public void Init(LevelSettings levelSettings) {
     foreach (Timer timer in levelSettings.timers) {
-      if (timer.gameEvent == GameEvent.Turn) {
+      if (timer.gameEvent == GameEvent.Response) {
         timeToThink = timer.timeout * 0.2f;//Random.Range(0.5f, 0.8f);
       }
     }

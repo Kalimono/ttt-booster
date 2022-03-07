@@ -5,13 +5,21 @@ using UnityEngine.UI;
 using System;
 
 public enum GameEvent {
-  PresentSquare,
+  StartTurnDelay,
   PresentStimuli,
   TraceCondition,
-  Turn,
-  EndTurnDelay,
-  ShowGameState
+  Response,
+  EndTurnDelay
 }
+
+// public enum GameEvent {
+//   PresentSquare,
+//   PresentStimuli,
+//   TraceCondition,
+//   Turn,
+//   EndTurnDelay,
+//   ShowGameState
+// }
 
 [System.Serializable]
 public class Timer {
@@ -77,10 +85,10 @@ public class TimerController : MonoBehaviour {
       onTimerStarted(timer.gameEvent);
     }
     float timeOut = timer.timeout;
-    if (pausForThresholdEvent && timer.gameEvent == GameEvent.ShowGameState) {
-      pausForThresholdEvent = false;
-      timeOut = 3200f;
-    }
+    // if (pausForThresholdEvent && timer.gameEvent == GameEvent.ShowGameState) { ###
+    //   pausForThresholdEvent = false;
+    //   timeOut = 3200f;
+    // }
     yield return new WaitForSeconds(timeOut / 1000);
 
     if (onTimerFinished != null) {

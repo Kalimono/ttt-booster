@@ -101,32 +101,61 @@ public class GameController : MonoBehaviour {
     if (!roundActive) return;
 
     switch (gameEvent) {
-      case GameEvent.PresentSquare:
+      case GameEvent.StartTurnDelay:
         StartTurn();
         break;
       case GameEvent.PresentStimuli:
-        HideStimuli();
+        TraceCondition();
         break;
       case GameEvent.TraceCondition:
-        ActivatePlayerInteraction();
+        ResponsePhase();
         break;
-      case GameEvent.Turn:
+      case GameEvent.Response:
         EndTurn();//false); ###
         break;
       case GameEvent.EndTurnDelay:
-        PresentBoardState();
+        PreStartTurn();//false); ###
         break;
-      case GameEvent.ShowGameState:
-        PreStartTurn();
-        break;
+      // case GameEvent.EndTurnDelay:
+      //   PresentBoardState();
+      //   break;
+      // case GameEvent.ShowGameState:
+      //   PreStartTurn();
+      //   break;
     }
   }
+
+  // void OnTimerFinished(GameEvent gameEvent) { ###
+  //   if (!roundActive) return;
+
+  //   switch (gameEvent) {
+  //     case GameEvent.PresentSquare:
+  //       StartTurn();
+  //       break;
+  //     case GameEvent.PresentStimuli:
+  //       HideStimuli();
+  //       break;
+  //     case GameEvent.TraceCondition:
+  //       ActivatePlayerInteraction();
+  //       break;
+  //     case GameEvent.Turn:
+  //       EndTurn();//false); ###
+  //       break;
+  //     case GameEvent.EndTurnDelay:
+  //       PresentBoardState();
+  //       break;
+  //     case GameEvent.ShowGameState:
+  //       PreStartTurn();
+  //       break;
+  //   }
+  // }
 
   public GameValue GetPlayerSide() {
     return activePlayer.value;
   }
 
   void PreStartTurn() {
+    gridController.ToggleFadeAllCells(false);
     if(winningPlayer != playerNull) {
       GameOver(winningPlayer);
       return;
@@ -150,12 +179,12 @@ public class GameController : MonoBehaviour {
     timer.StartNextTimer();
   }
 
-  void HideStimuli() { 
+  void TraceCondition() { 
     gridController.SetCellValueVisibiltyToggle(false);
     timer.StartNextTimer();
   }
 
-  void ActivatePlayerInteraction() {
+  void ResponsePhase() {
     if (activePlayer == playerX) {
       squareController.ToggleOptions(true);
     } else {
@@ -169,6 +198,9 @@ public class GameController : MonoBehaviour {
       autoTurnEnderController.AutoPlayTurn();
       gridController.SetBoardInteractable(false); 
     }
+
+    gridController.ToggleFadeAllCells(true);
+    squareController.correctCell.Fade(false);
 
     reactionTimeStart = Time.time;
     timer.StartNextTimer();
@@ -197,6 +229,7 @@ public class GameController : MonoBehaviour {
     timer.AbortTimer();
     gridController.SetBoardInteractable(false);
     soundFxController.StopClock();
+    
 
     // if (wasCorrectMove) UpdateScore(activePlayer); ###
 
@@ -211,18 +244,18 @@ public class GameController : MonoBehaviour {
     timer.StartNextTimer();
   }
 
-  void PresentBoardState() {
-    //activePlayer = (activePlayer == playerX) ? playerO : playerX; ###
-    gridController.SetCellValueVisibiltyToggle(true);
-    gridController.SetBoardInteractable(false);
+  // void PresentBoardState() { ###
+  //   //activePlayer = (activePlayer == playerX) ? playerO : playerX; ###
+  //   gridController.SetCellValueVisibiltyToggle(true);
+  //   gridController.SetBoardInteractable(false);
     
-    if(winningPlayer == playerNull) uiController.FlashCellsCloseWin();
-    gridController.ToggleFadeAllCells(false);
+  //   if(winningPlayer == playerNull) uiController.FlashCellsCloseWin();
+  //   gridController.ToggleFadeAllCells(false);
 
-    if(winningPlayer != playerNull) uiController.HighlightWin(winningPlayer);
+  //   if(winningPlayer != playerNull) uiController.HighlightWin(winningPlayer);
 
-    timer.StartNextTimer();
-  }
+  //   timer.StartNextTimer();
+  // }
 
   void GameOver(Player winningPlayer) {
     currentRound++;
