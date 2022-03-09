@@ -37,6 +37,7 @@ public class TimerController : MonoBehaviour {
   public event System.Action<GameEvent> onTimerStarted;
   public event System.Action<GameEvent> onTimerFinished;
   public LevelSettings levelSettings;
+  public ConditionController conditionController;
 
   private double timeElapsed;
   private float currentTimerLength;
@@ -85,6 +86,14 @@ public class TimerController : MonoBehaviour {
       onTimerStarted(timer.gameEvent);
     }
     float timeOut = timer.timeout;
+
+    if (timer.gameEvent == GameEvent.TraceCondition) {
+      
+      timeOut = conditionController.traceCondition; 
+      Debug.Log("trace");
+      Debug.Log(timeOut);
+      }
+    if (timer.gameEvent == GameEvent.Response) timeOut = conditionController.responseTime; 
     // if (pausForThresholdEvent && timer.gameEvent == GameEvent.ShowGameState) { ###
     //   pausForThresholdEvent = false;
     //   timeOut = 3200f;
@@ -102,6 +111,7 @@ public class TimerController : MonoBehaviour {
 
   public void TimerBarDisplay(bool display) {
     if (display) {
+      
       timerBar.SetActive(true);
     } else {
       timerBar.SetActive(false);
@@ -109,7 +119,7 @@ public class TimerController : MonoBehaviour {
   }
 
   public void TimerBarUpdate() {
-    timerBarSlider.maxValue = 500;
-    timerBarSlider.value = timerBarSlider.maxValue - (float)Math.Round(timeElapsed / 10);
+    timerBarSlider.maxValue = conditionController.responseTime;
+    timerBarSlider.value = timerBarSlider.maxValue - (float)Math.Round(timeElapsed);
   }
 }

@@ -17,6 +17,9 @@ public class GridCreator : MonoBehaviour {
   public GameController gameController;
   public GridController gridController;
 
+  Vector3 currentGridPosition;
+  float currentCellSize;
+
   void ClearChildren() {
     var tempArray = new GameObject[this.transform.childCount];
     for (int i = 0; i < tempArray.Length; i++) {
@@ -29,7 +32,8 @@ public class GridCreator : MonoBehaviour {
   }
 
   public Cell[,] InitializeGrid() {
-    transform.position = Vector3.zero;
+    transform.position = GetGridPosition(gridSize);//Vector3.zero;
+    cellSize = GetCellSize(gridSize);
     ClearChildren();
 
     Cell[,] grid = new Cell[gridSize, gridSize];
@@ -39,7 +43,6 @@ public class GridCreator : MonoBehaviour {
         grid[x, y] = cell;
       }
     }
-    transform.position = new Vector3(-77, -152, 188);//(-3.33f, -5.6f, 1);
     return grid;
   }
 
@@ -56,5 +59,42 @@ public class GridCreator : MonoBehaviour {
 
   float CellOffset(int i) { //cellSize == 2.05, padding == 2
     return (i * cellSize) + ((padding / 10f) * i);
+  }
+
+  Vector3 GetGridPosition(int gridSize) {
+    Vector3 position;
+    switch (gridSize) {
+      case 4:
+        position = new Vector3(-94, -152, 188);
+        break;
+      case 5:
+        position = new Vector3(-105, -152, 188);
+        break;
+      default: //3
+        position = new Vector3(-77, -152, 188);
+        break;
+    }
+    return position;
+  }
+
+  float GetCellSize(int gridSize) {
+    float cellSize;
+    switch (gridSize) {
+      case 4:
+        cellSize = 2.05f;
+        break;
+      case 5:
+        cellSize = 1.75f;
+        break;
+      default: //3
+        cellSize = 2.7f;
+        break;
+    }
+    return cellSize;
+  }
+
+  public void CreateGrid(int size) {
+    gridSize = size;
+    gridController.grid = InitializeGrid();
   }
 }

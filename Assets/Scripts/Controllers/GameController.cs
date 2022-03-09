@@ -102,7 +102,7 @@ public class GameController : MonoBehaviour {
 
     switch (gameEvent) {
       case GameEvent.StartTurnDelay:
-        StartTurn();
+        StimuliPhase();
         break;
       case GameEvent.PresentStimuli:
         TraceCondition();
@@ -171,7 +171,7 @@ public class GameController : MonoBehaviour {
     timer.StartNextTimer();
   }
 
-  void StartTurn() {
+  void StimuliPhase() {
     squareController.PresentStimuli();
     gridController.SetBoardInteractable(false);
     timer.TimerBarDisplay(false);
