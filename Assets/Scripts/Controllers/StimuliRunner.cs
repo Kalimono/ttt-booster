@@ -25,13 +25,17 @@ public class StimuliRunner : MonoBehaviour {
         if(runningStims) {
 
             if(indexCounter == cellList.Count) {
-                Debug.Log("done");
+                // if(!rainbow) {
+                    StartCoroutine(DelayNextTimerStart());
+                // } else {
+                    rainbow = false;
+                    // timerController.StartNextTimer();
+                // }
                 runningStims = false;
-                rainbow = false;
-                timerController.StartNextTimer();
             }
             
             if (Time.time - startTime > conditionController.stimuliLifetime/1000+conditionController.timeBetweenStimuli/1000) {
+                // Debug.Log(indexCounter);
                 if(rainbow) {
                     cellList[indexCounter].HighlightMeRainbow(conditionController.stimuliLifetime/1000);
                 } else {
@@ -42,6 +46,11 @@ public class StimuliRunner : MonoBehaviour {
                 soundFxController.PlayStimuliSound();
             }
         } 
+    }
+
+    IEnumerator DelayNextTimerStart() {
+        yield return new WaitForSeconds(conditionController.stimuliLifetime/1000);
+        timerController.StartNextTimer();
     }
     
     public void RunStimuli(HashSet<Cell> cells) {

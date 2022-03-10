@@ -16,9 +16,9 @@ MonoBehaviour:
   - gameEvent: 0
     timeout: 1000
   - gameEvent: 1
-    timeout: 3000
+    timeout: 0
   - gameEvent: 2
-    timeout: 2000
+    timeout: 0
   - gameEvent: 3
     timeout: 5000
   - gameEvent: 4

@@ -41,7 +41,7 @@ public class TimerController : MonoBehaviour {
   public StimuliRunner stimuliRunner;
 
   private double timeElapsed;
-  private float currentTimerLength;
+  // private float currentTimerLength;
   private Coroutine activeTimer;
 
   private System.DateTime timerStarted;
@@ -76,8 +76,8 @@ public class TimerController : MonoBehaviour {
   }
 
   void StartTimer(Timer timer) {
-    timerBarSlider.maxValue = timer.timeout / 1000;
-    // Debug.Log(timer.timeout);
+    timerBarSlider.maxValue = timer.timeout/10;
+    // Debug.Log(timer.gameEvent);
     activeTimer = StartCoroutine(WaitForTimeout(timer));
   }
 
@@ -121,7 +121,7 @@ public class TimerController : MonoBehaviour {
   }
 
   public void TimerBarUpdate() {
-    timerBarSlider.maxValue = conditionController.responseTime;
-    timerBarSlider.value = timerBarSlider.maxValue - (float)Math.Round(timeElapsed);
+    // timerBarSlider.maxValue = 500;
+    timerBarSlider.value = timerBarSlider.maxValue - (float)Math.Round(timeElapsed / 10);
   }
 }

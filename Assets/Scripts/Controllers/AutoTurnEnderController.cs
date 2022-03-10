@@ -26,30 +26,30 @@ public class AutoTurnEnderController : MonoBehaviour {
     return randint <= successPercentage;
   }
 
-  public void AutoPlayTurn() {
-    StartCoroutine(ThinkBeforeChoosing());
-  }
+  // public void AutoPlayTurn() {
+  //   StartCoroutine(ThinkBeforeChoosing());
+  // }
 
-  public void MakeMove() {
-    Cell position;
+  // public void MakeMove() {
+  //   Cell position;
 
-    bool success = CheckIfSuccessfulMove(successPercentage);
-    if (success) {
-      position = squareController.correctCell;
-    } else {
-      position = squareController.distractorCell;
-    }
-    squareController.HideAIOptions();
-    position.SetInteractive(true);
-    position.OnClick();
-    position.PresentHoverMarker(1);
-  }
+  //   bool success = CheckIfSuccessfulMove(successPercentage);
+  //   if (success) {
+  //     position = squareController.correctCell;
+  //   } else {
+  //     position = squareController.distractorCell;
+  //   }
+  //   squareController.HideAIOptions();
+  //   position.SetInteractive(true);
+  //   position.OnClick();
+  //   position.PresentHoverMarker(1);
+  // }
 
-  IEnumerator ThinkBeforeChoosing() {
-    squareController.ShowAIoptions();
-    yield return new WaitForSeconds(timeToThink / 1000);
-    MakeMove();
-  }
+  // IEnumerator ThinkBeforeChoosing() {
+  //   squareController.ShowAIoptions();
+  //   yield return new WaitForSeconds(timeToThink / 1000);
+  //   MakeMove();
+  // }
 
   public void ToggleAutoPlay() {
     if (toggleAutoPlay) {

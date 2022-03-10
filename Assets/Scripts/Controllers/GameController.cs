@@ -187,22 +187,27 @@ public class GameController : MonoBehaviour {
   }
 
   void ResponsePhase() {
-    if (activePlayer == playerX) {
+    // if (activePlayer == playerX) {
       squareController.ToggleOptions(true);
-    } else {
-      squareController.ShowAIoptions();
-    }
+    // } else {
+    //   squareController.ShowAIoptions();
+    // }
 
     timer.TimerBarDisplay(true);
     soundFxController.PlayClock();
 
-    if (activePlayer == playerO || autoTurnEnderController.toggleAutoPlay) {
-      autoTurnEnderController.AutoPlayTurn();
-      gridController.SetBoardInteractable(false); 
-    }
+    // if (activePlayer == playerO || autoTurnEnderController.toggleAutoPlay) {
+    //   autoTurnEnderController.AutoPlayTurn();
+    //   gridController.SetBoardInteractable(false); 
+    // }
 
     gridController.ToggleFadeAllCells(true);
     squareController.correctCell.Fade(false);
+
+    // foreach(Cell cell in squareController.distractorCells) {
+    //   Debug.Log(cell.position);
+    //   cell.Fade(false);
+    // }
 
     reactionTimeStart = Time.time;
     timer.StartNextTimer();

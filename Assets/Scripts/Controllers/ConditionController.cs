@@ -11,6 +11,7 @@ public class ConditionController : MonoBehaviour {
     public Slider responseTimeSlider;
     public Slider gridSizeSlider;
     public Slider nRainbowStimSlider;
+    public Slider nDistractorsSlider;
 
     public TextMeshProUGUI stimuliLifetimeValueText;
     public TextMeshProUGUI timeBetweenStimuliValueText;
@@ -18,6 +19,7 @@ public class ConditionController : MonoBehaviour {
     public TextMeshProUGUI responseTimeValueText;
     public TextMeshProUGUI gridSizeValueText;
     public TextMeshProUGUI nRainbowStimTimeValueText;
+    public TextMeshProUGUI nDistractorsTimeValueText;
 
 
     public float stimuliLifetime = 15;
@@ -26,6 +28,7 @@ public class ConditionController : MonoBehaviour {
     public float responseTime = 5;
     public float gridSize = 3;
     public float nRainbowStim = 4;
+    public float nDistractors = 1;
 
     GridCreator gridCreator;
 
@@ -40,6 +43,7 @@ public class ConditionController : MonoBehaviour {
         responseTimeSlider.onValueChanged.AddListener(delegate {ResponseTimeSliderChange();});
         gridSizeSlider.onValueChanged.AddListener(delegate {GridSizeSliderChange();});
         nRainbowStimSlider.onValueChanged.AddListener(delegate {nRainbowStimSliderChange();});
+        nDistractorsSlider.onValueChanged.AddListener(delegate {nDistractorsSliderChange();});
     }
 
     void StimuliLifetimeSliderChange() {
@@ -71,5 +75,10 @@ public class ConditionController : MonoBehaviour {
     void nRainbowStimSliderChange() {
 		nRainbowStim = nRainbowStimSlider.value;
         nRainbowStimTimeValueText.text = nRainbowStim.ToString();
+	}
+
+    void nDistractorsSliderChange() {
+		nDistractors = nDistractorsSlider.value;
+        nDistractorsTimeValueText.text = nDistractors.ToString();
 	}
 }
