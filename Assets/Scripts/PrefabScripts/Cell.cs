@@ -124,7 +124,7 @@ public class Cell : MonoBehaviour {
   }
 
 
-  public void HighlightMe(float seconds) {
+  public void HighlightMeWhite(float seconds) {
     StartCoroutine(ChangeToWhiteAndBack(seconds));
   }
 
@@ -133,6 +133,24 @@ public class Cell : MonoBehaviour {
     shapeRenderer.material.SetColor("ColorInactive", new Color(2f, 2f, 2f, 1f));
     yield return new WaitForSeconds(seconds);
     shapeRenderer.material.SetColor("ColorInactive", defaultColor); //new Color(0.106f, 0.251f, 0.357f, 0.000f));
+  }
+
+  public void HighlightMeRainbow(float seconds) {
+    StartCoroutine(ChangeToRainbowAndBack(seconds));
+  }
+
+  public IEnumerator ChangeToRainbowAndBack(float seconds) {
+    Color defaultColor = shapeRenderer.material.GetColor("ColorInactive");
+    Color randomColor = GetRandomColor();
+    shapeRenderer.material.SetColor("ColorInactive", randomColor);
+    yield return new WaitForSeconds(seconds);
+    shapeRenderer.material.SetColor("ColorInactive", defaultColor); //new Color(0.106f, 0.251f, 0.357f, 0.000f));
+  }
+
+  Color GetRandomColor() {
+    List<Color> colors = new List<Color>{Color.blue, Color.cyan, Color.green, Color.magenta, Color.red, Color.yellow};
+    Color randomColor = colors[Random.Range(0, colors.Count-1)];
+    return randomColor*3;
   }
 
   public void Fade(bool toggle) {

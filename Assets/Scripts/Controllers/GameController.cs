@@ -76,9 +76,10 @@ public class GameController : MonoBehaviour {
   void ResetGameState() {
     gridController.CreateGrid();
     gridController.SetCellValuesToNone();
-    squareController.CutGridIntoAreas(gridController.grid); 
+    // squareController.CutGridIntoAreas(gridController.grid);  ###
     if(dotController.toggleDot) dotController.SetOutcomeAreas(gridController.grid);
     // dotController.AssignOutcomes();
+    squareController.Initialize();
     gridController.lastCellInteractedWith = null;
     StimuliSequencer.CreateSequences();
     uiController.gameOverPanel.SetActive(false);
@@ -176,12 +177,13 @@ public class GameController : MonoBehaviour {
     gridController.SetBoardInteractable(false);
     timer.TimerBarDisplay(false);
     gridController.SetCellValueVisibiltyToggle(false);
-    timer.StartNextTimer();
+    // timer.StartNextTimer();
   }
 
   void TraceCondition() { 
     gridController.SetCellValueVisibiltyToggle(false);
-    timer.StartNextTimer();
+    squareController.PresentRainbowDistractorStimuli();
+    // timer.StartNextTimer();
   }
 
   void ResponsePhase() {

@@ -19,7 +19,7 @@ public static class StimuliSequencer {
   static public void CreateStimuliSequence() {
     stimuliSequence = new List<int>();
     while (stimuliSequence.Count < sequenceLength) {
-      List<int> cornerIndexes = new List<int> { 0, 0, 2, 2, 6, 6, 8, 8 };
+      List<int> cornerIndexes = new List<int> { 0, 0, 1, 1, 2, 2, 3, 3};
       List<int> randomizedStimuli = RandomizeList(cornerIndexes);
       AddListToList(stimuliSequence, randomizedStimuli);
     }

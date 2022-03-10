@@ -10,12 +10,14 @@ public class ConditionController : MonoBehaviour {
     public Slider traceConditionSlider;
     public Slider responseTimeSlider;
     public Slider gridSizeSlider;
+    public Slider nRainbowStimSlider;
 
     public TextMeshProUGUI stimuliLifetimeValueText;
     public TextMeshProUGUI timeBetweenStimuliValueText;
     public TextMeshProUGUI traceConditionValueText;
     public TextMeshProUGUI responseTimeValueText;
     public TextMeshProUGUI gridSizeValueText;
+    public TextMeshProUGUI nRainbowStimTimeValueText;
 
 
     public float stimuliLifetime = 15;
@@ -23,6 +25,7 @@ public class ConditionController : MonoBehaviour {
     public float traceCondition = 2;
     public float responseTime = 5;
     public float gridSize = 3;
+    public float nRainbowStim = 4;
 
     GridCreator gridCreator;
 
@@ -36,6 +39,7 @@ public class ConditionController : MonoBehaviour {
         traceConditionSlider.onValueChanged.AddListener(delegate {TraceConditionSliderChange();});
         responseTimeSlider.onValueChanged.AddListener(delegate {ResponseTimeSliderChange();});
         gridSizeSlider.onValueChanged.AddListener(delegate {GridSizeSliderChange();});
+        nRainbowStimSlider.onValueChanged.AddListener(delegate {nRainbowStimSliderChange();});
     }
 
     void StimuliLifetimeSliderChange() {
@@ -62,5 +66,10 @@ public class ConditionController : MonoBehaviour {
 		gridSize = gridSizeSlider.value;
         gridSizeValueText.text = gridSize.ToString();
         gridCreator.CreateGrid((int)gridSize);
+	}
+
+    void nRainbowStimSliderChange() {
+		nRainbowStim = nRainbowStimSlider.value;
+        nRainbowStimTimeValueText.text = nRainbowStim.ToString();
 	}
 }

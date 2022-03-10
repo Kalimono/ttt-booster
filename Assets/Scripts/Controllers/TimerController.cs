@@ -38,6 +38,7 @@ public class TimerController : MonoBehaviour {
   public event System.Action<GameEvent> onTimerFinished;
   public LevelSettings levelSettings;
   public ConditionController conditionController;
+  public StimuliRunner stimuliRunner;
 
   private double timeElapsed;
   private float currentTimerLength;
@@ -76,6 +77,7 @@ public class TimerController : MonoBehaviour {
 
   void StartTimer(Timer timer) {
     timerBarSlider.maxValue = timer.timeout / 1000;
+    // Debug.Log(timer.timeout);
     activeTimer = StartCoroutine(WaitForTimeout(timer));
   }
 
@@ -87,20 +89,20 @@ public class TimerController : MonoBehaviour {
     }
     float timeOut = timer.timeout;
 
-    if (timer.gameEvent == GameEvent.TraceCondition) {
+    // if (timer.gameEvent == GameEvent.TraceCondition) {
       
-      timeOut = conditionController.traceCondition; 
-      Debug.Log("trace");
-      Debug.Log(timeOut);
-      }
-    if (timer.gameEvent == GameEvent.Response) timeOut = conditionController.responseTime; 
+    //   timeOut = conditionController.traceCondition; 
+    //   // Debug.Log("trace");
+    //   // Debug.Log(timeOut);
+    //   }
+    // if (timer.gameEvent == GameEvent.Response) timeOut = conditionController.responseTime; 
     // if (pausForThresholdEvent && timer.gameEvent == GameEvent.ShowGameState) { ###
     //   pausForThresholdEvent = false;
     //   timeOut = 3200f;
     // }
     yield return new WaitForSeconds(timeOut / 1000);
 
-    if (onTimerFinished != null) {
+    if (onTimerFinished != null && !stimuliRunner.runningStims) {
       onTimerFinished(timer.gameEvent);
     }
   }

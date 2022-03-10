@@ -8,7 +8,8 @@ public class StimuliRunner : MonoBehaviour {
     float startTime;
     int indexCounter;
     
-    bool runningStims = false;
+    public bool runningStims = false;
+    bool rainbow = false;
 
     SoundFxController soundFxController;
     ConditionController conditionController;
@@ -26,11 +27,16 @@ public class StimuliRunner : MonoBehaviour {
             if(indexCounter == cellList.Count) {
                 Debug.Log("done");
                 runningStims = false;
-                // timerController.StartNextTimer();
+                rainbow = false;
+                timerController.StartNextTimer();
             }
             
             if (Time.time - startTime > conditionController.stimuliLifetime/1000+conditionController.timeBetweenStimuli/1000) {
-                cellList[indexCounter].HighlightMe(conditionController.stimuliLifetime/1000);
+                if(rainbow) {
+                    cellList[indexCounter].HighlightMeRainbow(conditionController.stimuliLifetime/1000);
+                } else {
+                    cellList[indexCounter].HighlightMeWhite(conditionController.stimuliLifetime/1000);
+                }
                 indexCounter++;
                 startTime = Time.time;
                 soundFxController.PlayStimuliSound();
@@ -44,7 +50,17 @@ public class StimuliRunner : MonoBehaviour {
         startTime = Time.time;
         runningStims = true;
         soundFxController.PlayStimuliSound();
-        cellList[0].HighlightMe(conditionController.stimuliLifetime/1000);
+        cellList[0].HighlightMeWhite(conditionController.stimuliLifetime/1000);
+    }
+
+    public void RunRainbowDistractorStimuli(List<Cell> rainbowCellList) {
+        cellList = rainbowCellList;
+        indexCounter = 1;
+        startTime = Time.time;
+        runningStims = true;
+        rainbow = true;
+        soundFxController.PlayStimuliSound();
+        cellList[0].HighlightMeRainbow(conditionController.stimuliLifetime/1000);
     }
 
     public List<Cell> RandomizeListOrder(List<Cell> list) {
