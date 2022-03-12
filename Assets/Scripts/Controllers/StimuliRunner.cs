@@ -74,8 +74,14 @@ public class StimuliRunner : MonoBehaviour {
                 squareController.currentStimuliCells[currentStimuliIndex].HighlightMeWhite(stimuliLifetime);
                 currentStimuliIndex++;
             } else {
-                squareController.currentRainbowCells[currentRainbowStimuliIndex].HighlightMeRainbow(stimuliLifetime);
-                currentRainbowStimuliIndex++;
+                if(currentRainbowStimuliIndex < squareController.currentRainbowCells.Count) {
+                    squareController.currentRainbowCells[currentRainbowStimuliIndex].HighlightMeRainbow(stimuliLifetime);
+                    currentRainbowStimuliIndex++;
+                } else {
+                    squareController.currentStimuliCells[currentStimuliIndex].HighlightMeWhite(stimuliLifetime);
+                    currentStimuliIndex++;
+                }
+                
             }
             yield return new WaitForSeconds(stimuliLifetime);;
         }
