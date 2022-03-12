@@ -22,6 +22,8 @@ public class SoundFxController : MonoBehaviour {
 
   public AudioClip AICorrect;
 
+  public AudioClip blueTime;
+
   public void PlayClock() {
     audioSourceClock.PlayOneShot(clock);
   }
@@ -45,5 +47,9 @@ public class SoundFxController : MonoBehaviour {
 
   public void PlayStimuliSound() {
     mainAudioSource.PlayOneShot(stimuliSound);
+  }
+
+  public void PlayBlueTime() {
+    mainAudioSource.PlayOneShot(blueTime);
   }
 }

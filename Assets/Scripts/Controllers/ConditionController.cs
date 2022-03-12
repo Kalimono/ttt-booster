@@ -12,6 +12,7 @@ public class ConditionController : MonoBehaviour {
     public Slider gridSizeSlider;
     public Slider nRainbowStimSlider;
     public Slider nDistractorsSlider;
+    public Slider nStimuliSlider;
 
     public TextMeshProUGUI stimuliLifetimeValueText;
     public TextMeshProUGUI timeBetweenStimuliValueText;
@@ -20,15 +21,17 @@ public class ConditionController : MonoBehaviour {
     public TextMeshProUGUI gridSizeValueText;
     public TextMeshProUGUI nRainbowStimTimeValueText;
     public TextMeshProUGUI nDistractorsTimeValueText;
+    public TextMeshProUGUI nStimuliTimeValueText;
 
 
     public float stimuliLifetime = 15;
     public float timeBetweenStimuli = 0;
     public float traceCondition = 2;
     public float responseTime = 5;
-    public float gridSize = 3;
+    public float gridSize = 1;
     public float nRainbowStim = 4;
     public float nDistractors = 1;
+    public float nStimuli = 4;
 
     GridCreator gridCreator;
 
@@ -44,6 +47,7 @@ public class ConditionController : MonoBehaviour {
         gridSizeSlider.onValueChanged.AddListener(delegate {GridSizeSliderChange();});
         nRainbowStimSlider.onValueChanged.AddListener(delegate {nRainbowStimSliderChange();});
         nDistractorsSlider.onValueChanged.AddListener(delegate {nDistractorsSliderChange();});
+        nStimuliSlider.onValueChanged.AddListener(delegate {nStimuliSliderChange();});
     }
 
     void StimuliLifetimeSliderChange() {
@@ -67,7 +71,7 @@ public class ConditionController : MonoBehaviour {
 	}
 
     void GridSizeSliderChange() {
-		gridSize = gridSizeSlider.value;
+		gridSize = (gridSizeSlider.value == 1) ? 3 : 5;
         gridSizeValueText.text = gridSize.ToString();
         gridCreator.CreateGrid((int)gridSize);
 	}
@@ -80,5 +84,10 @@ public class ConditionController : MonoBehaviour {
     void nDistractorsSliderChange() {
 		nDistractors = nDistractorsSlider.value;
         nDistractorsTimeValueText.text = nDistractors.ToString();
+	}
+
+    void nStimuliSliderChange() {
+		nStimuli = nStimuliSlider.value;
+        nStimuliTimeValueText.text = nStimuli.ToString();
 	}
 }

@@ -182,8 +182,9 @@ public class GameController : MonoBehaviour {
 
   void TraceCondition() { 
     gridController.SetCellValueVisibiltyToggle(false);
-    squareController.PresentRainbowDistractorStimuli();
-    // timer.StartNextTimer();
+    // squareController.PresentRainbowDistractorStimuli();
+    timer.StartNextTimer();
+    uiController.ToggleBlueText(false);
   }
 
   void ResponsePhase() {

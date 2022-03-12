@@ -11,6 +11,27 @@ public class GridController : MonoBehaviour {
   public Cell lastCellInteractedWith;
   public bool rotation = false;
 
+  public SoundFxController soundFxController;
+  public UIController uIController;
+  public bool blueTime = false;
+
+  void Update() {
+    if(blueTime) {
+      if (Input.GetKeyDown("space")) {
+            print("space key was pressed");
+            soundFxController.PlayBlueTime();
+            blueTime = false;
+            uIController.ToggleBlueText(false);
+        }
+    }
+  }
+
+  public void BlueTime() {
+    Debug.Log("bluetime");
+    blueTime = true;
+    uIController.ToggleBlueText(true);
+  }
+
   public void CreateGrid() {
     grid = gridCreator.InitializeGrid();
     foreach(Cell cell in grid) cell.shapeRenderer.material.SetInt("ShouldFlash", 0);
@@ -167,6 +188,7 @@ public class GridController : MonoBehaviour {
     grid[2, 3].value = GameValue.Cross;
     grid[2, 3].valueDisplayer.sprite = grid[2, 0].crossSprite;
   }
+
 
   public void Populate7() {
     grid[2, 0].value = GameValue.Cross;

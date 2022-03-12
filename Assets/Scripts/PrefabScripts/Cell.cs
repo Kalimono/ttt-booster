@@ -125,6 +125,7 @@ public class Cell : MonoBehaviour {
 
 
   public void HighlightMeWhite(float seconds) {
+    soundFxController.PlayStimuliSound();
     StartCoroutine(ChangeToWhiteAndBack(seconds));
   }
 
@@ -136,6 +137,7 @@ public class Cell : MonoBehaviour {
   }
 
   public void HighlightMeRainbow(float seconds) {
+    soundFxController.PlayStimuliSound();
     StartCoroutine(ChangeToRainbowAndBack(seconds));
   }
 
@@ -149,7 +151,9 @@ public class Cell : MonoBehaviour {
 
   Color GetRandomColor() {
     List<Color> colors = new List<Color>{Color.blue, Color.cyan, Color.green, Color.magenta, Color.red, Color.yellow};
-    Color randomColor = colors[Random.Range(0, colors.Count-1)];
+    int randInt = Random.Range(0, colors.Count-1);
+    if (randInt == 0) gridController.BlueTime();
+    Color randomColor = colors[randInt];
     return randomColor*3;
   }
 
