@@ -72,7 +72,7 @@ public class ConditionController : MonoBehaviour {
 	}
 
     void GridSizeSliderChange() {
-		gridSize = (gridSizeSlider.value == 1) ? 3 : 5;
+		gridSize = gridSizeSlider.value;
         gridSizeValueText.text = gridSize.ToString();
         gridCreator.CreateGrid((int)gridSize);
 	}

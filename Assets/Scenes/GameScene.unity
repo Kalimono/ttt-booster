@@ -40131,7 +40131,7 @@ MonoBehaviour:
   timeBetweenStimuli: 0
   traceCondition: 2000
   responseTime: 5000
-  gridSize: 3
+  gridSize: 5
   nRainbowStim: 4
   nDistractors: 1
   nStimuli: 4
@@ -41481,10 +41481,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1162422698}
   m_HandleRect: {fileID: 1344185606}
   m_Direction: 0
-  m_MinValue: 1
-  m_MaxValue: 2
+  m_MinValue: 3
+  m_MaxValue: 5
   m_WholeNumbers: 1
-  m_Value: 2
+  m_Value: 5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

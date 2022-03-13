@@ -62,6 +62,7 @@ public class SquareController : MonoBehaviour {
   List<Cell> GetCellList(Cell[,] grid) {
     // List<Cell> cellsToSkip = GetCellsToSkip(grid);
     Cell cellToSkip = GetCellFromGridToSkip(grid);
+    Debug.Log(cellToSkip);
     List<Cell> cellList = new List<Cell>();
     foreach(Cell cell in grid) {
       if(cell != cellToSkip) cellList.Add(cell);
@@ -102,6 +103,7 @@ public class SquareController : MonoBehaviour {
   // }
 
   Cell GetCellFromGridToSkip(Cell[,] grid) {
+    if(conditionController.gridSize%2==0) return null; 
     cellToSkip = grid[(gridCreator.gridSize-1)/2, (gridCreator.gridSize-1)/2];
     return cellToSkip;
   }
