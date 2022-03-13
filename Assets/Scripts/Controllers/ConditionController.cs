@@ -30,13 +30,14 @@ public class ConditionController : MonoBehaviour {
     public float responseTime = 5;
     public float gridSize = 1;
     public float nRainbowStim = 4;
-    public float nDistractors = 1;
+    public float nDistractors = 0;
     public float nStimuli = 4;
 
     GridCreator gridCreator;
 
     void Awake() {
         gridCreator = FindObjectOfType<GridCreator>();
+        // Debug.Log(nStimuli);
     }
 
     void Start() {
@@ -89,5 +90,6 @@ public class ConditionController : MonoBehaviour {
     void nStimuliSliderChange() {
 		nStimuli = nStimuliSlider.value;
         nStimuliTimeValueText.text = nStimuli.ToString();
+        // Debug.Log(nStimuli);
 	}
 }

@@ -20,7 +20,7 @@ public class SquareController : MonoBehaviour {
   public List<Cell> currentPosition;
   public Image currentSquare;
 
-  public int nStimulis;
+  // public int nStimulis;
   public int distractorPosition;
   public List<Cell> currentStimuliCells = new List<Cell>();
   public List<Cell> currentRainbowCells = new List<Cell>();
@@ -96,10 +96,10 @@ public class SquareController : MonoBehaviour {
     SetRainbowDistractorStimuli();
   }
 
-  Cell GetCellToSkip(List<Cell> currentPosition) {
-    cellToSkip = currentPosition[(currentPosition.Count - 1) / 2];
-    return cellToSkip;
-  }
+  // Cell GetCellToSkip(List<Cell> currentPosition) {
+  //   cellToSkip = currentPosition[(currentPosition.Count - 1) / 2];
+  //   return cellToSkip;
+  // }
 
   Cell GetCellFromGridToSkip(Cell[,] grid) {
     cellToSkip = grid[(gridCreator.gridSize-1)/2, (gridCreator.gridSize-1)/2];
@@ -127,13 +127,15 @@ public class SquareController : MonoBehaviour {
   }
 
   List<Cell> GetNonTargetCells(List<Cell> cells) {
+    Debug.Log(conditionController.nStimuli);
     List<Cell> nonTargetCells = new List<Cell>();
-    while (nonTargetCells.Count < conditionController.nStimuli-1) {
+    while (nonTargetCells.Count+1 < conditionController.nStimuli) {
       int randint = Random.Range(0, cells.Count-1);
       // Debug.Log(randint);
       Cell cell = cells[randint];
       if (!distractors.Contains(cell) && cell != correctCell && !nonTargetCells.Contains(cell)) nonTargetCells.Add(cell);
     }
+    // Debug.Log(nontargetCells.Count);
     return nonTargetCells;
   }
 
@@ -203,6 +205,7 @@ public class SquareController : MonoBehaviour {
   public void PresentStimuli() {
     currentStimuliCells = RandomizeListOrder(currentStimuliCells);
     currentRainbowCells = RandomizeListOrder(currentRainbowCells);
+    // Debug.Log(currentStimuliCells.Count);
     stimuliRunner.RunMixedStimuli();
   }
 
