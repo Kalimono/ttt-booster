@@ -36,6 +36,8 @@ public class SquareController : MonoBehaviour {
   List<Cell> targetCells = new List<Cell>();
   List<Cell> nontargetCells = new List<Cell>();
 
+  public float currenTrialTimeOut;
+
   void Awake() {
     gridCreator = FindObjectOfType<GridCreator>();
   }
@@ -47,10 +49,11 @@ public class SquareController : MonoBehaviour {
   }
 
   void SetCellReinforcement(Cell[,] grid) {
+    ClearPrevious();
     List<Cell> cellList = RandomizeListOrder(GetCellList(grid));  
 
-    for (int i = 0; i < 8; i++) {
-      if(i%2==0) {
+    for (int i = 0; i < cellList.Count; i++) {
+      if(i%2==0 && targetCells.Count < 4) {
         // Debug.Log(cellList[i]);
         targetCells.Add(cellList[i]);
       } else {
@@ -62,7 +65,6 @@ public class SquareController : MonoBehaviour {
   List<Cell> GetCellList(Cell[,] grid) {
     // List<Cell> cellsToSkip = GetCellsToSkip(grid);
     Cell cellToSkip = GetCellFromGridToSkip(grid);
-    Debug.Log(cellToSkip);
     List<Cell> cellList = new List<Cell>();
     foreach(Cell cell in grid) {
       if(cell != cellToSkip) cellList.Add(cell);
@@ -85,9 +87,13 @@ public class SquareController : MonoBehaviour {
   }
 
   public void PrepareStimuliPhase() {
-    SetCurrentStimuliCells(gridController.grid);
     ClearPrevious();
+    currenTrialTimeOut = StimuliSequencer.GetTraceLength();
+    // Debug.Log(currenTrialTimeOut);
+    SetCurrentStimuliCells(gridController.grid);
+    SetCellReinforcement(gridController.grid);
     stimuliIndex = StimuliSequencer.GetStimuliIndex();
+    Debug.Log(targetCells.Count);
     correctCell = targetCells[stimuliIndex];
     currentStimuliCells.Add(correctCell);
 
@@ -103,7 +109,6 @@ public class SquareController : MonoBehaviour {
   // }
 
   Cell GetCellFromGridToSkip(Cell[,] grid) {
-    if(conditionController.gridSize%2==0) return null; 
     cellToSkip = grid[(gridCreator.gridSize-1)/2, (gridCreator.gridSize-1)/2];
     return cellToSkip;
   }
@@ -123,6 +128,9 @@ public class SquareController : MonoBehaviour {
 
   void ClearPrevious() {
     currentStimuliCells.Clear();
+    currentRainbowCells.Clear();
+    targetCells.Clear();
+    nontargetCells.Clear();
     correctCell = null;
     distractors.Clear();
     cellToSkip = null;
@@ -256,4 +264,3 @@ public class SquareController : MonoBehaviour {
     }
   }
 }
-

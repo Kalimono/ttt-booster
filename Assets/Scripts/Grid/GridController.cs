@@ -13,24 +13,7 @@ public class GridController : MonoBehaviour {
 
   public SoundFxController soundFxController;
   public UIController uIController;
-  public bool blueTime = false;
-
-  void Update() {
-    if(blueTime) {
-      if (Input.GetKeyDown("space")) {
-            print("space key was pressed");
-            soundFxController.PlayBlueTime();
-            blueTime = false;
-            uIController.ToggleBlueText(false);
-        }
-    }
-  }
-
-  public void BlueTime() {
-    Debug.Log("bluetime");
-    blueTime = true;
-    uIController.ToggleBlueText(true);
-  }
+  public TimedBlue timedBlue;
 
   public void CreateGrid() {
     grid = gridCreator.InitializeGrid();

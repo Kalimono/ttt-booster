@@ -22,7 +22,8 @@ public class SoundFxController : MonoBehaviour {
 
   public AudioClip AICorrect;
 
-  public AudioClip blueTime;
+  public AudioClip blueTimeWin;
+  public AudioClip blueTimeFail;
 
   public void PlayClock() {
     audioSourceClock.PlayOneShot(clock);
@@ -49,7 +50,11 @@ public class SoundFxController : MonoBehaviour {
     mainAudioSource.PlayOneShot(stimuliSound);
   }
 
-  public void PlayBlueTime() {
-    mainAudioSource.PlayOneShot(blueTime);
+  public void PlayBlueTimeWin() {
+    mainAudioSource.PlayOneShot(blueTimeWin);
+  }
+
+  public void PlayBlueTimeFail() {
+    mainAudioSource.PlayOneShot(blueTimeFail);
   }
 }

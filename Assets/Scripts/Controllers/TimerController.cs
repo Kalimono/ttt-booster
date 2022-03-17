@@ -39,6 +39,7 @@ public class TimerController : MonoBehaviour {
   public LevelSettings levelSettings;
   public ConditionController conditionController;
   public StimuliRunner stimuliRunner;
+  public SquareController squareController;
 
   private double timeElapsed;
   // private float currentTimerLength;
@@ -53,6 +54,8 @@ public class TimerController : MonoBehaviour {
   public bool pausForThresholdEvent = false;
   public bool pause;
 
+  public float currentTimeout;
+
   void Update() {
     if (activeTimer != null && !pause) {
       timeElapsed = System.DateTime.Now.Subtract(timerStarted).TotalMilliseconds;
@@ -61,6 +64,7 @@ public class TimerController : MonoBehaviour {
   }
 
   public void StartNextTimer() {
+    Debug.Log(levelSettings.timers[lastTimerIndex].gameEvent);
     StartTimer(levelSettings.timers[lastTimerIndex]);
 
     lastTimerIndex++;
@@ -89,17 +93,11 @@ public class TimerController : MonoBehaviour {
     }
     float timeOut = timer.timeout;
 
-    // if (timer.gameEvent == GameEvent.TraceCondition) {
-      
-    //   timeOut = conditionController.traceCondition; 
-    //   // Debug.Log("trace");
-    //   // Debug.Log(timeOut);
-    //   }
-    // if (timer.gameEvent == GameEvent.Response) timeOut = conditionController.responseTime; 
-    // if (pausForThresholdEvent && timer.gameEvent == GameEvent.ShowGameState) { ###
-    //   pausForThresholdEvent = false;
-    //   timeOut = 3200f;
-    // }
+    if (timer.gameEvent == GameEvent.TraceCondition) {
+      timeOut = squareController.currenTrialTimeOut;
+      }
+    if (timer.gameEvent == GameEvent.Response) timeOut = conditionController.responseTime; 
+
     yield return new WaitForSeconds(timeOut / 1000);
 
     if (onTimerFinished != null && !stimuliRunner.runningStims) {

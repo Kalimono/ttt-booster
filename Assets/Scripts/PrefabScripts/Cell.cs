@@ -145,14 +145,15 @@ public class Cell : MonoBehaviour {
     Color defaultColor = shapeRenderer.material.GetColor("ColorInactive");
     Color randomColor = GetRandomColor();
     shapeRenderer.material.SetColor("ColorInactive", randomColor);
+    
     yield return new WaitForSeconds(seconds);
     shapeRenderer.material.SetColor("ColorInactive", defaultColor); //new Color(0.106f, 0.251f, 0.357f, 0.000f));
   }
 
   Color GetRandomColor() {
-    List<Color> colors = new List<Color>{Color.blue, Color.cyan, Color.green, Color.magenta, Color.red, Color.yellow};
-    int randInt = Random.Range(0, colors.Count-1);
-    if (randInt == 0) gridController.BlueTime();
+    List<Color> colors = new List<Color>{Color.blue, Color.green, Color.magenta, Color.red, Color.yellow};
+    int randInt = Random.Range(0, colors.Count);
+    if (randInt == 0) gridController.timedBlue.TimedBlueCell();
     Color randomColor = colors[randInt];
     return randomColor*3;
   }

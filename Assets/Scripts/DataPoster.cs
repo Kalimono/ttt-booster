@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 
 public class DataPoster : MonoBehaviour {
   static string API_URL = "https://183e-2001-6b0-2-2801-3d3c-b7b-b5b6-7c8b.ngrok.io";
+  //static string API_URL_M = "https://5674-188-148-206.ngrok-io"
+  static string API_LOCAL = "http://0.0.0.0:8080/";
   class Game {
     public string gameID;
 
@@ -75,8 +77,12 @@ public class DataPoster : MonoBehaviour {
     StartCoroutine(PostData("/game", json));
   }
 
+  public void SendHi() {
+    StartCoroutine(PostData("/turn", "hi"));
+  }
+
   IEnumerator PostData(string path, string json) {
-    using (UnityWebRequest www = new UnityWebRequest(API_URL + path, "POST")) {
+    using (UnityWebRequest www = new UnityWebRequest(API_LOCAL, "POST")) {
       byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
       www.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
       www.downloadHandler = new DownloadHandlerBuffer();

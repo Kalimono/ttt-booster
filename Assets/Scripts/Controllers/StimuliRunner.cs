@@ -4,12 +4,12 @@ using UnityEngine;
 using System.Linq;
 
 public class StimuliRunner : MonoBehaviour {
-    List<Cell> cellList;
-    float startTime;
-    int indexCounter;
+    // List<Cell> cellList;
+    // float startTime;
+    // int indexCounter;
     
     public bool runningStims = false;
-    bool rainbow = false;
+    // bool rainbow = false;
 
     SoundFxController soundFxController;
     ConditionController conditionController;
@@ -23,52 +23,19 @@ public class StimuliRunner : MonoBehaviour {
         squareController = FindObjectOfType<SquareController>();
     }
 
-    // void Update() {
-    //     if(runningStims) {
-
-    //         if(indexCounter == cellList.Count) {
-    //             // if(!rainbow) {
-    //                 StartCoroutine(DelayNextTimerStart());
-    //             // } else {
-    //                 rainbow = false;
-    //                 // timerController.StartNextTimer();
-    //             // }
-    //             runningStims = false;
-    //         }
-            
-    //         if (Time.time - startTime > conditionController.stimuliLifetime/1000+conditionController.timeBetweenStimuli/1000) {
-    //             // Debug.Log(indexCounter);
-    //             if(rainbow) {
-    //                 cellList[indexCounter].HighlightMeRainbow(conditionController.stimuliLifetime/1000);
-    //             } else {
-    //                 cellList[indexCounter].HighlightMeWhite(conditionController.stimuliLifetime/1000);
-    //             }
-    //             indexCounter++;
-    //             startTime = Time.time;
-    //             soundFxController.PlayStimuliSound();
-    //         }
-    //     } 
-    // }
-
-    IEnumerator DelayNextTimerStart() {
-        yield return new WaitForSeconds(conditionController.stimuliLifetime/1000);
+    IEnumerator DelayNextTimerStart(float delayTime) {
+        yield return new WaitForSeconds(delayTime);
+        
         timerController.StartNextTimer();
     }
-    
-    // public void RunStimuli(HashSet<Cell> cells) {
-    //     cellList = RandomizeListOrder(cells.ToList());
-    //     indexCounter = 1;
-    //     startTime = Time.time;
-    //     runningStims = true;
-    //     soundFxController.PlayStimuliSound();
-    //     cellList[0].HighlightMeWhite(conditionController.stimuliLifetime/1000);
-    // }
 
     IEnumerator RunStimuli() {
+        runningStims = true;
         int totalCellsCount = squareController.currentStimuliCells.Count + squareController.currentRainbowCells.Count;
         int currentStimuliIndex = 0;
         int currentRainbowStimuliIndex = 0;
         float stimuliLifetime = conditionController.stimuliLifetime/1000;
+        // Debug.Log(stimuliLifetime);
         for (int i = 0; i < totalCellsCount; i++) {
             if(i%2==0 && currentStimuliIndex < squareController.currentStimuliCells.Count) {
                 squareController.currentStimuliCells[currentStimuliIndex].HighlightMeWhite(stimuliLifetime);
@@ -83,24 +50,14 @@ public class StimuliRunner : MonoBehaviour {
                 }
                 
             }
-            yield return new WaitForSeconds(stimuliLifetime);;
+            yield return new WaitForSeconds(stimuliLifetime);
         }
-        StartCoroutine(DelayNextTimerStart());
+        timerController.StartNextTimer();
+        runningStims = false;
     }
 
     public void RunMixedStimuli() {
         StartCoroutine(RunStimuli());
-    }
-
-
-    public void RunRainbowDistractorStimuli(List<Cell> rainbowCellList) {
-        cellList = rainbowCellList;
-        indexCounter = 1;
-        startTime = Time.time;
-        runningStims = true;
-        rainbow = true;
-        soundFxController.PlayStimuliSound();
-        cellList[0].HighlightMeRainbow(conditionController.stimuliLifetime/1000);
     }
 
     public List<Cell> RandomizeListOrder(List<Cell> list) {
@@ -109,7 +66,7 @@ public class StimuliRunner : MonoBehaviour {
 
     return randomizedList;
   }
-}
+} //pre
     
     
 

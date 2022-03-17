@@ -8,12 +8,14 @@ public static class StimuliSequencer {
   static public List<int> targetSequence = new List<int>();
   static public List<int> squarePositionSequence = new List<int>();
   static public List<int> nonDifferentialOutcomeSequence  = new List<int>();
+  static public List<int> traceLengthSequence  = new List<int>();
   static public int sequenceLength = 48;
 
   public static void CreateSequences() {
     CreateStimuliSequence();
     CreateTargetSequence();
     CreateSquarePositionSequence();
+    CreateTraceLengthSequence();
   }
 
   static public void CreateStimuliSequence() {
@@ -66,6 +68,18 @@ public static class StimuliSequencer {
     targetSequence = RandomizeList(targetSequence);
   }
 
+  static public void CreateTraceLengthSequence() {
+    traceLengthSequence = new List<int>();
+    for (int i = 0; i < sequenceLength; i++) {
+      if (i % 2 == 0) {
+        traceLengthSequence.Add(0);
+      } else {
+        traceLengthSequence.Add(1);
+      }
+    }
+    traceLengthSequence = RandomizeList(traceLengthSequence);
+  }
+
   static public int GetStimuliIndex() {
     if (stimuliSequence.Count == 0) CreateStimuliSequence();
 
@@ -82,6 +96,18 @@ public static class StimuliSequencer {
     int targetNumber = targetSequence[0];
     targetSequence.RemoveAt(0);
     return targetNumber;
+  }
+
+  static public float GetTraceLength() {
+    float timeOut;
+    if (traceLengthSequence.Count == 0) {
+      CreateTraceLengthSequence();
+    }
+
+    int traceLengthNumber = traceLengthSequence[0];
+    traceLengthSequence.RemoveAt(0);
+    timeOut = (traceLengthNumber == 0) ? 2000f : 15000f;
+    return timeOut;
   }
 
   static public void AddListToList(List<int> sequence, List<int> list) {

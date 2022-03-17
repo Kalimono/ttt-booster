@@ -40,6 +40,17 @@ public class ConditionController : MonoBehaviour {
         // Debug.Log(nStimuli);
     }
 
+    public void ExportParameters() {
+        Debug.Log(stimuliLifetime);
+        Debug.Log(timeBetweenStimuli);
+        Debug.Log(traceCondition);
+        Debug.Log(responseTime);
+        Debug.Log(gridSize);
+        Debug.Log(nRainbowStim);
+        Debug.Log(nDistractors);
+        Debug.Log(nStimuli);
+    }
+
     void Start() {
         stimuliLifetimeSlider.onValueChanged.AddListener(delegate {StimuliLifetimeSliderChange();});
         timeBetweenStimuliSlider.onValueChanged.AddListener(delegate {TimeBetweenStimuliSliderChange();});

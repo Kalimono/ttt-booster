@@ -34,11 +34,11 @@ public class ThresholdMarker : MonoBehaviour {
     thresholdMarkerAudioSource.PlayOneShot(thresholdSound);
     pulseScoreMarker.StartPulse(pulseTime);
 
-    if (!gameController.strategicElements) {
-      if (gameController.winningPlayer == gameController.playerNull) AttackOpponentScoreBar();
-    } else {
-      attackOpponentController.StartReductionEvent();
-    }
+    // if (!gameController.strategicElements) {
+    //   if (gameController.winningPlayer == gameController.playerNull) AttackOpponentScoreBar();
+    // } else {
+    //   attackOpponentController.StartReductionEvent();
+    // }
   }
 
   public void AttackOpponentScoreBar() {

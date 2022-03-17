@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour {
   public LineSpawner lineSpawner;
   public DataPoster dataPoster;
   public DotController dotController;
+  public SceneController sceneController;
 
   public LevelSettings[] levels;
 
@@ -45,8 +46,10 @@ public class GameController : MonoBehaviour {
   public int currentRound;
 
   float reactionTimeStart;
-  public bool strategicElements = true;
-  public Image stratstatus;
+  // public bool strategicElements = true;
+  // public Image stratstatus;
+
+
 
   void Awake() {
     timer = FindObjectOfType<TimerController>();
@@ -54,14 +57,18 @@ public class GameController : MonoBehaviour {
     timer.onTimerFinished += OnTimerFinished;
     autoTurnEnderController.Init(levels[0]);
     dataPoster.InitializeGame(levels[0]);
+    // Debug.Log("awake");
   }
 
   void Start() {
     uiController.startButton.SetActive(true);
     playerX.nRoundsWon = 0;
     playerO.nRoundsWon = 0;
+    // dataPoster.SendHi();
+    // sceneController.ChangeScene();
     // Application.targetFrameRate = 60;
     // Debug.Log(Application.targetFrameRate);
+    // Debug.Log("start");
   }
 
   public void StartNewGame() {
@@ -74,12 +81,13 @@ public class GameController : MonoBehaviour {
   }
 
   void ResetGameState() {
+    // Debug.Log("reset");
     gridController.CreateGrid();
     gridController.SetCellValuesToNone();
     // squareController.CutGridIntoAreas(gridController.grid);  ###
     if(dotController.toggleDot) dotController.SetOutcomeAreas(gridController.grid);
     // dotController.AssignOutcomes();
-    squareController.Initialize();
+    // squareController.Initialize();
     gridController.lastCellInteractedWith = null;
     StimuliSequencer.CreateSequences();
     uiController.gameOverPanel.SetActive(false);
@@ -89,6 +97,7 @@ public class GameController : MonoBehaviour {
     uiController.ShowRoundsWonMarkers(false);
     uiController.ResetScoreBarMarkers();
     ResetPoints();
+    squareController.Initialize();
     turnNum = 1;
   }
 
@@ -156,19 +165,21 @@ public class GameController : MonoBehaviour {
   }
 
   void PreStartTurn() {
+    Debug.Log("prestart");
     gridController.ToggleFadeAllCells(false);
     if(winningPlayer != playerNull) {
       GameOver(winningPlayer);
       return;
     }
-    lineSpawner.DestroyLines();
+    // lineSpawner.DestroyLines();
     gridController.SetCellValueVisibiltyToggle(false);
     roundActive = true;
-    squareController.PrepareStimuliPhase();
+    
     // squareController.ShowCurrentSquare(); ###
     gridController.lastCellInteractedWith = null;
     uiController.ShowTurnPanelActivePlayer(activePlayer);
     // gridController.ClearHoverMarkers();
+    squareController.PrepareStimuliPhase();
     timer.StartNextTimer();
   }
 
@@ -183,8 +194,8 @@ public class GameController : MonoBehaviour {
   void TraceCondition() { 
     gridController.SetCellValueVisibiltyToggle(false);
     // squareController.PresentRainbowDistractorStimuli();
+    // squareController.PresentRainbowStimuli(timer.currentTimeout);
     timer.StartNextTimer();
-    uiController.ToggleBlueText(false);
   }
 
   void ResponsePhase() {
@@ -238,7 +249,7 @@ public class GameController : MonoBehaviour {
     gridController.SetBoardInteractable(false);
     soundFxController.StopClock();
     
-
+    // sceneController.SwitchToSurveyScene();
     // if (wasCorrectMove) UpdateScore(activePlayer); ###
 
     // if(CheckIfPassedThreshold(activePlayer.score) && !gameLogic.checkGridForWin(gridController.grid)) timer.pausForThresholdEvent = true;
@@ -278,7 +289,7 @@ public class GameController : MonoBehaviour {
     soundFxController.PlayGameOverSound(winningPlayer);
     gridController.ClearHoverMarkers();
     
-    Debug.Log(turnNum);
+    // Debug.Log(turnNum);
 
     if (playerX.nRoundsWon == 5 || playerO.nRoundsWon == 5) {
       uiController.restartButton.SetActive(false); 
@@ -304,14 +315,14 @@ public class GameController : MonoBehaviour {
   //   if(thresholdValues.Contains(newScore)) return true;
   //   return false;
   // }
-  public void ToggleStrats() {
-    if (strategicElements) {
-      strategicElements = false;
-      stratstatus.color = Color.red;
-    } else {
-      strategicElements = true;
-      stratstatus.color = Color.green;
-    }
-  }
+  // public void ToggleStrats() {
+  //   if (strategicElements) {
+  //     strategicElements = false;
+  //     stratstatus.color = Color.red;
+  //   } else {
+  //     strategicElements = true;
+  //     stratstatus.color = Color.green;
+  //   }
+  // } pre
 
-}
+} 

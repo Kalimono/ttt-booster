@@ -20,12 +20,12 @@ public class CursorController : MonoBehaviour {
 
     if (Physics.Raycast(ray, out RaycastHit hit)) {
       if (hit.collider != null) {
-        Debug.Log("hit");
+        // Debug.Log("hit");
         if(hit.collider.gameObject.CompareTag("Cell")){
           hit.collider.gameObject.GetComponentInParent<Cell>().OnClick();
         } 
         if(hit.collider.gameObject.CompareTag("Bar")){ 
-          Debug.Log("Bar");
+          // Debug.Log("Bar");
           hit.collider.gameObject.GetComponentInParent<ScoreBar>().Clicked();
         }
       }

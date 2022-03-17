@@ -30,11 +30,6 @@ public class UIController : MonoBehaviour {
     scoreBarToUpdate.UpdateScoreBar();
   }
 
-  public void ToggleBlueText(bool toggle) {
-    blueTimeObject.SetActive(toggle);
-    gridController.blueTime = toggle;
-  }
-
   public void ToggleTurnPanels(bool toggle) {
     foreach (ScoreBar bar in FindObjectsOfType<ScoreBar>()) {
       bar.turnPanel.SetActive(toggle);
