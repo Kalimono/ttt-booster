@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public enum GameValue {
   None,
@@ -32,6 +33,7 @@ public class GameController : MonoBehaviour {
   public DataPoster dataPoster;
   public DotController dotController;
   public SceneController sceneController;
+  public ConditionController conditionController;
 
   public LevelSettings[] levels;
 
@@ -64,6 +66,8 @@ public class GameController : MonoBehaviour {
     uiController.startButton.SetActive(true);
     playerX.nRoundsWon = 0;
     playerO.nRoundsWon = 0;
+    
+    
     // dataPoster.SendHi();
     // sceneController.ChangeScene();
     // Application.targetFrameRate = 60;
@@ -165,7 +169,8 @@ public class GameController : MonoBehaviour {
   }
 
   void PreStartTurn() {
-    Debug.Log("prestart");
+    rTimeBlue.Clear();
+    // Debug.Log("prestart");
     gridController.ToggleFadeAllCells(false);
     if(winningPlayer != playerNull) {
       GameOver(winningPlayer);
@@ -248,7 +253,7 @@ public class GameController : MonoBehaviour {
     timer.AbortTimer();
     gridController.SetBoardInteractable(false);
     soundFxController.StopClock();
-    
+    WriteString();
     // sceneController.SwitchToSurveyScene();
     // if (wasCorrectMove) UpdateScore(activePlayer); ###
 
@@ -325,4 +330,27 @@ public class GameController : MonoBehaviour {
   //   }
   // } pre
 
+  public int whiteCorrect;
+  public List<float> rTimeBlue;
+  public int nResponses;
+  public float isi;
+
+
+  public void WriteString() {
+    string path = "Assets/test.txt";
+ 
+    //Write some text to the test.txt file
+    StreamWriter writer = new StreamWriter(path, true);
+    writer.WriteLine(GetRoundDataString());
+    writer.Close();
+  }
+
+  public string GetRoundDataString() {
+    string dataString = whiteCorrect.ToString() + "," + conditionController.nResponses.ToString() + "," + squareController.currenTrialTimeOut.ToString();
+    foreach(float rTime in rTimeBlue) {
+      dataString += ",";
+      dataString += rTime.ToString();
+    }
+    return dataString;
+  }
 } 

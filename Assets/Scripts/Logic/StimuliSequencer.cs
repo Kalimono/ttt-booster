@@ -9,6 +9,8 @@ public static class StimuliSequencer {
   static public List<int> squarePositionSequence = new List<int>();
   static public List<int> nonDifferentialOutcomeSequence  = new List<int>();
   static public List<int> traceLengthSequence  = new List<int>();
+  static public List<Color> rainbowSTimuliColorSequence = new List<Color>(); 
+
   static public int sequenceLength = 48;
 
   public static void CreateSequences() {
@@ -108,6 +110,29 @@ public static class StimuliSequencer {
     traceLengthSequence.RemoveAt(0);
     timeOut = (traceLengthNumber == 0) ? 2000f : 15000f;
     return timeOut;
+  }
+
+  static public List<Color> GetRainbowColorSequence(int sequenceLength) {
+    Debug.Log(sequenceLength);
+    List<Color> colorSequence = new List<Color>();
+    List<Color> colors = new List<Color>{Color.green, Color.magenta, Color.yellow, Color.red};
+
+    for (int i = 0; i < sequenceLength; i++) {
+      // Debug.Log(colors[Random.Range(0, colors.Count)]);
+      colorSequence.Add(colors[Random.Range(0, colors.Count)]);
+    }
+
+    int maxIndex;
+    
+    if(sequenceLength < 2) {
+      maxIndex = 1;
+    } else {
+      maxIndex = sequenceLength-1;
+    }
+
+    colorSequence[Random.Range(0, maxIndex)] = Color.blue;
+
+    return colorSequence;
   }
 
   static public void AddListToList(List<int> sequence, List<int> list) {

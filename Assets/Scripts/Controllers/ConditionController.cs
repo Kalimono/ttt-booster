@@ -11,7 +11,7 @@ public class ConditionController : MonoBehaviour {
     public Slider responseTimeSlider;
     public Slider gridSizeSlider;
     public Slider nRainbowStimSlider;
-    public Slider nDistractorsSlider;
+    public Slider nResponsesSlider;
     public Slider nStimuliSlider;
 
     public TextMeshProUGUI stimuliLifetimeValueText;
@@ -20,7 +20,7 @@ public class ConditionController : MonoBehaviour {
     public TextMeshProUGUI responseTimeValueText;
     public TextMeshProUGUI gridSizeValueText;
     public TextMeshProUGUI nRainbowStimTimeValueText;
-    public TextMeshProUGUI nDistractorsTimeValueText;
+    public TextMeshProUGUI nResponsesTimeValueText;
     public TextMeshProUGUI nStimuliTimeValueText;
 
 
@@ -30,13 +30,15 @@ public class ConditionController : MonoBehaviour {
     public float responseTime = 5;
     public float gridSize = 1;
     public float nRainbowStim = 4;
-    public float nDistractors = 0;
+    public float nResponses = 0;
     public float nStimuli = 4;
 
     GridCreator gridCreator;
+    // GameController gameController;
 
     void Awake() {
         gridCreator = FindObjectOfType<GridCreator>();
+        // gameController = FindObjectOfType<GameController>();
         // Debug.Log(nStimuli);
     }
 
@@ -47,7 +49,7 @@ public class ConditionController : MonoBehaviour {
         Debug.Log(responseTime);
         Debug.Log(gridSize);
         Debug.Log(nRainbowStim);
-        Debug.Log(nDistractors);
+        Debug.Log(nResponses);
         Debug.Log(nStimuli);
     }
 
@@ -58,7 +60,7 @@ public class ConditionController : MonoBehaviour {
         responseTimeSlider.onValueChanged.AddListener(delegate {ResponseTimeSliderChange();});
         gridSizeSlider.onValueChanged.AddListener(delegate {GridSizeSliderChange();});
         nRainbowStimSlider.onValueChanged.AddListener(delegate {nRainbowStimSliderChange();});
-        nDistractorsSlider.onValueChanged.AddListener(delegate {nDistractorsSliderChange();});
+        nResponsesSlider.onValueChanged.AddListener(delegate {nResponsesSliderChange();});
         nStimuliSlider.onValueChanged.AddListener(delegate {nStimuliSliderChange();});
     }
 
@@ -93,9 +95,9 @@ public class ConditionController : MonoBehaviour {
         nRainbowStimTimeValueText.text = nRainbowStim.ToString();
 	}
 
-    void nDistractorsSliderChange() {
-		nDistractors = nDistractorsSlider.value;
-        nDistractorsTimeValueText.text = nDistractors.ToString();
+    void nResponsesSliderChange() {
+		nResponses = nResponsesSlider.value;
+        nResponsesTimeValueText.text = nResponses.ToString();
 	}
 
     void nStimuliSliderChange() {

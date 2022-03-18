@@ -40121,7 +40121,7 @@ MonoBehaviour:
   responseTimeSlider: {fileID: 526193993}
   gridSizeSlider: {fileID: 452876411}
   nRainbowStimSlider: {fileID: 569119769}
-  nDistractorsSlider: {fileID: 865316186}
+  nResponsesSlider: {fileID: 865316186}
   nStimuliSlider: {fileID: 867014039}
   stimuliLifetimeValueText: {fileID: 762957705}
   timeBetweenStimuliValueText: {fileID: 461509478}
@@ -40129,7 +40129,7 @@ MonoBehaviour:
   responseTimeValueText: {fileID: 166331772}
   gridSizeValueText: {fileID: 1571022479}
   nRainbowStimTimeValueText: {fileID: 457733382}
-  nDistractorsTimeValueText: {fileID: 1519757181}
+  nResponsesTimeValueText: {fileID: 1519757181}
   nStimuliTimeValueText: {fileID: 1795496955}
   stimuliLifetime: 750
   timeBetweenStimuli: 0
@@ -40137,7 +40137,7 @@ MonoBehaviour:
   responseTime: 5000
   gridSize: 5
   nRainbowStim: 4
-  nDistractors: 1
+  nResponses: 1
   nStimuli: 4
 --- !u!1 &418267992
 GameObject:
@@ -41139,6 +41139,7 @@ MonoBehaviour:
   dataPoster: {fileID: 616513002}
   dotController: {fileID: 1464228613}
   sceneController: {fileID: 0}
+  conditionController: {fileID: 417686697}
   levels:
   - {fileID: 11400000, guid: cb16c2a8291e2694c90300b40c32d8dc, type: 2}
   - {fileID: 11400000, guid: da1d84a48a2c140449200f3c72e43e8b, type: 2}
@@ -41154,6 +41155,10 @@ MonoBehaviour:
     nRoundsWon: 0
   turnNum: 0
   currentRound: 0
+  whiteCorrect: 0
+  rTimeBlue: []
+  nResponses: 0
+  isi: 0
 --- !u!1 &441406103
 GameObject:
   m_ObjectHideFlags: 0
@@ -127379,6 +127384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundFxController: {fileID: 359302237}
+  gameController: {fileID: 435993992}
 --- !u!1 &1657303270
 GameObject:
   m_ObjectHideFlags: 0
@@ -139665,6 +139671,7 @@ MonoBehaviour:
   restartGameButton: {fileID: 1773540380}
   blueTimeObject: {fileID: 1772310698}
   DebugButtons: {fileID: 802262903}
+  debugSettings: {fileID: 616471398}
 --- !u!4 &1791705150
 Transform:
   m_ObjectHideFlags: 0

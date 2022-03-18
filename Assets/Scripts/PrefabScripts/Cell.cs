@@ -87,6 +87,7 @@ public class Cell : MonoBehaviour {
       valueDisplayer.enabled = false;
 
       if (isCorrectMove) {
+        gameController.whiteCorrect = 1;
         dotController.SetOutcome(this);
         
         if(CheckIfThresholdPassed(gameController.activePlayer.score + outcomeValue)) timerController.pausForThresholdEvent = true;
@@ -98,6 +99,7 @@ public class Cell : MonoBehaviour {
           // value = gameController.GetPlayerSide();
           // valueDisplayer.sprite = value == GameValue.Cross ? crossSprite : noughtSprite;
         } else {
+          gameController.whiteCorrect = 0;
           // gridController.FadeCellsExceptLastCellInteractedWith();
           // dotController.SetOutcome(this);
           // valueDisplayer.sprite = value == GameValue.Cross ? crossSprite : noughtSprite;
@@ -145,6 +147,20 @@ public class Cell : MonoBehaviour {
     Color defaultColor = shapeRenderer.material.GetColor("ColorInactive");
     Color randomColor = GetRandomColor();
     shapeRenderer.material.SetColor("ColorInactive", randomColor);
+    
+    yield return new WaitForSeconds(seconds);
+    shapeRenderer.material.SetColor("ColorInactive", defaultColor); //new Color(0.106f, 0.251f, 0.357f, 0.000f));
+  }
+
+  public void HighlightMeColor(float seconds, Color color) {
+    soundFxController.PlayStimuliSound();
+    StartCoroutine(ChangeToColorAndBack(seconds, color));
+  }
+
+  public IEnumerator ChangeToColorAndBack(float seconds, Color color) {
+    Color defaultColor = shapeRenderer.material.GetColor("ColorInactive");
+    // Color randomColor = GetRandomColor();
+    shapeRenderer.material.SetColor("ColorInactive", color);
     
     yield return new WaitForSeconds(seconds);
     shapeRenderer.material.SetColor("ColorInactive", defaultColor); //new Color(0.106f, 0.251f, 0.357f, 0.000f));

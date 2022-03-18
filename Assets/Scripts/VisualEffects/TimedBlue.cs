@@ -5,9 +5,10 @@ using UnityEngine;
 public class TimedBlue : MonoBehaviour {
 
     public SoundFxController soundFxController;
+    public GameController gameController;
     bool blueTime = false;
 
-    float time = 0;
+    float time = 0f;
     float maxTime = 1f;
 
     void Update() {
@@ -16,11 +17,13 @@ public class TimedBlue : MonoBehaviour {
             if (Input.GetKeyDown("space")) {
                 // print("space key was pressed");
                 soundFxController.PlayBlueTimeWin();
+                gameController.rTimeBlue.Add(time);
                 blueTime = false;
                 // uIController.ToggleBlueText(false);
                 } 
             if(time > maxTime) {
                 soundFxController.PlayBlueTimeFail();
+                gameController.rTimeBlue.Add(time+1f);
                 blueTime = false;
             }
             
@@ -30,6 +33,7 @@ public class TimedBlue : MonoBehaviour {
     public void TimedBlueCell() {
         // Debug.Log("bluetime");
         blueTime = true;
+        time = 0f;
         // uIController.ToggleBlueText(true);
     }
 }

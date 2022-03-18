@@ -156,12 +156,14 @@ public class UIController : MonoBehaviour {
   public GameObject DebugButtons;
   bool debug = true;
 
+  public GameObject debugSettings;
+
   void ToggleDebug() {
     if (debug) {
-      DebugButtons.SetActive(false);
+      debugSettings.SetActive(false);
       debug = false;
     } else {
-      DebugButtons.SetActive(true);
+      debugSettings.SetActive(true);
       debug = true;
     }
   }

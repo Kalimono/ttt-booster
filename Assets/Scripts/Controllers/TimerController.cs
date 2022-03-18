@@ -64,7 +64,7 @@ public class TimerController : MonoBehaviour {
   }
 
   public void StartNextTimer() {
-    Debug.Log(levelSettings.timers[lastTimerIndex].gameEvent);
+    // Debug.Log(levelSettings.timers[lastTimerIndex].gameEvent);
     StartTimer(levelSettings.timers[lastTimerIndex]);
 
     lastTimerIndex++;
@@ -93,9 +93,9 @@ public class TimerController : MonoBehaviour {
     }
     float timeOut = timer.timeout;
 
-    if (timer.gameEvent == GameEvent.TraceCondition) {
-      timeOut = squareController.currenTrialTimeOut;
-      }
+    // if (timer.gameEvent == GameEvent.TraceCondition) {
+    //   timeOut = squareController.currenTrialTimeOut;
+    //   }
     if (timer.gameEvent == GameEvent.Response) timeOut = conditionController.responseTime; 
 
     yield return new WaitForSeconds(timeOut / 1000);

@@ -93,14 +93,15 @@ public class SquareController : MonoBehaviour {
     SetCurrentStimuliCells(gridController.grid);
     SetCellReinforcement(gridController.grid);
     stimuliIndex = StimuliSequencer.GetStimuliIndex();
-    Debug.Log(targetCells.Count);
+    // Debug.Log(targetCells.Count);
     correctCell = targetCells[stimuliIndex];
     currentStimuliCells.Add(correctCell);
 
-    SetDistractorCells(currentPosition, conditionController.nDistractors);
+    SetDistractorCells(currentPosition, conditionController.nResponses);
     AddCellsToCurrentStimuliCells(GetNonTargetCells(currentPosition));
 
-    SetRainbowDistractorStimuli();
+    SetRainbowDistractorStimuli(conditionController.nRainbowStim);
+    AddAdditionalRainbowStimuli(stimuliRunner.GetNAdditionalRainbowStimuli(currenTrialTimeOut, conditionController.stimuliLifetime));
   }
 
   // Cell GetCellToSkip(List<Cell> currentPosition) {
@@ -137,7 +138,7 @@ public class SquareController : MonoBehaviour {
   }
 
   List<Cell> GetNonTargetCells(List<Cell> cells) {
-    Debug.Log(conditionController.nStimuli);
+    // Debug.Log(conditionController.nStimuli);
     List<Cell> nonTargetCells = new List<Cell>();
     while (nonTargetCells.Count+1 < conditionController.nStimuli) {
       int randint = Random.Range(0, cells.Count-1);
@@ -149,10 +150,10 @@ public class SquareController : MonoBehaviour {
     return nonTargetCells;
   }
 
-  List<Cell> GetRainbowCells(List<Cell> position, float n) {
+  List<Cell> GetRainbowCells(List<Cell> position, float nRainbowStim) {
     // Debug.Log(n);
     List<Cell> rainbowCells = new List<Cell>();
-    while (rainbowCells.Count < n) {
+    while (rainbowCells.Count < nRainbowStim) {
       int randint = Random.Range(0, position.Count);
       Cell cell = position[randint];
       if (!rainbowCells.Contains(cell)) rainbowCells.Add(cell);
@@ -204,12 +205,22 @@ public class SquareController : MonoBehaviour {
     return distractor;
   }
 
+  void AddAdditionalRainbowStimuli(int n) {
+    for (int i = 0; i < n; i++){
+      int randInt = Random.Range(0, currentPosition.Count);
+      Cell testCell = currentPosition[randInt];
+      if(!currentStimuliCells.Contains(testCell)) currentRainbowCells.Add(testCell);
+    }
+    // StimuliSequencer.GetRainbowColorSequence(20);
+
+  }
+
   void SetCurrentStimuliCells(Cell[,] grid) {
     foreach(Cell cell in grid) currentStimuliCells.Add(cell);
   }
 
-  void SetRainbowDistractorStimuli() {
-    currentRainbowCells = GetRainbowCells(currentPosition, conditionController.nRainbowStim);
+  void SetRainbowDistractorStimuli(float n) {
+    currentRainbowCells = GetRainbowCells(currentPosition, n);
   }
 
   public void PresentStimuli() {
