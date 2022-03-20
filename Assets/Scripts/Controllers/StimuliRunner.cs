@@ -34,25 +34,37 @@ public class StimuliRunner : MonoBehaviour {
     public int GetNAdditionalRainbowStimuli(float currenTrialTimeOut, float stimuliLifetime) {
         float additionalRainbowStimuli = currenTrialTimeOut/stimuliLifetime;
         if(additionalRainbowStimuli < 3) additionalRainbowStimuli = 3;
+        // Debug.Log("additional from function: " + additionalRainbowStimuli.ToString());
         return (int)additionalRainbowStimuli;
     }
 
     IEnumerator RunStimuli() {
         runningStims = true;
         // int traceStimStartIndex = (squareController.currentStimuliCells.Count-1)*2;
+        // Debug.Log("currentRainbowCells " + squareController.currentRainbowCells.Count.ToString());
+        // Debug.Log("currentStimuliCells " + squareController.currentStimuliCells.Count.ToString());
         int totalCellsCount = squareController.currentStimuliCells.Count + squareController.currentRainbowCells.Count;
+        
         int currentStimuliIndex = 0;
         int currentRainbowStimuliIndex = 0;
         float stimuliLifetime = conditionController.stimuliLifetime/1000;
-        int nAdditionalRainbowStims = GetNAdditionalRainbowStimuli(squareController.currenTrialTimeOut, conditionController.stimuliLifetime);
+        // int nAdditionalRainbowStims = GetNAdditionalRainbowStimuli(squareController.currenTrialTimeOut, conditionController.stimuliLifetime);
         // Debug.Log(nAdditionalRainbowStims);
-        List<Color> colorSequence = StimuliSequencer.GetRainbowColorSequence(squareController.currentRainbowCells.Count-nAdditionalRainbowStims);
-        List<Color> colorSequenceAdditional = StimuliSequencer.GetRainbowColorSequence(nAdditionalRainbowStims);
+        // totalCellsCount += nAdditionalRainbowStims;
+        // Debug.Log(totalCellsCount);
+        List<Color> colorSequence = StimuliSequencer.GetRainbowColorSequence((int)conditionController.nRainbowStim);
+        List<Color> colorSequenceAdditional = StimuliSequencer.GetRainbowColorSequence(squareController.nAdditionalRainbowstimuli);
         List<Color> combinedColorList = AddLists(colorSequence, colorSequenceAdditional);
+        // List<Color> cCombinedColorList = StimuliSequencer.GetRainbowColorSequence(squareController.currentAdditionalRainbowCells.Count+squareController.currentRainbowCells.Count);
         // int colorSequenceAdditionalIndex = 0;
         int colorSequenceIndex = 0;
-        // Debug.Log(squareController.currentRainbowCells.Count);
-        // Debug.Log(combinedColorList.Count);
+        
+        // Debug.Log("totalCellsCount " + totalCellsCount.ToString());
+        // Debug.Log("colorSequence " + colorSequence.Count.ToString());
+        // Debug.Log("colorSequenceAdditional " + colorSequenceAdditional.Count.ToString());
+        // Debug.Log("combinedColorList " + combinedColorList.Count.ToString());
+        // Debug.Log("cCombinedColorList " + cCombinedColorList.Count.ToString());
+        // Debug.Log("totalCellsCount " + totalCellsCount.ToString());
         for (int i = 0; i < totalCellsCount; i++) {
             // Debug.Log(i);
             if(i%2==0 && currentStimuliIndex < squareController.currentStimuliCells.Count) {
@@ -92,10 +104,14 @@ public class StimuliRunner : MonoBehaviour {
   }
 
   public List<Color> AddLists(List<Color> list1, List<Color> list2) {
-      foreach(Color color in list2) {
-          list1.Add(color);
+      List<Color> combinedList = new List<Color>();
+      foreach(Color color in list1) {
+          combinedList.Add(color);
       }
-      return list1;
+      foreach(Color color in list2) {
+          combinedList.Add(color);
+      }
+      return combinedList;
   }
 } //pre
     

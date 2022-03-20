@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class DataPoster : MonoBehaviour {
-  static string API_URL = "https://183e-2001-6b0-2-2801-3d3c-b7b-b5b6-7c8b.ngrok.io";
+  static string API_URL = "http://d0b2-2001-6b0-2-2801-e495-de7b-7729-9b90.ngrok.io";
   //static string API_URL_M = "https://5674-188-148-206.ngrok-io"
   // static string API_LOCAL = "http://0.0.0.0:8080/";
   class Game {
@@ -55,6 +55,10 @@ public class DataPoster : MonoBehaviour {
 
   Game currentGame;
 
+  void Awake() {
+    SendHi();
+  }
+
   public void InitializeGame(LevelSettings levelSettings) {
     // StartGame(JsonUtility.ToJson(levelSettings));
   }
@@ -77,9 +81,9 @@ public class DataPoster : MonoBehaviour {
     StartCoroutine(PostData("/game", json, API_URL));
   }
 
-  // public void SendHi() {
-  //   StartCoroutine(PostData("/turn", "hi"));
-  // }
+  public void SendHi() {
+    StartCoroutine(PostData("/turn", "{}", API_URL));
+  }
 
   IEnumerator PostData(string path, string json, string url) {
     using (UnityWebRequest www = new UnityWebRequest(url, "POST")) {
@@ -92,7 +96,6 @@ public class DataPoster : MonoBehaviour {
       if (www.result == UnityWebRequest.Result.Success) {
         ApiResponse response = JsonUtility.FromJson<ApiResponse>(www.downloadHandler.text);
         if (path == "/game") currentGame = new Game(response.id);
-        // Debug.Log(response.id);
       } else {
         Debug.Log(www.error);
       }

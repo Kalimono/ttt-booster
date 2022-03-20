@@ -113,9 +113,9 @@ public static class StimuliSequencer {
   }
 
   static public List<Color> GetRainbowColorSequence(int sequenceLength) {
-    Debug.Log(sequenceLength);
+    // Debug.Log("sequencelength in: " + sequenceLength.ToString());
     List<Color> colorSequence = new List<Color>();
-    List<Color> colors = new List<Color>{Color.green, Color.magenta, Color.yellow, Color.red};
+    List<Color> colors = new List<Color>{Color.green, Color.magenta, Color.yellow, Color.red, Color.blue};
 
     for (int i = 0; i < sequenceLength; i++) {
       // Debug.Log(colors[Random.Range(0, colors.Count)]);
@@ -124,14 +124,15 @@ public static class StimuliSequencer {
 
     int maxIndex;
     
-    if(sequenceLength < 2) {
-      maxIndex = 1;
-    } else {
+    // if(sequenceLength < 2) {
+    //   maxIndex = 1;
+    // } else {
       maxIndex = sequenceLength-1;
-    }
-
-    colorSequence[Random.Range(0, maxIndex)] = Color.blue;
-
+    // }
+    // int index = Random.Range(0, maxIndex);
+    // Debug.Log(index);
+    colorSequence[maxIndex] = Color.blue;
+    // Debug.Log("returns list of length: " + colorSequence.Count.ToString());
     return colorSequence;
   }
 

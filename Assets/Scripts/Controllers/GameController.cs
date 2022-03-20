@@ -253,7 +253,7 @@ public class GameController : MonoBehaviour {
     timer.AbortTimer();
     gridController.SetBoardInteractable(false);
     soundFxController.StopClock();
-    WriteString();
+    // WriteString();
     // sceneController.SwitchToSurveyScene();
     // if (wasCorrectMove) UpdateScore(activePlayer); ###
 

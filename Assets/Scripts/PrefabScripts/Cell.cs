@@ -70,15 +70,15 @@ public class Cell : MonoBehaviour {
   public void OnClick() {
     gridController.lastCellInteractedWith = this;
 
-    if(ReductionInteractionActive) {
-      GetComponent<DisappearCellValue>().DisappearCell(this);
-      ReductionInteractionActive = false;
-      particleEffect.Play();
-      attackOpponentController.TacticalTimerBarToggle(false);
-      uiController.DisableChoiceText();
-      // gridController.DisableCellInteraction();
-      // reduceOpponentController.EndReductionEvent();
-    }
+    // if(ReductionInteractionActive) {
+    //   GetComponent<DisappearCellValue>().DisappearCell(this);
+    //   ReductionInteractionActive = false;
+    //   particleEffect.Play();
+    //   attackOpponentController.TacticalTimerBarToggle(false);
+    //   uiController.DisableChoiceText();
+    //   // gridController.DisableCellInteraction();
+    //   // reduceOpponentController.EndReductionEvent();
+    // }
     
     if (interactable) {
       
@@ -160,7 +160,7 @@ public class Cell : MonoBehaviour {
   public IEnumerator ChangeToColorAndBack(float seconds, Color color) {
     Color defaultColor = shapeRenderer.material.GetColor("ColorInactive");
     // Color randomColor = GetRandomColor();
-    shapeRenderer.material.SetColor("ColorInactive", color);
+    shapeRenderer.material.SetColor("ColorInactive", color*4);
     
     yield return new WaitForSeconds(seconds);
     shapeRenderer.material.SetColor("ColorInactive", defaultColor); //new Color(0.106f, 0.251f, 0.357f, 0.000f));
