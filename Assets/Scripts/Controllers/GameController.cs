@@ -101,11 +101,12 @@ public class GameController : MonoBehaviour {
     uiController.ShowRoundsWonMarkers(false);
     uiController.ResetScoreBarMarkers();
     ResetPoints();
-    squareController.Initialize();
+    // squareController.Initialize();
     turnNum = 1;
   }
 
   public void StartGame() {
+    // Debug.Log("start game");
     winningPlayer = playerNull;
     ResetGameState();
     PreStartTurn();
@@ -189,6 +190,7 @@ public class GameController : MonoBehaviour {
   }
 
   void StimuliPhase() {
+
     squareController.PresentStimuli();
     gridController.SetBoardInteractable(false);
     timer.TimerBarDisplay(false);

@@ -45,6 +45,16 @@ public class DotController : MonoBehaviour {
     }
   }
 
+  public void SetDotOutcomes(List<Cell> targetCellList) {
+    int outcomeindex = 0;
+    for (int i = 0; i < targetCellList.Count; i++) {
+      if(outcomeindex > 3) outcomeindex = 0;
+      // targetCellList[i].outcomeNum = outcomeindex;
+      targetCellList[i].outcomeArea = outcomeindex;
+      outcomeindex++;
+    }
+  }
+
   public void SetOutcomeAreas(Cell[,] grid) {
     int side = grid.Length / 4;
 

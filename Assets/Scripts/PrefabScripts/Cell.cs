@@ -88,9 +88,14 @@ public class Cell : MonoBehaviour {
 
       if (isCorrectMove) {
         gameController.whiteCorrect = 1;
-        dotController.SetOutcome(this);
+        // dotController.SetOutcome(this);
+        if(dotController.toggleDot) {
+          outcome.sprite = outcomes[outcomeArea];
+        } else {
+          outcome.sprite = outcomes[StimuliSequencer.GetNonDifferentialOutcome()];
+        }
         
-        if(CheckIfThresholdPassed(gameController.activePlayer.score + outcomeValue)) timerController.pausForThresholdEvent = true;
+        // if(CheckIfThresholdPassed(gameController.activePlayer.score + outcomeValue)) timerController.pausForThresholdEvent = true;
         value = gameController.GetPlayerSide();
         gridController.FadeCellsExceptLastCellInteractedWith();
         valueDisplayer.sprite = value == GameValue.Cross ? crossSprite : noughtSprite;
@@ -182,8 +187,8 @@ public class Cell : MonoBehaviour {
     }
   }
 
-  public void PlayCorrectResponseSound() {
-    soundFxController.outcomeAudioSource.PlayOneShot(correctResponseSound);
+  public void PlayCorrectResponseSound(int outcomeArea) {
+    soundFxController.outcomeAudioSource.PlayOneShot(soundFxController.outcomeSounds[outcomeArea]);
   }
 
   public void ToggleValueDisplayer(bool toggle) {

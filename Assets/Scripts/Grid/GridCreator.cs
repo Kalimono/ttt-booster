@@ -96,5 +96,6 @@ public class GridCreator : MonoBehaviour {
   public void CreateGrid(int size) {
     gridSize = size;
     gridController.grid = InitializeGrid();
+    squareController.Initialize();
   }
 }

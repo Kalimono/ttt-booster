@@ -64,7 +64,8 @@ public class RotateMe : MonoBehaviour {
         halfRot++;
 
         if (halfRot == 1) {
-          GetComponentInParent<Cell>().PlayCorrectResponseSound();
+          Cell thisCell = GetComponentInParent<Cell>();
+          thisCell.PlayCorrectResponseSound(thisCell.outcomeArea);
           StartCoroutine(WaitAMomentHalfWay());
         }
       }
