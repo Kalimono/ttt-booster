@@ -124,14 +124,14 @@ public static class StimuliSequencer {
 
     int maxIndex;
     
-    // if(sequenceLength < 2) {
-    //   maxIndex = 1;
-    // } else {
+    if(sequenceLength < 1) {
+      maxIndex = 0;
+    } else {
       maxIndex = sequenceLength-1;
-    // }
-    // int index = Random.Range(0, maxIndex);
+    }
+    int index = Random.Range(0, maxIndex);
     // Debug.Log(index);
-    colorSequence[maxIndex] = Color.blue;
+    colorSequence[index] = Color.blue;
     // Debug.Log("returns list of length: " + colorSequence.Count.ToString());
     return colorSequence;
   }

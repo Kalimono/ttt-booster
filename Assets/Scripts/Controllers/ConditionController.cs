@@ -13,6 +13,7 @@ public class ConditionController : MonoBehaviour {
     public Slider nRainbowStimSlider;
     public Slider nResponsesSlider;
     public Slider nStimuliSlider;
+    public Slider dotSlider;
 
     public TextMeshProUGUI stimuliLifetimeValueText;
     public TextMeshProUGUI timeBetweenStimuliValueText;
@@ -22,6 +23,7 @@ public class ConditionController : MonoBehaviour {
     public TextMeshProUGUI nRainbowStimTimeValueText;
     public TextMeshProUGUI nResponsesTimeValueText;
     public TextMeshProUGUI nStimuliTimeValueText;
+    public TextMeshProUGUI dotValueText;
 
 
     public float stimuliLifetime = 15;
@@ -32,6 +34,7 @@ public class ConditionController : MonoBehaviour {
     public float nRainbowStim = 4;
     public float nResponses = 0;
     public float nStimuli = 4;
+    public float dot = 1;
 
     GridCreator gridCreator;
     // GameController gameController;
@@ -62,6 +65,7 @@ public class ConditionController : MonoBehaviour {
         nRainbowStimSlider.onValueChanged.AddListener(delegate {nRainbowStimSliderChange();});
         nResponsesSlider.onValueChanged.AddListener(delegate {nResponsesSliderChange();});
         nStimuliSlider.onValueChanged.AddListener(delegate {nStimuliSliderChange();});
+        dotSlider.onValueChanged.AddListener(delegate {dotSliderChange();});
     }
 
     void StimuliLifetimeSliderChange() {
@@ -103,6 +107,12 @@ public class ConditionController : MonoBehaviour {
     void nStimuliSliderChange() {
 		nStimuli = nStimuliSlider.value;
         nStimuliTimeValueText.text = nStimuli.ToString();
+        // Debug.Log(nStimuli);
+	}
+
+    void dotSliderChange() {
+		dot = dotSlider.value;
+        dotValueText.text = (dot == 1) ? "ON" : "OFF";
         // Debug.Log(nStimuli);
 	}
 }
