@@ -158,7 +158,7 @@ public class SquareController : MonoBehaviour {
     while (rainbowCells.Count < nRainbowStim) {
       int randint = Random.Range(0, position.Count);
       Cell cell = position[randint];
-      rainbowCells.Add(cell);
+      if(!targetCells.Contains(cell)) rainbowCells.Add(cell);
     }
     return rainbowCells;
   }
