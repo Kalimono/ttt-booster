@@ -26,6 +26,8 @@ public class UIController : MonoBehaviour {
 
   public GameObject blueTimeObject;
 
+  public TextMeshProUGUI currentLevel;
+
   // public InputField urlInput;
 
   // void Start() {
@@ -139,32 +141,9 @@ public class UIController : MonoBehaviour {
     }
   }
 
-
-  // IEnumerator CloseToWinningWave(List<List<Cell>> closeToWinningListOfLists) {
-  //   List<Cell> CloseToWinningCells = new List<Cell>();
-  //   foreach(List<Cell> cellList in closeToWinningListOfLists) {
-  //     foreach(Cell cell in cellList) {
-  //       // Debug.Log(cell);
-  //       if (!CloseToWinningCells.Contains(cell)) CloseToWinningCells.Add(cell);
-  //     }
-  //   }
-
-  //   foreach(Cell cell in CloseToWinningCells) {
-  //     cell.GetComponent<FlashCell>().FlashWhite();
-  //     yield return new WaitForSecondsRealtime(.1f);
-  //   }
-  // for (int x = 0; x < gridController.grid.Length/4; x++) {
-  //     for (int y = 0; y < gridController.grid.Length/4; y++) {
-  //         if(CloseToWinningCells.Contains(gridController.grid[x, y])) {
-  //           // Debug.Log(gridController.grid[x, y]);
-  //           gridController.grid[x, y].GetComponent<PulseCloseToWinning>().StartFlash();
-  //         } 
-  //     }
-  //     yield return new WaitForSecondsRealtime(.15f);
-  // }
-
-  // yield return new WaitForSeconds(0f);
-  // }
+  public void UpdateCurrentLevelText(int newLevel) {
+    currentLevel.text = newLevel.ToString();
+  }
 
   public GameObject DebugButtons;
   bool debug = true;

@@ -243,7 +243,7 @@ public class GameController : MonoBehaviour {
     //   gridController.SetBoardInteractable(false);
     turnNum++;
 
-    if(turnNum > 1) levelController.LoadNextLevel();
+    // if(turnNum > 1) levelController.LoadNextLevel();
     // } ###
     timer.StartNextTimer();
   }

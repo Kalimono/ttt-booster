@@ -4,7 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
+
 public class FurHatCommunication : MonoBehaviour {
+
+
+  public class Message {
+    // public string message;
+    public string message;
+
+    public void CreateMessage(string anOutcome) {
+      // message = aMessage;
+      message = anOutcome;
+    }
+
+    public string SaveToString() {
+        return JsonUtility.ToJson(this);
+    }
+  }
+  
   static string API_URL = "https://183e-2001-6b0-2-2801-3d3c-b7b-b5b6-7c8b.ngrok.io";
   public string FURHAT_URL = "http://localhost:8888";
 
@@ -35,25 +53,35 @@ public class FurHatCommunication : MonoBehaviour {
   }
 
   public void SendOutcome(int outcome) {
-    String message = outcomeStringList[outcome];
-    Debug.Log("{ \"message\": \"" + message + "\" }");
-    StartCoroutine(PostEvent("/", "{ \"message\": \" + message + \" }", FURHAT_URL));
+    Message m = new Message();
+    m.CreateMessage(outcomeStringList[outcome]);
+    String message = m.SaveToString();
+    Debug.Log(message);
+    StartCoroutine(PostEvent("/", message, FURHAT_URL));
   }
 
   public void SendNotcome(int outcome) {
-    String message = notcomeStringList[outcome];
-    
-    StartCoroutine(PostEvent("/", "{ \"message\": \" + message + \" }", FURHAT_URL));
+    Message m = new Message();
+    m.CreateMessage(notcomeStringList[outcome]);
+    String message = m.SaveToString();
+    Debug.Log(message);
+    StartCoroutine(PostEvent("/", message, FURHAT_URL));
   }
 
     public void SendIncorrectResponse() {
-    String message = incorrectResponse;
-    StartCoroutine(PostEvent("/", "{ \"message\": \" + message + \" }", FURHAT_URL));
+    Message m = new Message();
+    m.CreateMessage(incorrectResponse);
+    String message = m.SaveToString();
+    Debug.Log(message);
+    StartCoroutine(PostEvent("/", message, FURHAT_URL));
   }
 
   public void SendTimeout() {
-    String message = incorrectResponse;
-    StartCoroutine(PostEvent("/", "{ \"message\": \" + message + \" }", FURHAT_URL));
+    Message m = new Message();
+    m.CreateMessage(timeOutString);
+    String message = m.SaveToString();
+    Debug.Log(message);
+    StartCoroutine(PostEvent("/", message, FURHAT_URL));
   }
 
   public void SendEvent() {

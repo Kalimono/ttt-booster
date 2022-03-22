@@ -17,6 +17,7 @@ public class ConditionController : MonoBehaviour {
     public Slider nResponsesSlider;
     public Slider nStimuliSlider;
     public Slider dotSlider;
+    public Slider levelSlider;
 
     public TextMeshProUGUI stimuliLifetimeValueText;
     public TextMeshProUGUI timeBetweenStimuliValueText;
@@ -27,6 +28,7 @@ public class ConditionController : MonoBehaviour {
     public TextMeshProUGUI nResponsesTimeValueText;
     public TextMeshProUGUI nStimuliTimeValueText;
     public TextMeshProUGUI dotValueText;
+    public TextMeshProUGUI levelValueText;
 
 
     public float stimuliLifetime = 15;
@@ -38,6 +40,7 @@ public class ConditionController : MonoBehaviour {
     public float nResponses = 0;
     public float nStimuli = 4;
     public float dot = 1;
+    public float level = 1;
 
     GridCreator gridCreator;
     // GameController gameController;
@@ -53,6 +56,9 @@ public class ConditionController : MonoBehaviour {
     public void LoadLevelSettings() {
         nResponses = levelSettings.responseOptions;
         nStimuli = levelSettings.stimuliLength;
+
+        Debug.Log(nResponses);
+        Debug.Log(nStimuli);
     }
 
     public void ExportParameters() {
@@ -76,6 +82,7 @@ public class ConditionController : MonoBehaviour {
         nResponsesSlider.onValueChanged.AddListener(delegate {nResponsesSliderChange();});
         nStimuliSlider.onValueChanged.AddListener(delegate {nStimuliSliderChange();});
         dotSlider.onValueChanged.AddListener(delegate {dotSliderChange();});
+        levelSlider.onValueChanged.AddListener(delegate {levelSliderChange();});
     }
 
     void StimuliLifetimeSliderChange() {
@@ -122,5 +129,11 @@ public class ConditionController : MonoBehaviour {
     void dotSliderChange() {
 		dot = dotSlider.value;
         dotValueText.text = (dot == 1) ? "ON" : "OFF";
+	}
+
+    void levelSliderChange() {
+		level = levelSlider.value;
+        levelController.SwitchLevel((int)level);
+        levelValueText.text = level.ToString();
 	}
 }
