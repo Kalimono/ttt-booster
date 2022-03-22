@@ -40274,6 +40274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351fdb28654ddaf40ba0155cdeb5c3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelSettings: {fileID: 0}
+  levelController: {fileID: 0}
   stimuliLifetimeSlider: {fileID: 1624543463}
   timeBetweenStimuliSlider: {fileID: 1446030744}
   traceConditionSlider: {fileID: 1286236724}
@@ -41302,12 +41304,9 @@ MonoBehaviour:
   lineSpawner: {fileID: 1638791384}
   dataPoster: {fileID: 616513002}
   dotController: {fileID: 1464228613}
-  sceneController: {fileID: 0}
+  sceneController: {fileID: 1827340034}
   conditionController: {fileID: 417686697}
-  levels:
-  - {fileID: 11400000, guid: cb16c2a8291e2694c90300b40c32d8dc, type: 2}
-  - {fileID: 11400000, guid: da1d84a48a2c140449200f3c72e43e8b, type: 2}
-  - {fileID: 11400000, guid: 7047a08becb07e44ca68301f99036c7c, type: 2}
+  levelController: {fileID: 928624245}
   activePlayer:
     value: 0
     score: 0
@@ -55653,6 +55652,7 @@ Transform:
   - {fileID: 1381950431}
   - {fileID: 1827340033}
   - {fileID: 2034113405}
+  - {fileID: 928624244}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -69108,6 +69108,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 923153843}
   m_CullTransparentMesh: 0
+--- !u!1 &928624243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 928624244}
+  - component: {fileID: 928624245}
+  m_Layer: 0
+  m_Name: LevelController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &928624244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928624243}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 653400480}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &928624245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928624243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602e81fad6b856949ab5e3bd80d045a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels:
+  - {fileID: 11400000, guid: cb16c2a8291e2694c90300b40c32d8dc, type: 2}
+  - {fileID: 11400000, guid: a5a9220b8745591418a0f1001b61a1ae, type: 2}
+  - {fileID: 11400000, guid: bcaa0e023dee9c24cbf193cf316eeb61, type: 2}
+  lastLevelIndex: 0
 --- !u!1 &930457470
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 
 public class ConditionController : MonoBehaviour {
+    public LevelSettings levelSettings;
+    public LevelController levelController;
+
     public Slider stimuliLifetimeSlider;
     public Slider timeBetweenStimuliSlider;
     public Slider traceConditionSlider;
@@ -41,8 +44,15 @@ public class ConditionController : MonoBehaviour {
 
     void Awake() {
         gridCreator = FindObjectOfType<GridCreator>();
+        levelSettings = FindObjectOfType<LevelSettings>();
+        levelController = FindObjectOfType<LevelController>();
         // gameController = FindObjectOfType<GameController>();
         // Debug.Log(nStimuli);
+    }
+
+    public void LoadLevelSettings() {
+        nResponses = levelSettings.responseOptions;
+        nStimuli = levelSettings.stimuliLength;
     }
 
     public void ExportParameters() {

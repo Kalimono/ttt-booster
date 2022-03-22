@@ -34,8 +34,7 @@ public class GameController : MonoBehaviour {
   public DotController dotController;
   public SceneController sceneController;
   public ConditionController conditionController;
-
-  public LevelSettings[] levels;
+  public LevelController levelController;
 
   private TimerController timer;
 
@@ -55,10 +54,9 @@ public class GameController : MonoBehaviour {
 
   void Awake() {
     timer = FindObjectOfType<TimerController>();
-    timer.levelSettings = levels[0];
     timer.onTimerFinished += OnTimerFinished;
-    autoTurnEnderController.Init(levels[0]);
-    dataPoster.InitializeGame(levels[0]);
+    // autoTurnEnderController.Init(levelController.levels[0]);
+    // dataPoster.InitializeGame(levelController.levels[0]);
     // Debug.Log("awake");
   }
 
@@ -244,6 +242,8 @@ public class GameController : MonoBehaviour {
     // } else {
     //   gridController.SetBoardInteractable(false);
     turnNum++;
+
+    if(turnNum > 1) levelController.LoadNextLevel();
     // } ###
     timer.StartNextTimer();
   }
