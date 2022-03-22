@@ -26,6 +26,7 @@ public class Cell : MonoBehaviour {
   public DotController dotController;
   public TimerController timerController;
   public AttackOpponentController attackOpponentController;
+  public FurHatCommunication furHatCommunication;
 
   public RotateMe rotateMe;
   public FadeCellOverTime fadeCellOverTime;
@@ -59,6 +60,7 @@ public class Cell : MonoBehaviour {
     timerController = FindObjectOfType<TimerController>();
     uiController = FindObjectOfType<UIController>();
     attackOpponentController = FindObjectOfType<AttackOpponentController>();
+    furHatCommunication = FindObjectOfType<FurHatCommunication>();
   }
 
   public void SetInteractive(bool value) {
@@ -87,6 +89,11 @@ public class Cell : MonoBehaviour {
       valueDisplayer.enabled = false;
 
       if (isCorrectMove) {
+        if(dotController.toggleDot) {
+          furHatCommunication.SendOutcome(this.outcomeArea);
+        } else {
+          furHatCommunication.SendNotcome(this.outcomeArea);
+        }
         gameController.whiteCorrect = 1;
         // dotController.SetOutcome(this);
         if(dotController.toggleDot) {
@@ -101,18 +108,14 @@ public class Cell : MonoBehaviour {
         valueDisplayer.sprite = value == GameValue.Cross ? crossSprite : noughtSprite;
         if(gameController.activePlayer == gameController.playerX) {
           rotateMe.Rotate();
-          // value = gameController.GetPlayerSide();
-          // valueDisplayer.sprite = value == GameValue.Cross ? crossSprite : noughtSprite;
         } else {
           gameController.whiteCorrect = 0;
-          // gridController.FadeCellsExceptLastCellInteractedWith();
-          // dotController.SetOutcome(this);
-          // valueDisplayer.sprite = value == GameValue.Cross ? crossSprite : noughtSprite;
           GetComponent<FlashCell>().FlashGreen();
           soundFxController.PlayAICorrectSound();
         }
         
       } else {
+        furHatCommunication.SendIncorrectResponse();
         soundFxController.PlayWrongResponseSound();
         GetComponent<FlashCell>().FlashRed();
       }

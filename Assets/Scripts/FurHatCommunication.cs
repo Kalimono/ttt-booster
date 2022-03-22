@@ -6,67 +6,71 @@ using UnityEngine.Networking;
 
 public class FurHatCommunication : MonoBehaviour {
   static string API_URL = "https://183e-2001-6b0-2-2801-3d3c-b7b-b5b6-7c8b.ngrok.io";
-  static string FURHAT_URL = "";
-  //static string API_URL_M = "https://5674-188-148-206.ngrok-io"
-  // static string API_LOCAL = "http://0.0.0.0:8080/";
-//   class Game {
-//     public string gameID;
+  public string FURHAT_URL = "http://localhost:8888";
 
-//     public Game(string id) {
-//       gameID = id;
-//     }
-//   }
+  static List<string> outcomeStringList = new List<string>{
+    "dot_one",
+    "dot_two",
+    "dot_three",
+    "dot_four"
+  };
+
+  static List<string> notcomeStringList = new List<string>{
+    "not_one",
+    "not_two",
+    "not_three",
+    "not_four"
+  };
+
+  static string incorrectResponse = "incorrect";
+  static string timeOutString = "timeout";
 
   [System.Serializable]
   class ApiResponse {
     public string id;
   }
 
-//   Game currentGame;
-
-  public void InitializeGame(LevelSettings levelSettings) {
-    // StartGame(JsonUtility.ToJson(levelSettings));
+  public void DebugSend() {
+    SendOutcome(1);
   }
 
-  public void SendTurn(int TurnNum, int round, bool dot, int differentialOutcome, int squarePosition, int stimuliPosition, float reactionTime, string player, bool successMove, int timeOut, int cornerDist, int distractorIndex) {
-    // TurnData turn = new TurnData(TurnNum, round, dot, differentialOutcome, squarePosition, stimuliPosition, reactionTime, player, successMove, timeOut, cornerDist, distractorIndex, currentGame.gameID);
-    // string jsonTurnData = JsonUtility.ToJson(turn);
-    // SendTurn(jsonTurnData);
+  public void SendOutcome(int outcome) {
+    String message = outcomeStringList[outcome];
+    Debug.Log("{ \"message\": \"" + message + "\" }");
+    StartCoroutine(PostEvent("/", "{ \"message\": \" + message + \" }", FURHAT_URL));
   }
 
-//   public void SendGameOver() {
-//     StartCoroutine(PostData("/game/end", "{}", API_URL));
-//   }
+  public void SendNotcome(int outcome) {
+    String message = notcomeStringList[outcome];
+    
+    StartCoroutine(PostEvent("/", "{ \"message\": \" + message + \" }", FURHAT_URL));
+  }
 
-//   void SendTurn(string json) {
-//     StartCoroutine(PostData("/turn", json, API_URL));
-//   }
+    public void SendIncorrectResponse() {
+    String message = incorrectResponse;
+    StartCoroutine(PostEvent("/", "{ \"message\": \" + message + \" }", FURHAT_URL));
+  }
 
-//   void StartGame(string json) {
-//     StartCoroutine(PostEvent(json, API_URL));
-//   }
-
-  // public void SendHi() {
-  //   StartCoroutine(PostData("/turn", "hi"));
-  // }
+  public void SendTimeout() {
+    String message = incorrectResponse;
+    StartCoroutine(PostEvent("/", "{ \"message\": \" + message + \" }", FURHAT_URL));
+  }
 
   public void SendEvent() {
-      StartCoroutine(PostEvent("message", FURHAT_URL));
+      StartCoroutine(PostEvent("/", "{ \"message\": \"dot_one\" }", FURHAT_URL));
   }
 
-  IEnumerator PostEvent(string eventMessage, string url) {
+  IEnumerator PostEvent(string path, string json, string url) {
     using (UnityWebRequest www = new UnityWebRequest(url, "POST")) {
-      byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(eventMessage);
+      byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
       www.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
       www.downloadHandler = new DownloadHandlerBuffer();
-    //   www.SetRequestHeader("Content-Type", "application/json");
+      www.SetRequestHeader("Content-Type", "application/json");
       yield return www.SendWebRequest();
       
       if (www.result == UnityWebRequest.Result.Success) {
         Debug.Log("Success");
         ApiResponse response = JsonUtility.FromJson<ApiResponse>(www.downloadHandler.text);
-        // if (path == "/game") currentGame = new Game(response.id);
-        // Debug.Log(response.id);
       } else {
         Debug.Log(www.error);
       }

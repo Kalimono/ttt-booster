@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour {
   public GameController gameController;
   public GridController gridController;
   public GameLogic gameLogic;
+  public FurHatCommunication furHatCommunication;
   public LineSpawner lineSpawner;
 
   public ScoreBar scoreBarX;
@@ -24,6 +25,18 @@ public class UIController : MonoBehaviour {
   public GameObject restartGameButton;
 
   public GameObject blueTimeObject;
+
+  // public InputField urlInput;
+
+  // void Start() {
+  //   urlInput.onValueChanged.AddListener(delegate {UrlInputValueChangeCheck(); });
+  // }
+
+  // void UrlInputValueChangeCheck() {
+  //   Debug.Log(urlInput.text.ToString());
+  //   furHatCommunication.FURHAT_URL = urlInput.text.ToString();
+  // }
+
 
   public void UpdateScoreBar() {
     ScoreBar scoreBarToUpdate = (gameController.activePlayer == gameController.playerX) ? scoreBarX : scoreBarO;
@@ -169,7 +182,7 @@ public class UIController : MonoBehaviour {
   }
 
   void Update() {
-    if (Input.GetKeyDown("d")) {
+    if (Input.GetKeyDown(KeyCode.Tab)) {
       ToggleDebug();
     }
   }

@@ -107,12 +107,10 @@ public class ConditionController : MonoBehaviour {
     void nStimuliSliderChange() {
 		nStimuli = nStimuliSlider.value;
         nStimuliTimeValueText.text = nStimuli.ToString();
-        // Debug.Log(nStimuli);
 	}
 
     void dotSliderChange() {
 		dot = dotSlider.value;
         dotValueText.text = (dot == 1) ? "ON" : "OFF";
-        // Debug.Log(nStimuli);
 	}
 }

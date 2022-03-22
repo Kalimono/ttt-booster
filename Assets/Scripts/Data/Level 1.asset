@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timers:
   - gameEvent: 0
-    timeout: 500
+    timeout: 1000
   - gameEvent: 1
-    timeout: 3000
+    timeout: 0
   - gameEvent: 2
-    timeout: 2000
+    timeout: 0
   - gameEvent: 3
     timeout: 5000
   - gameEvent: 4
     timeout: 3000
-  - gameEvent: 5
-    timeout: 1000
   aiCorrectResponseProbabilityPercent: 100
+  stimuliLength: 0
+  responseOptions: 0

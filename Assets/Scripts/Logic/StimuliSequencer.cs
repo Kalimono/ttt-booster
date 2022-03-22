@@ -115,7 +115,7 @@ public static class StimuliSequencer {
   static public List<Color> GetRainbowColorSequence(int sequenceLength) {
     // Debug.Log("sequencelength in: " + sequenceLength.ToString());
     List<Color> colorSequence = new List<Color>();
-    List<Color> colors = new List<Color>{Color.green, Color.magenta, Color.yellow, Color.red, Color.blue};
+    List<Color> colors = new List<Color>{Color.red};
 
     for (int i = 0; i < sequenceLength; i++) {
       // Debug.Log(colors[Random.Range(0, colors.Count)]);

@@ -8,7 +8,7 @@ public class SceneController : MonoBehaviour {
     public Scene scene1;
 
     public void ChangeScene() {
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene(0);
 	}
 
     public void SwitchToSurveyScene() {

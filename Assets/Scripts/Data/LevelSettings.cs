@@ -6,5 +6,9 @@ using UnityEngine;
 public class LevelSettings : ScriptableObject {
 
     public Timer[] timers;
-    public float aiCorrectResponseProbabilityPercent;
+    // public float aiCorrectResponseProbabilityPercent;
+
+    public int stimuliLength;
+    public int responseOptions;
+
 }

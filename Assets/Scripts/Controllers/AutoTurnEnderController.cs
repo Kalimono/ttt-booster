@@ -18,7 +18,7 @@ public class AutoTurnEnderController : MonoBehaviour {
         timeToThink = timer.timeout * 0.2f;//Random.Range(0.5f, 0.8f);
       }
     }
-    successPercentage = levelSettings.aiCorrectResponseProbabilityPercent;
+    // successPercentage = levelSettings.aiCorrectResponseProbabilityPercent;
   }
 
   public bool CheckIfSuccessfulMove(float successPercentage) {

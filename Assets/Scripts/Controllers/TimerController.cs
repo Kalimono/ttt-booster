@@ -40,6 +40,7 @@ public class TimerController : MonoBehaviour {
   public ConditionController conditionController;
   public StimuliRunner stimuliRunner;
   public SquareController squareController;
+  public FurHatCommunication furHatCommunication;
 
   private double timeElapsed;
   // private float currentTimerLength;
@@ -99,6 +100,8 @@ public class TimerController : MonoBehaviour {
     if (timer.gameEvent == GameEvent.Response) timeOut = conditionController.responseTime; 
 
     yield return new WaitForSeconds(timeOut / 1000);
+
+    if(timer.gameEvent == GameEvent.Response) furHatCommunication.SendTimeout();
 
     if (onTimerFinished != null && !stimuliRunner.runningStims) {
       onTimerFinished(timer.gameEvent);

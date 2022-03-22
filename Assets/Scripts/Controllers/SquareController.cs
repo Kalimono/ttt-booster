@@ -229,7 +229,6 @@ public class SquareController : MonoBehaviour {
   }
 
   List<Cell> GetAdditionalRainbowStimuli(int n) {
-    foreach(Cell cell in currentStimuliCells) Debug.Log(cell.position);
     // Debug.Log("getting n additional: " + n.ToString());
     List<Cell> additionalrainbowStimuli = new List<Cell>();
     while(additionalrainbowStimuli.Count<n){

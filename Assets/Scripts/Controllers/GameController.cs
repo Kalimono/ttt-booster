@@ -170,63 +170,41 @@ public class GameController : MonoBehaviour {
   }
 
   void PreStartTurn() {
+    // sceneController.ChangeScene();
     rTimeBlue.Clear();
-    // Debug.Log("prestart");
     gridController.ToggleFadeAllCells(false);
     if(winningPlayer != playerNull) {
       GameOver(winningPlayer);
       return;
     }
-    // lineSpawner.DestroyLines();
     gridController.SetCellValueVisibiltyToggle(false);
     roundActive = true;
-    
-    // squareController.ShowCurrentSquare(); ###
     gridController.lastCellInteractedWith = null;
     uiController.ShowTurnPanelActivePlayer(activePlayer);
-    // gridController.ClearHoverMarkers();
     squareController.PrepareStimuliPhase();
     timer.StartNextTimer();
   }
 
   void StimuliPhase() {
-
     squareController.PresentStimuli();
     gridController.SetBoardInteractable(false);
     timer.TimerBarDisplay(false);
     gridController.SetCellValueVisibiltyToggle(false);
-    // timer.StartNextTimer();
   }
 
   void TraceCondition() { 
     gridController.SetCellValueVisibiltyToggle(false);
-    // squareController.PresentRainbowDistractorStimuli();
-    // squareController.PresentRainbowStimuli(timer.currentTimeout);
     timer.StartNextTimer();
   }
 
   void ResponsePhase() {
-    // if (activePlayer == playerX) {
       squareController.ToggleOptions(true);
-    // } else {
-    //   squareController.ShowAIoptions();
-    // }
 
     timer.TimerBarDisplay(true);
     soundFxController.PlayClock();
-
-    // if (activePlayer == playerO || autoTurnEnderController.toggleAutoPlay) {
-    //   autoTurnEnderController.AutoPlayTurn();
-    //   gridController.SetBoardInteractable(false); 
-    // }
-
     gridController.ToggleFadeAllCells(true);
     squareController.correctCell.Fade(false);
 
-    // foreach(Cell cell in squareController.distractorCells) {
-    //   Debug.Log(cell.position);
-    //   cell.Fade(false);
-    // }
 
     reactionTimeStart = Time.time;
     timer.StartNextTimer();
