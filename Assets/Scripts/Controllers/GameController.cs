@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour {
 
   public int turnNum;
   public int currentRound;
+  public int totalTurn;
 
   float reactionTimeStart;
   // public bool strategicElements = true;
@@ -242,8 +243,14 @@ public class GameController : MonoBehaviour {
     // } else {
     //   gridController.SetBoardInteractable(false);
     turnNum++;
+    uiController.UpdateTotalTurn(turnNum);
 
-    // if(turnNum > 1) levelController.LoadNextLevel();
+    if(totalTurn > 144) GameOver(playerX);
+    if(turnNum > 48) {
+      turnNum = 1;
+      levelController.LoadNextLevel();
+    }
+    // if(turnNum > 1) sceneController.SwitchToSurveyScene();
     // } ###
     timer.StartNextTimer();
   }
@@ -266,7 +273,7 @@ public class GameController : MonoBehaviour {
     gridController.SetBoardInteractable(false);
     gridController.FadeCellsExceptWinning(); 
     roundActive = false;
-    if(currentRound < 9) uiController.restartButton.SetActive(true); 
+    // if(currentRound < 9) uiController.restartButton.SetActive(true);
     uiController.ShowRoundsWonMarkers(true); 
     uiController.SetGameOverText(winningPlayer); 
     uiController.ToggleTurnPanels(false); 

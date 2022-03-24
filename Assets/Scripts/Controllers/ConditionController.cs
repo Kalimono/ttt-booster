@@ -7,6 +7,7 @@ using TMPro;
 public class ConditionController : MonoBehaviour {
     public LevelSettings levelSettings;
     public LevelController levelController;
+    public DotController dotController;
 
     public Slider stimuliLifetimeSlider;
     public Slider timeBetweenStimuliSlider;
@@ -49,6 +50,7 @@ public class ConditionController : MonoBehaviour {
         gridCreator = FindObjectOfType<GridCreator>();
         levelSettings = FindObjectOfType<LevelSettings>();
         levelController = FindObjectOfType<LevelController>();
+        dotController = FindObjectOfType<DotController>();
         // gameController = FindObjectOfType<GameController>();
         // Debug.Log(nStimuli);
     }
@@ -56,9 +58,6 @@ public class ConditionController : MonoBehaviour {
     public void LoadLevelSettings() {
         nResponses = levelSettings.responseOptions;
         nStimuli = levelSettings.stimuliLength;
-
-        Debug.Log(nResponses);
-        Debug.Log(nStimuli);
     }
 
     public void ExportParameters() {
@@ -128,10 +127,17 @@ public class ConditionController : MonoBehaviour {
 
     void dotSliderChange() {
 		dot = dotSlider.value;
-        dotValueText.text = (dot == 1) ? "ON" : "OFF";
+        if(dot == 1f) {
+            dotValueText.text = "ON";
+            dotController.toggleDot = true;
+        } else {
+            dotValueText.text = "OFF";
+            dotController.toggleDot = false;
+        }
+        
 	}
 
-    void levelSliderChange() {
+    public void levelSliderChange() {
 		level = levelSlider.value;
         levelController.SwitchLevel((int)level);
         levelValueText.text = level.ToString();

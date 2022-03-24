@@ -27,6 +27,7 @@ public class UIController : MonoBehaviour {
   public GameObject blueTimeObject;
 
   public TextMeshProUGUI currentLevel;
+  public TextMeshProUGUI currentTotalTurn;
 
   // public InputField urlInput;
 
@@ -39,6 +40,9 @@ public class UIController : MonoBehaviour {
   //   furHatCommunication.FURHAT_URL = urlInput.text.ToString();
   // }
 
+  public void UpdateTotalTurn(int currentTurn) {
+    currentTotalTurn.text = currentTurn.ToString();
+  }
 
   public void UpdateScoreBar() {
     ScoreBar scoreBarToUpdate = (gameController.activePlayer == gameController.playerX) ? scoreBarX : scoreBarO;

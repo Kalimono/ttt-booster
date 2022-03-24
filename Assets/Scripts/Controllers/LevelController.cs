@@ -43,6 +43,8 @@ public class LevelController : MonoBehaviour {
     timerController.levelSettings = levels[level-1];
     conditionController.levelSettings = levels[level-1];
     conditionController.LoadLevelSettings();
+    // conditionController.levelSlider.value = level-1;
+    // conditionController.levelSliderChange();
   }
 
 }

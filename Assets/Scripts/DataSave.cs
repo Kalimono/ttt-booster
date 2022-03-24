@@ -17,7 +17,7 @@ public class DataSave : MonoBehaviour {
     }
 
     public void WriteString() {
-        string path = "Assets/test.txt";
+        string path = "/test.txt";
 
         //Write some text to the test.txt file
         StreamWriter writer = new StreamWriter(path, true);

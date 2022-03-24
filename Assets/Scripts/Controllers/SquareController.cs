@@ -34,7 +34,7 @@ public class SquareController : MonoBehaviour {
   public int squarePositionIndex;
   public int distractorIndex;
 
-  List<Cell> distractors = new List<Cell>();
+  List<Cell> incorrectResponses = new List<Cell>();
   public List<Cell> targetCells = new List<Cell>();
   List<Cell> nontargetCells = new List<Cell>();
 
@@ -102,13 +102,12 @@ public class SquareController : MonoBehaviour {
     // SetCurrentStimuliCells(gridController.grid);
     
     stimuliIndex = StimuliSequencer.GetStimuliIndex();
-    Debug.Log(targetCells.Count);
     correctCell = targetCells[stimuliIndex];
     currentStimuliCells.Add(correctCell);
 
     SetDistractorCells(currentPosition, conditionController.nResponses);
     AddCellsToCurrentStimuliCells(GetNonTargetStimuliCells(nontargetCells));
-    SetRainbowDistractorStimuli(conditionController.nRainbowStim);
+    SetRainbowincorrectResponsestimuli(conditionController.nRainbowStim);
     // Debug.Log("nRainbowStim: " + conditionController.nRainbowStim.ToString());
     // Debug.Log(currentRainbowCells.Count);
     nAdditionalRainbowstimuli = stimuliRunner.GetNAdditionalRainbowStimuli(currenTrialTimeOut, conditionController.stimuliLifetime);
@@ -126,13 +125,13 @@ public class SquareController : MonoBehaviour {
     
     for (int i = 0; i < n; i++) {
       if(i == 0) {
-        distractors.Add(GetDistractor(position));
+        incorrectResponses.Add(GetDistractor(position));
       } else {
-        distractors.Add(GetAdditionalDistractor(position));
+        incorrectResponses.Add(GetAdditionalDistractor(position));
       }
       
     }
-    // Debug.Log(distractors.Count);
+    // Debug.Log(incorrectResponses.Count);
   }
 
   void ClearPreviousRound() {
@@ -141,7 +140,7 @@ public class SquareController : MonoBehaviour {
     // targetCells.Clear();
     // nontargetCells.Clear();
     correctCell = null;
-    distractors.Clear();
+    incorrectResponses.Clear();
     cellToSkip = null;
   }
 
@@ -157,7 +156,7 @@ public class SquareController : MonoBehaviour {
       int randint = Random.Range(0, nonTargetCells.Count-1);
       // Debug.Log(randint);
       Cell cell = nonTargetCells[randint];
-      if (!distractors.Contains(cell) && !nonTargetStimuli.Contains(cell)) nonTargetStimuli.Add(cell);
+      if (!incorrectResponses.Contains(cell) && !nonTargetStimuli.Contains(cell)) nonTargetStimuli.Add(cell);//
     }
     // Debug.Log(nontargetCells.Count);
     return nonTargetStimuli;
@@ -186,7 +185,7 @@ public class SquareController : MonoBehaviour {
     }
   }
 
-  void SetRainbowDistractorStimuli(float n) {
+  void SetRainbowincorrectResponsestimuli(float n) {
     currentRainbowCells = GetRainbowCells(currentPosition, n);
   }
 
@@ -196,11 +195,11 @@ public class SquareController : MonoBehaviour {
     distractorPosition = StimuliSequencer.GetTargetNum();
 
     while (distractor == null) {
-      if (distractorPosition == 1) {
+      // if (distractorPosition == 1) {
         randomPick = PickRandomTargetCell();
-      } else {
-        randomPick = PickRandomNonTargetCell();
-      }
+      // } else {
+      //   randomPick = PickRandomNonTargetCell();
+      // }
 
       if(randomPick != correctCell) {
         distractor = randomPick;
@@ -215,13 +214,13 @@ public class SquareController : MonoBehaviour {
     distractorPosition = Random.Range(0, position.Count);
 
     while (distractor == null) {
-      if (distractorPosition == 1) {
+      // if (distractorPosition == 1) {
         randomPick = PickRandomTargetCell();
-      } else {
-        randomPick = PickRandomNonTargetCell();
-      }
+      // } else {
+      //   randomPick = PickRandomNonTargetCell();
+      // }
 
-      if(randomPick != correctCell && !distractors.Contains(randomPick) && !currentStimuliCells.Contains(randomPick)) {
+      if(randomPick != correctCell && !incorrectResponses.Contains(randomPick)) {
         distractor = randomPick;
       }
     }
@@ -284,7 +283,7 @@ public class SquareController : MonoBehaviour {
   }
 
   public void ToggleOptions(bool toggle) {
-    foreach(Cell distractorCell in distractors) {
+    foreach(Cell distractorCell in incorrectResponses) {
       distractorCell.SetInteractive(toggle);
     }
     correctCell.SetInteractive(toggle);
