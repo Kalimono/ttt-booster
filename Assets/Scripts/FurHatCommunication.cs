@@ -64,6 +64,7 @@ public class FurHatCommunication : MonoBehaviour {
     Message m = new Message();
     m.CreateMessage(notcomeStringList[outcome]);
     String message = m.SaveToString();
+    Debug.Log(message);
     StartCoroutine(PostEvent("/", message, FURHAT_URL));
   }
 

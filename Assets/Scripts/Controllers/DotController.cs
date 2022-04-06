@@ -22,7 +22,7 @@ public class DotController : MonoBehaviour {
     // int area = cell.outcomeArea;
     if (!toggleDot) cell.outcomeArea = StimuliSequencer.GetNonDifferentialOutcome();
 
-    if (cell.outcomeArea == 0 || cell.outcomeArea == 3) {
+    if (cell.outcomeArea == 1 || cell.outcomeArea == 3) {
       cell.outcomeValue = 3;
     } else {
       cell.outcomeValue = 1;

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b581bee767d6840569b620bb342b2d9c, type: 3}
-  m_Name: Level 1
+  m_Name: Level 1 b
   m_EditorClassIdentifier: 
   timers:
   - gameEvent: 0
@@ -24,4 +24,4 @@ MonoBehaviour:
   - gameEvent: 4
     timeout: 4000
   stimuliLength: 4
-  responseOptions: 2
+  responseOptions: 1

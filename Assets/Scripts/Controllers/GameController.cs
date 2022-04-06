@@ -174,11 +174,11 @@ public class GameController : MonoBehaviour {
     if(conditionFinished) {
       GameObject buttonToactivate; // = (totalTurn < 72) ? uiController.restartButton : uiController.restartGameButton;
 
-      if(totalTurn < 72) {
+      if(totalTurn < 96) {
         buttonToactivate = uiController.restartButton;
       } else {
         buttonToactivate = uiController.restartGameButton;
-        furHatCommunication.SendEnd();
+        // furHatCommunication.SendEnd();
       }
 
       buttonToactivate.SetActive(true);
@@ -186,7 +186,8 @@ public class GameController : MonoBehaviour {
       conditionFinished = false;
       turnNum = 0;
       GameOver(playerX);
-      levelController.LoadNextLevel();
+      // levelController.LoadNextLevel();
+      // sceneController.LoadSurveyScene();
       return;
       // sceneController.SwitchToSurveyScene(3f);
     }
@@ -277,7 +278,7 @@ public class GameController : MonoBehaviour {
     uiController.UpdateTotalTurn(totalTurn);
 
     // if(totalTurn == 96) GameOver(playerX);
-    if(turnNum == 24) conditionFinished = true;
+    if(turnNum == 48) conditionFinished = true;
     // if(turnNum > 1) sceneController.SwitchToSurveyScene();
     // } ###
     timer.StartNextTimer();

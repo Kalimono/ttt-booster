@@ -90,14 +90,17 @@ public class Cell : MonoBehaviour {
       bool isCorrectMove = CheckIfCorrectMove();
       valueDisplayer.enabled = false;
 
+      dotController.SetOutcome(this);
+
       if (isCorrectMove) {
         if(dotController.toggleDot) {
           furHatCommunication.SendOutcome(this.outcomeArea);
         } else {
           furHatCommunication.SendNotcome(this.outcomeArea);
         }
+
         dataSave.whiteCorrect = 1;
-        dotController.SetOutcome(this);
+        
         
         uiController.UpdateScoreBar();
 

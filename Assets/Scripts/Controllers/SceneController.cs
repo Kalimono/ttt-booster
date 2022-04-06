@@ -37,14 +37,17 @@ public class SceneController : MonoBehaviour {
 	// }
 
     public void LoadGameScene() {
+        IncrementMemory();
         SceneManager.LoadScene(0);
     }
 
     public void LoadSurveyScene() {
-        memory++;
-        Debug.Log("increment");
-        Debug.Log(memory);
         SceneManager.LoadScene(1);
+    }
+
+    void IncrementMemory() {
+        memory++;
+        if(memory > 2) memory = 0;
     }
 
     // public void SwitchToSurveyScene(float delay) {

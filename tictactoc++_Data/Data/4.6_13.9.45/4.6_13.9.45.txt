@@ -1,0 +1,4 @@
+Turn, level, correctResponse, nResponses, ISI, reactionTime, blueFailOut, blueFailMiss, blueResponse1, blueResponse2
+0,0,1,2,2000,1.382229,0,2,2.017334,2.007915
+1,0,1,2,2000,1.300383,0,4,2.019641,2.012769
+2,0,1,2,2000,1.382217,0,6,2.020469,2.010865

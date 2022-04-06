@@ -8,6 +8,7 @@ public class LevelController : MonoBehaviour {
   ConditionController conditionController;
   AutoTurnEnderController autoTurnEnderController;
   UIController uIController;
+  SceneController sceneController;
   public int lastLevelIndex = 0;
 
   
@@ -17,7 +18,9 @@ public class LevelController : MonoBehaviour {
     conditionController = FindObjectOfType<ConditionController>();
     autoTurnEnderController = FindObjectOfType<AutoTurnEnderController>();
     uIController = FindObjectOfType<UIController>();
-
+    sceneController = FindObjectOfType<SceneController>();
+    lastLevelIndex = sceneController.memory;
+    uIController.UpdateCurrentLevelText(lastLevelIndex);
     autoTurnEnderController.Init(levels[0]);
 
     timerController.levelSettings = levels[0];
@@ -35,7 +38,7 @@ public class LevelController : MonoBehaviour {
     timerController.levelSettings = levels[lastLevelIndex];
     conditionController.levelSettings = levels[lastLevelIndex];
 
-    uIController.UpdateCurrentLevelText(lastLevelIndex+1);
+    // uIController.UpdateCurrentLevelText(lastLevelIndex+1);
     conditionController.LoadLevelSettings();
   }
 
