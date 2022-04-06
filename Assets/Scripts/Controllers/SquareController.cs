@@ -41,6 +41,8 @@ public class SquareController : MonoBehaviour {
   public float currenTrialTimeOut;
   public int nAdditionalRainbowstimuli;
 
+  Cell lastCellAdded = null;
+
   void Start() {
     gridCreator = FindObjectOfType<GridCreator>();
     dotController = FindObjectOfType<DotController>();
@@ -49,9 +51,16 @@ public class SquareController : MonoBehaviour {
 
   public void Initialize() {
     ClearPreviousSetup();
+    // ClearPreviousRound();
     SetCellReinforcement(gridController.grid);
     currentPosition = GetCellList(gridController.grid);
+    // cellToSkip = GetCellFromGridToSkip(gridController.grid);
     // Debug.Log(GetCellFromGridToSkip(gridController.grid));
+  }
+
+  public void Reset() {
+    ClearPreviousSetup();
+    ClearPreviousRound();
   }
 
   void SetCellReinforcement(Cell[,] grid) {
@@ -69,8 +78,8 @@ public class SquareController : MonoBehaviour {
   }
 
   List<Cell> GetCellList(Cell[,] grid) {
-    // List<Cell> cellsToSkip = GetCellsToSkip(grid);
-    Cell cellToSkip = GetCellFromGridToSkip(grid);
+    // List<Cell> cellToSkip = GetCellsToSkip(grid);
+    cellToSkip = GetCellFromGridToSkip(gridController.grid);
     List<Cell> cellList = new List<Cell>();
     foreach(Cell cell in grid) {
       if(cell != cellToSkip) cellList.Add(cell);
@@ -95,25 +104,33 @@ public class SquareController : MonoBehaviour {
   public void PrepareStimuliPhase() {
     ClearPreviousRound();
     if(targetCells.Count < 4) Initialize();
-    // SetCellReinforcement(gridController.grid);
-    
+
     currenTrialTimeOut = StimuliSequencer.GetTraceLength();
-    // Debug.Log(currenTrialTimeOut);
-    // SetCurrentStimuliCells(gridController.grid);
-    
     stimuliIndex = StimuliSequencer.GetStimuliIndex();
     correctCell = targetCells[stimuliIndex];
     currentStimuliCells.Add(correctCell);
 
     SetDistractorCells(currentPosition, conditionController.nResponses);
     AddCellsToCurrentStimuliCells(GetNonTargetStimuliCells(nontargetCells));
+
     SetRainbowincorrectResponsestimuli(conditionController.nRainbowStim);
-    // Debug.Log("nRainbowStim: " + conditionController.nRainbowStim.ToString());
-    // Debug.Log(currentRainbowCells.Count);
     nAdditionalRainbowstimuli = stimuliRunner.GetNAdditionalRainbowStimuli(currenTrialTimeOut, conditionController.stimuliLifetime);
-    currentAdditionalRainbowCells =  GetAdditionalRainbowStimuli(stimuliRunner.GetNAdditionalRainbowStimuli(currenTrialTimeOut, conditionController.stimuliLifetime));
+    currentAdditionalRainbowCells =  GetRainbowCells(currentPosition, stimuliRunner.GetNAdditionalRainbowStimuli(currenTrialTimeOut, conditionController.stimuliLifetime));
     AddCellsToCurrentRainbowStimuliCells(currentAdditionalRainbowCells);
-    // Debug.Log(currentRainbowCells.Count);
+
+    // Debug.Log("Targetcells: " + targetCells[0].position.ToString() + ", " + targetCells[1].position.ToString() + ", " + targetCells[2].position.ToString() + ", " + targetCells[3].position.ToString());
+
+    // string resp = "Responses: ";
+    // string stim = "Stimuli: ";
+    // string corr = "Correct: " + correctCell.position.ToString();
+
+    // foreach(Cell respo in incorrectResponses) resp += respo.position.ToString() + " ";
+    // foreach(Cell stimu in currentStimuliCells) stim += stimu.position.ToString() + " ";
+
+    // Debug.Log(corr);
+    // Debug.Log(resp);
+    // Debug.Log(stim);
+    // Debug.Log("next");
   }
 
   Cell GetCellFromGridToSkip(Cell[,] grid) {
@@ -137,11 +154,9 @@ public class SquareController : MonoBehaviour {
   void ClearPreviousRound() {
     currentStimuliCells.Clear();
     currentRainbowCells.Clear();
-    // targetCells.Clear();
-    // nontargetCells.Clear();
     correctCell = null;
     incorrectResponses.Clear();
-    cellToSkip = null;
+    // cellToSkip = null;
   }
 
   void ClearPreviousSetup() {
@@ -150,25 +165,39 @@ public class SquareController : MonoBehaviour {
   }
 
   List<Cell> GetNonTargetStimuliCells(List<Cell> nonTargetCells) {
-    // ClearPreviousSetup();
     List<Cell> nonTargetStimuli = new List<Cell>();
     while (nonTargetStimuli.Count+1 < conditionController.nStimuli) {
       int randint = Random.Range(0, nonTargetCells.Count-1);
-      // Debug.Log(randint);
       Cell cell = nonTargetCells[randint];
       if (!incorrectResponses.Contains(cell) && !nonTargetStimuli.Contains(cell)) nonTargetStimuli.Add(cell);//
     }
-    // Debug.Log(nontargetCells.Count);
     return nonTargetStimuli;
   }
 
   List<Cell> GetRainbowCells(List<Cell> position, float nRainbowStim) {
-    // Debug.Log(n);
     List<Cell> rainbowCells = new List<Cell>();
+    
     while (rainbowCells.Count < nRainbowStim) {
-      int randint = Random.Range(0, position.Count);
-      Cell cell = position[randint];
-      if(!targetCells.Contains(cell)) rainbowCells.Add(cell);
+      // int randint = Random.Range(0, position.Count);
+      // Cell candidateCell = position[randint];
+      // Cell cell = null;
+      
+      // if(rainbowCells.Count != 0) {
+      //   while(cell == null) {
+      //     int randint = Random.Range(0, position.Count);
+      //     Cell candidateCell = position[randint];
+      //     if(candidateCell != rainbowCells[rainbowCells.Count-1]) cell = candidateCell;
+      //   }
+      // } else {
+        int randint = Random.Range(0, position.Count);
+        Cell cell = position[randint];
+      // }
+
+      if(!targetCells.Contains(cell) && !currentStimuliCells.Contains(cell) && cell != lastCellAdded) {
+        rainbowCells.Add(cell);
+        lastCellAdded = cell;
+      }
+
     }
     return rainbowCells;
   }
@@ -201,7 +230,7 @@ public class SquareController : MonoBehaviour {
       //   randomPick = PickRandomNonTargetCell();
       // }
 
-      if(randomPick != correctCell) {
+      if(randomPick != correctCell && !currentStimuliCells.Contains(randomPick)) {
         distractor = randomPick;
       }
     }
@@ -220,26 +249,26 @@ public class SquareController : MonoBehaviour {
       //   randomPick = PickRandomNonTargetCell();
       // }
 
-      if(randomPick != correctCell && !incorrectResponses.Contains(randomPick)) {
+      if(randomPick != correctCell && !incorrectResponses.Contains(randomPick) && !currentStimuliCells.Contains(randomPick)) {
         distractor = randomPick;
       }
     }
     return distractor;
   }
 
-  List<Cell> GetAdditionalRainbowStimuli(int n) {
-    // Debug.Log("getting n additional: " + n.ToString());
-    List<Cell> additionalrainbowStimuli = new List<Cell>();
-    while(additionalrainbowStimuli.Count<n){
-      int randInt = Random.Range(0, nontargetCells.Count);
-      Cell testCell = nontargetCells[randInt];
-      if(!currentStimuliCells.Contains(testCell) && !targetCells.Contains(testCell)) additionalrainbowStimuli.Add(testCell);
-    }
-    // Debug.Log("returning n additional: " + additionalrainbowStimuli.Count.ToString());
-    return additionalrainbowStimuli;
-    // StimuliSequencer.GetRainbowColorSequence(20);
+  // List<Cell> GetAdditionalRainbowStimuli(int n) {
+  //   // Debug.Log("getting n additional: " + n.ToString());
+  //   List<Cell> additionalrainbowStimuli = new List<Cell>();
+  //   while(additionalrainbowStimuli.Count<n){
+  //     int randInt = Random.Range(0, nontargetCells.Count);
+  //     Cell testCell = nontargetCells[randInt];
+  //     if(!currentStimuliCells.Contains(testCell) && !targetCells.Contains(testCell)) additionalrainbowStimuli.Add(testCell);
+  //   }
+  //   // Debug.Log("returning n additional: " + additionalrainbowStimuli.Count.ToString());
+  //   return additionalrainbowStimuli;
+  //   // StimuliSequencer.GetRainbowColorSequence(20);
     
-  }
+  // }
 
   // void SetCurrentStimuliCells(Cell[,] grid) {
   //   foreach(Cell cell in grid) currentStimuliCells.Add(cell);
@@ -247,9 +276,13 @@ public class SquareController : MonoBehaviour {
 
   public void PresentStimuli() {
     currentStimuliCells = RandomizeListOrder(currentStimuliCells);
-    currentRainbowCells = RandomizeListOrder(currentRainbowCells);
+    // currentRainbowCells = RandomizeListOrder(currentRainbowCells);
     // Debug.Log(currentStimuliCells.Count);
     stimuliRunner.RunMixedStimuli();
+  }
+
+  public void FlashMiddleCell(float seconds) {
+    cellToSkip.FlashMeGreenSeconds(seconds);
   }
 
   public void ShowCurrentSquare() { 

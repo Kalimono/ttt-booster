@@ -4,18 +4,14 @@ using UnityEngine;
 using System.Linq;
 
 public class StimuliRunner : MonoBehaviour {
-    // List<Cell> cellList;
-    // float startTime;
-    // int indexCounter;
-    
     public bool runningStims = false;
-    // bool rainbow = false;
 
     SoundFxController soundFxController;
     ConditionController conditionController;
     TimerController timerController;
     SquareController squareController;
     GridController gridController;
+    DataSave dataSave;
 
     void Awake() {
         soundFxController = FindObjectOfType<SoundFxController>();
@@ -23,6 +19,7 @@ public class StimuliRunner : MonoBehaviour {
         timerController = FindObjectOfType<TimerController>();
         squareController = FindObjectOfType<SquareController>();
         gridController = FindObjectOfType<GridController>();
+        dataSave = FindObjectOfType<DataSave>();
     }
 
     IEnumerator DelayNextTimerStart(float delayTime) {
@@ -32,61 +29,42 @@ public class StimuliRunner : MonoBehaviour {
     }
 
     public int GetNAdditionalRainbowStimuli(float currenTrialTimeOut, float stimuliLifetime) {
+        dataSave.isi = currenTrialTimeOut;
         // float additionalRainbowStimuli = currenTrialTimeOut/stimuliLifetime;
         // if(additionalRainbowStimuli < 3) additionalRainbowStimuli = 3;
+        float additionalRainbowStimuli = (currenTrialTimeOut == 15000f) ? 12f : 4f;
         // Debug.Log("additional from function: " + additionalRainbowStimuli.ToString());
-        float additionalRainbowStimuli = 3;
+        // float additionalRainbowStimuli = 3;
         return (int)additionalRainbowStimuli;
     }
 
     IEnumerator RunStimuli() {
         runningStims = true;
-        // int traceStimStartIndex = (squareController.currentStimuliCells.Count-1)*2;
-        // Debug.Log("currentRainbowCells " + squareController.currentRainbowCells.Count.ToString());
-        // Debug.Log("currentStimuliCells " + squareController.currentStimuliCells.Count.ToString());
+
         int totalCellsCount = squareController.currentStimuliCells.Count + squareController.currentRainbowCells.Count;
         
         int currentStimuliIndex = 0;
         int currentRainbowStimuliIndex = 0;
         float stimuliLifetime = conditionController.stimuliLifetime/1000;
-        // int nAdditionalRainbowStims = GetNAdditionalRainbowStimuli(squareController.currenTrialTimeOut, conditionController.stimuliLifetime);
-        // Debug.Log(nAdditionalRainbowStims);
-        // totalCellsCount += nAdditionalRainbowStims;
-        // Debug.Log(totalCellsCount);
+
         List<Color> colorSequence = StimuliSequencer.GetRainbowColorSequence((int)conditionController.nRainbowStim);
         List<Color> colorSequenceAdditional = StimuliSequencer.GetRainbowColorSequence(squareController.nAdditionalRainbowstimuli);
         List<Color> combinedColorList = AddLists(colorSequence, colorSequenceAdditional);
-        // List<Color> cCombinedColorList = StimuliSequencer.GetRainbowColorSequence(squareController.currentAdditionalRainbowCells.Count+squareController.currentRainbowCells.Count);
-        // int colorSequenceAdditionalIndex = 0;
+
         int colorSequenceIndex = 0;
-        
-        // Debug.Log("totalCellsCount " + totalCellsCount.ToString());
-        // Debug.Log("colorSequence " + colorSequence.Count.ToString());
-        // Debug.Log("colorSequenceAdditional " + colorSequenceAdditional.Count.ToString());
-        // Debug.Log("combinedColorList " + combinedColorList.Count.ToString());
-        // Debug.Log("cCombinedColorList " + cCombinedColorList.Count.ToString());
-        // Debug.Log("totalCellsCount " + totalCellsCount.ToString());
+
         for (int i = 0; i < totalCellsCount; i++) {
-            // Debug.Log(i);
+
             if(i%2==0 && currentStimuliIndex < squareController.currentStimuliCells.Count) {
                 squareController.currentStimuliCells[currentStimuliIndex].HighlightMeWhite(stimuliLifetime);
                 currentStimuliIndex++;
-                // traceStimStartIndex++;
             } else {
-                // if(currentRainbowStimuliIndex < squareController.currentRainbowCells.Count) {
                     if(combinedColorList[colorSequenceIndex] == Color.blue) gridController.timedBlue.TimedBlueCell();
                     squareController.currentRainbowCells[currentRainbowStimuliIndex].HighlightMeColor(stimuliLifetime, combinedColorList[colorSequenceIndex]);
                     colorSequenceIndex++;
                     currentRainbowStimuliIndex++;
-                    
-                    // currentRainbowStimuliIndex++;
-                // } else {
-                    // squareController.currentStimuliCells[currentStimuliIndex].HighlightMeWhite(stimuliLifetime);
-                    // currentStimuliIndex++;
                 }
-                // traceStimStartIndex++;
                 
-            // }
             yield return new WaitForSeconds(stimuliLifetime);
         }
         timerController.StartNextTimer();

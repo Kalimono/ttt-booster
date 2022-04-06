@@ -12,6 +12,7 @@ public class ScoreFillEffects : MonoBehaviour {
   public Color diamond = new Color(100, 137, 191, 0);
   public Color red = new Color(210, 0, 0, 0);
   public Color green = new Color(0, 210, 0, 0);
+  public Color silver = new Color(192, 192, 192, 0);
   Color startColor = new Color(42/255, 62/255, 164/255, 0);
 
   Color endColor;

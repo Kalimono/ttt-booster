@@ -104,6 +104,7 @@ public class RotateMe : MonoBehaviour {
     currentAngle = transform.eulerAngles;
     rotationActive = false;
     frameCounter = 0;
+    GetComponentInParent<Cell>().Fade(true);
   }
 }
 

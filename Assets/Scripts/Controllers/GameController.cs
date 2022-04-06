@@ -35,6 +35,9 @@ public class GameController : MonoBehaviour {
   public SceneController sceneController;
   public ConditionController conditionController;
   public LevelController levelController;
+  public DataSave dataSave;
+  public CursorController cursorController;
+  public FurHatCommunication furHatCommunication;
 
   private TimerController timer;
 
@@ -46,14 +49,16 @@ public class GameController : MonoBehaviour {
   public int turnNum;
   public int currentRound;
   public int totalTurn;
+  bool conditionFinished = false;
 
-  float reactionTimeStart;
+  float reactionTime;
   // public bool strategicElements = true;
   // public Image stratstatus;
 
 
 
   void Awake() {
+    cursorController = FindObjectOfType<CursorController>();
     timer = FindObjectOfType<TimerController>();
     timer.onTimerFinished += OnTimerFinished;
     // autoTurnEnderController.Init(levelController.levels[0]);
@@ -84,31 +89,27 @@ public class GameController : MonoBehaviour {
   }
 
   void ResetGameState() {
-    // Debug.Log("reset");
     gridController.CreateGrid();
     gridController.SetCellValuesToNone();
-    // squareController.CutGridIntoAreas(gridController.grid);  ###
-    if(dotController.toggleDot) dotController.SetOutcomeAreas(gridController.grid);
-    // dotController.AssignOutcomes();
-    // squareController.Initialize();
     gridController.lastCellInteractedWith = null;
     StimuliSequencer.CreateSequences();
     uiController.gameOverPanel.SetActive(false);
     uiController.startButton.SetActive(false);
     uiController.restartButton.SetActive(false);
     activePlayer = playerX;
-    uiController.ShowRoundsWonMarkers(false);
+    uiController.ShowRoundsWonMarkers(true);
     uiController.ResetScoreBarMarkers();
     ResetPoints();
-    // squareController.Initialize();
-    turnNum = 1;
+    turnNum = 0;
   }
 
   public void StartGame() {
     // Debug.Log("start game");
+    
     winningPlayer = playerNull;
     ResetGameState();
     PreStartTurn();
+    // squareController.Initialize();
   }
 
   void OnTimerFinished(GameEvent gameEvent) {
@@ -169,18 +170,45 @@ public class GameController : MonoBehaviour {
   }
 
   void PreStartTurn() {
-    // sceneController.ChangeScene();
-    rTimeBlue.Clear();
-    gridController.ToggleFadeAllCells(false);
-    if(winningPlayer != playerNull) {
-      GameOver(winningPlayer);
+    // sceneController.LoadSurveyScene();
+    if(conditionFinished) {
+      GameObject buttonToactivate; // = (totalTurn < 72) ? uiController.restartButton : uiController.restartGameButton;
+
+      if(totalTurn < 72) {
+        buttonToactivate = uiController.restartButton;
+      } else {
+        buttonToactivate = uiController.restartGameButton;
+        furHatCommunication.SendEnd();
+      }
+
+      buttonToactivate.SetActive(true);
+      uiController.SetGameOverText(playerX); 
+      conditionFinished = false;
+      turnNum = 0;
+      GameOver(playerX);
+      levelController.LoadNextLevel();
       return;
+      // sceneController.SwitchToSurveyScene(3f);
     }
+    // squareController.Initialize();
+    // Debug.Log(sceneController.memory);
+    // sceneController.ChangeScene();
+    // rTimeBlue.Clear();
+    gridController.ToggleFadeAllCells(false);
+    // if(winningPlayer != playerNull) {
+    //   GameOver(winningPlayer);
+    //   return;
+    // }
     gridController.SetCellValueVisibiltyToggle(false);
     roundActive = true;
     gridController.lastCellInteractedWith = null;
-    uiController.ShowTurnPanelActivePlayer(activePlayer);
+    // uiController.ShowTurnPanelActivePlayer(activePlayer);
     squareController.PrepareStimuliPhase();
+    squareController.FlashMiddleCell(.5f);
+    cursorController.CenterAndLockCursor();
+
+    
+
     timer.StartNextTimer();
   }
 
@@ -197,15 +225,14 @@ public class GameController : MonoBehaviour {
   }
 
   void ResponsePhase() {
-      squareController.ToggleOptions(true);
-
+    cursorController.UnlockCursor();
+    squareController.ToggleOptions(true);
     timer.TimerBarDisplay(true);
     soundFxController.PlayClock();
     gridController.ToggleFadeAllCells(true);
     squareController.correctCell.Fade(false);
 
-
-    reactionTimeStart = Time.time;
+    reactionTime = Time.time;
     timer.StartNextTimer();
   }
 
@@ -222,18 +249,20 @@ public class GameController : MonoBehaviour {
     //   ((Time.time-reactionTimeStart)*1000 > timer.levelSettings.timers[timer.lastTimerIndex-1].timeout) ? 1 : 0,
     //   squareController.distractorPosition,
     //   squareController.distractorIndex); 
-    
-    // reactionTimeStart = 0f;
+    dataSave.reactionTime = Time.time-reactionTime;
+    reactionTime = 0f;
     // squareController.HideSquares(); ###
     // gridController.FadeCellsExceptLastCellInteractedWith(); ###
     gridController.SetCellValueVisibiltyToggle(false);
-    uiController.ToggleTurnPanels(false);
+    // uiController.ToggleTurnPanels(false);
+    // gridController.ToggleFadeAllCells(true);
     timer.TimerBarDisplay(false);
     timer.AbortTimer();
     gridController.SetBoardInteractable(false);
     soundFxController.StopClock();
-    // WriteString();
-    // sceneController.SwitchToSurveyScene();
+
+    dataSave.WriteRoundDataString();
+    // sceneController.ChangeScene();
     // if (wasCorrectMove) UpdateScore(activePlayer); ###
 
     // if(CheckIfPassedThreshold(activePlayer.score) && !gameLogic.checkGridForWin(gridController.grid)) timer.pausForThresholdEvent = true;
@@ -242,14 +271,13 @@ public class GameController : MonoBehaviour {
     //   winningPlayer = activePlayer;
     // } else {
     //   gridController.SetBoardInteractable(false);
+    // sceneController.LoadSurveyScene();
     turnNum++;
-    uiController.UpdateTotalTurn(turnNum);
+    totalTurn++;
+    uiController.UpdateTotalTurn(totalTurn);
 
-    if(totalTurn > 144) GameOver(playerX);
-    if(turnNum > 48) {
-      turnNum = 1;
-      levelController.LoadNextLevel();
-    }
+    // if(totalTurn == 96) GameOver(playerX);
+    if(turnNum == 24) conditionFinished = true;
     // if(turnNum > 1) sceneController.SwitchToSurveyScene();
     // } ###
     timer.StartNextTimer();
@@ -269,24 +297,29 @@ public class GameController : MonoBehaviour {
   // }
 
   void GameOver(Player winningPlayer) {
-    currentRound++;
+    // currentRound++;
     gridController.SetBoardInteractable(false);
+    
     gridController.FadeCellsExceptWinning(); 
     roundActive = false;
-    // if(currentRound < 9) uiController.restartButton.SetActive(true);
-    uiController.ShowRoundsWonMarkers(true); 
-    uiController.SetGameOverText(winningPlayer); 
-    uiController.ToggleTurnPanels(false); 
+
+    gridController.ToggleFadeAllCells(true);
+    timer.TimerBarDisplay(false);
+    squareController.ToggleOptions(false);
+
+    squareController.Reset();
+    // uiController.ToggleTurnPanels(false); 
     uiController.gameOverPanel.SetActive(true);
-    soundFxController.PlayGameOverSound(winningPlayer);
-    gridController.ClearHoverMarkers();
+    soundFxController.PlayGameOverSound(playerX);
+    // gridController.ClearHoverMarkers();
     
     // Debug.Log(turnNum);
+    // turnNum = 0;
 
-    if (playerX.nRoundsWon == 5 || playerO.nRoundsWon == 5) {
-      uiController.restartButton.SetActive(false); 
-      uiController.restartGameButton.SetActive(true);
-      }
+    // if (playerX.nRoundsWon == 5 || playerO.nRoundsWon == 5) {
+    //   uiController.restartButton.SetActive(false); 
+    //   uiController.restartGameButton.SetActive(true);
+    //   }
     timer.Reset();
   }
 
@@ -317,27 +350,27 @@ public class GameController : MonoBehaviour {
   //   }
   // } pre
 
-  public int whiteCorrect;
-  public List<float> rTimeBlue;
-  public int nResponses;
-  public float isi;
+  // public int whiteCorrect;
+  // public List<float> rTimeBlue;
+  // public int nResponses;
+  // public float isi;
 
 
-  public void WriteString() {
-    string path = "Assets/test.txt";
+  // public void WriteString() {
+  //   string path = "Assets/test.txt";
  
-    //Write some text to the test.txt file
-    StreamWriter writer = new StreamWriter(path, true);
-    writer.WriteLine(GetRoundDataString());
-    writer.Close();
-  }
+  //   //Write some text to the test.txt file
+  //   StreamWriter writer = new StreamWriter(path, true);
+  //   writer.WriteLine(GetRoundDataString());
+  //   writer.Close();
+  // }
 
-  public string GetRoundDataString() {
-    string dataString = whiteCorrect.ToString() + "," + conditionController.nResponses.ToString() + "," + squareController.currenTrialTimeOut.ToString();
-    foreach(float rTime in rTimeBlue) {
-      dataString += ",";
-      dataString += rTime.ToString();
-    }
-    return dataString;
-  }
+  // public string GetRoundDataString() {
+  //   string dataString = whiteCorrect.ToString() + "," + conditionController.nResponses.ToString() + "," + squareController.currenTrialTimeOut.ToString();
+  //   foreach(float rTime in rTimeBlue) {
+  //     dataString += ",";
+  //     dataString += rTime.ToString();
+  //   }
+  //   return dataString;
+  // }
 } 

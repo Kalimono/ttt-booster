@@ -105,17 +105,27 @@ public class ScoreBar : MonoBehaviour {
       yield return wait;
     }
     playerScoreSlider.value = Mathf.Round(playerScoreSlider.value);
+
+    if(playerScoreSlider.value >= 15f) {
+      ResetScorebar(playerScoreSlider.value);
+      roundsWon++;
+      LightRoundsWon(true);
+    }
+
     scoreFillEffects.Stop();
   }
-  
+
+  private void ResetScorebar(float value) {
+    StartCoroutine(ReduceScore(.1f, value));
+  }
 
   IEnumerator ReduceScore(float pulseTime, float amount) {
     Debug.Log("reducing");
     WaitForSecondsRealtime wait = new WaitForSecondsRealtime(pulseTime*1.15f / 100);
-    yield return waitForSecond;
-    PlayScoreLossAudio();
+    // yield return waitForSecond;
+    // PlayScoreLossAudio();
     float targetScore = (playerScoreSlider.value - amount < 0) ? 0 : playerScoreSlider.value - amount;
-    scoreFillEffects.Pulse(scoreFillEffects.red, pulseTime);
+    scoreFillEffects.Pulse(scoreFillEffects.silver, pulseTime);
     // pulsatingReduction = true;
     while (playerScoreSlider.value > targetScore) {
       playerScoreSlider.value -= amount / 100;

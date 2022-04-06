@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.InteropServices;
 
 public class CursorController : MonoBehaviour {
   private CursorControls controls;
   private Camera mainCamera;
+
+      
+  [DllImport("user32.dll")]
+  static extern bool SetCursorPos(int X, int Y);
 
   void Awake() {
     controls = new CursorControls();
@@ -31,6 +36,18 @@ public class CursorController : MonoBehaviour {
       }
     }
   }
+
+  public void CenterAndLockCursor() {
+    int xPos = Screen.width/2; 
+    int yPos = Screen.height/2;   
+    SetCursorPos(xPos,yPos);
+    Cursor.lockState = CursorLockMode.Locked;
+  }
+
+  public void UnlockCursor() {
+    Cursor.lockState = CursorLockMode.None;
+  }
+
 
   private void OnEnable() {
     // Debug.Log("Enabled");

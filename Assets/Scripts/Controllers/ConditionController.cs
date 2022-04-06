@@ -57,7 +57,9 @@ public class ConditionController : MonoBehaviour {
 
     public void LoadLevelSettings() {
         nResponses = levelSettings.responseOptions;
+
         nStimuli = levelSettings.stimuliLength;
+        nRainbowStim = nStimuli;
     }
 
     public void ExportParameters() {

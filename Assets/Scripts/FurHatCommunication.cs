@@ -42,6 +42,7 @@ public class FurHatCommunication : MonoBehaviour {
 
   static string incorrectResponse = "incorrect";
   static string timeOutString = "timeout";
+  static string endString = "gameEnd";
 
   [System.Serializable]
   class ApiResponse {
@@ -56,7 +57,6 @@ public class FurHatCommunication : MonoBehaviour {
     Message m = new Message();
     m.CreateMessage(outcomeStringList[outcome]);
     String message = m.SaveToString();
-    Debug.Log(message);
     StartCoroutine(PostEvent("/", message, FURHAT_URL));
   }
 
@@ -64,7 +64,6 @@ public class FurHatCommunication : MonoBehaviour {
     Message m = new Message();
     m.CreateMessage(notcomeStringList[outcome]);
     String message = m.SaveToString();
-    Debug.Log(message);
     StartCoroutine(PostEvent("/", message, FURHAT_URL));
   }
 
@@ -72,13 +71,19 @@ public class FurHatCommunication : MonoBehaviour {
     Message m = new Message();
     m.CreateMessage(incorrectResponse);
     String message = m.SaveToString();
-    Debug.Log(message);
     StartCoroutine(PostEvent("/", message, FURHAT_URL));
   }
 
   public void SendTimeout() {
     Message m = new Message();
     m.CreateMessage(timeOutString);
+    String message = m.SaveToString();
+    StartCoroutine(PostEvent("/", message, FURHAT_URL));
+  }
+
+  public void SendEnd() {
+    Message m = new Message();
+    m.CreateMessage(endString);
     String message = m.SaveToString();
     Debug.Log(message);
     StartCoroutine(PostEvent("/", message, FURHAT_URL));

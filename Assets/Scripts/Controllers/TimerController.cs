@@ -41,6 +41,7 @@ public class TimerController : MonoBehaviour {
   public StimuliRunner stimuliRunner;
   public SquareController squareController;
   public FurHatCommunication furHatCommunication;
+  public GridController gridController;
 
   private double timeElapsed;
   // private float currentTimerLength;
@@ -101,7 +102,12 @@ public class TimerController : MonoBehaviour {
 
     yield return new WaitForSeconds(timeOut / 1000);
 
-    if(timer.gameEvent == GameEvent.Response) furHatCommunication.SendTimeout();
+    if(timer.gameEvent == GameEvent.Response) {
+      Debug.Log("timed out");
+      gridController.ToggleFadeAllCells(true);
+      furHatCommunication.SendTimeout();
+    }
+    
 
     if (onTimerFinished != null && !stimuliRunner.runningStims) {
       onTimerFinished(timer.gameEvent);
@@ -109,6 +115,7 @@ public class TimerController : MonoBehaviour {
   }
 
   public void AbortTimer() {
+    // Debug.Log("aborting");
     StopCoroutine(activeTimer);
   }
 

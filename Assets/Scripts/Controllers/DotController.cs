@@ -16,9 +16,7 @@ public class DotController : MonoBehaviour {
   public Image dotStatus;
 
   // public List<int> NonDotSequence;
-  public bool toggleDot = true;
-
-  
+  public bool toggleDot;
 
   public void SetOutcome(Cell cell) {
     // int area = cell.outcomeArea;
@@ -39,10 +37,10 @@ public class DotController : MonoBehaviour {
     cell.outcome.sprite = cell.outcomes[cell.outcomeArea];
     cell.correctResponseSound = soundFxController.outcomeSounds[cell.outcomeArea];
 
-    if (gameController.activePlayer == gameController.playerO) {
-      cell.outcomeValue = 2;
-      cell.correctResponseSound = soundFxController.AICorrect;
-    }
+    // if (gameController.activePlayer == gameController.playerO) {
+    //   cell.outcomeValue = 2;
+    //   cell.correctResponseSound = soundFxController.AICorrect;
+    // }
   }
 
   public void SetDotOutcomes(List<Cell> targetCellList) {
@@ -55,16 +53,16 @@ public class DotController : MonoBehaviour {
     }
   }
 
-  public void SetOutcomeAreas(Cell[,] grid) {
-    int side = grid.Length / 4;
+  // public void SetOutcomeAreas(Cell[,] grid) {
+  //   int side = grid.Length / 4;
 
-    foreach (Cell cell in grid) {
-      if (cell.position[0] < side / 2 && cell.position[1] < side / 2) cell.outcomeArea = 0;
-      if (cell.position[0] >= side / 2 && cell.position[1] < side / 2) cell.outcomeArea = 1;
-      if (cell.position[0] < side / 2 && cell.position[1] >= side / 2) cell.outcomeArea = 2;
-      if (cell.position[0] >= side / 2 && cell.position[1] >= side / 2) cell.outcomeArea = 3;
-    }
-  }
+  //   foreach (Cell cell in grid) {
+  //     if (cell.position[0] < side / 2 && cell.position[1] < side / 2) cell.outcomeArea = 0;
+  //     if (cell.position[0] >= side / 2 && cell.position[1] < side / 2) cell.outcomeArea = 1;
+  //     if (cell.position[0] < side / 2 && cell.position[1] >= side / 2) cell.outcomeArea = 2;
+  //     if (cell.position[0] >= side / 2 && cell.position[1] >= side / 2) cell.outcomeArea = 3;
+  //   }
+  // }
 
   public void ToggleDotButton() {
     if (toggleDot) {

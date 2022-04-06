@@ -31,8 +31,8 @@ public class ThresholdMarker : MonoBehaviour {
   }
 
   public void ThresholdPassed() {
-    thresholdMarkerAudioSource.PlayOneShot(thresholdSound);
-    pulseScoreMarker.StartPulse(pulseTime);
+    // thresholdMarkerAudioSource.PlayOneShot(thresholdSound);
+    // pulseScoreMarker.StartPulse(pulseTime);
 
     // if (!gameController.strategicElements) {
     //   if (gameController.winningPlayer == gameController.playerNull) AttackOpponentScoreBar();

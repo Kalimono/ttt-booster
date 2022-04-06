@@ -27,6 +27,7 @@ public class Cell : MonoBehaviour {
   public TimerController timerController;
   public AttackOpponentController attackOpponentController;
   public FurHatCommunication furHatCommunication;
+  public DataSave dataSave;
 
   public RotateMe rotateMe;
   public FadeCellOverTime fadeCellOverTime;
@@ -61,6 +62,7 @@ public class Cell : MonoBehaviour {
     uiController = FindObjectOfType<UIController>();
     attackOpponentController = FindObjectOfType<AttackOpponentController>();
     furHatCommunication = FindObjectOfType<FurHatCommunication>();
+    dataSave = FindObjectOfType<DataSave>();
   }
 
   public void SetInteractive(bool value) {
@@ -94,27 +96,24 @@ public class Cell : MonoBehaviour {
         } else {
           furHatCommunication.SendNotcome(this.outcomeArea);
         }
-        gameController.whiteCorrect = 1;
-        // dotController.SetOutcome(this);
-        if(dotController.toggleDot) {
-          outcome.sprite = outcomes[outcomeArea];
-        } else {
-          outcome.sprite = outcomes[StimuliSequencer.GetNonDifferentialOutcome()];
-        }
+        dataSave.whiteCorrect = 1;
+        dotController.SetOutcome(this);
         
-        // if(CheckIfThresholdPassed(gameController.activePlayer.score + outcomeValue)) timerController.pausForThresholdEvent = true;
+        uiController.UpdateScoreBar();
+
         value = gameController.GetPlayerSide();
         gridController.FadeCellsExceptLastCellInteractedWith();
         valueDisplayer.sprite = value == GameValue.Cross ? crossSprite : noughtSprite;
         if(gameController.activePlayer == gameController.playerX) {
           rotateMe.Rotate();
         } else {
-          gameController.whiteCorrect = 0;
           GetComponent<FlashCell>().FlashGreen();
           soundFxController.PlayAICorrectSound();
         }
         
       } else {
+        dataSave.whiteCorrect = 0;
+        gridController.ToggleFadeAllCells(true);
         furHatCommunication.SendIncorrectResponse();
         soundFxController.PlayWrongResponseSound();
         GetComponent<FlashCell>().FlashRed();
@@ -139,25 +138,29 @@ public class Cell : MonoBehaviour {
     StartCoroutine(ChangeToWhiteAndBack(seconds));
   }
 
-  public IEnumerator ChangeToWhiteAndBack(float seconds) {
+  IEnumerator ChangeToWhiteAndBack(float seconds) {
     Color defaultColor = shapeRenderer.material.GetColor("ColorInactive");
     shapeRenderer.material.SetColor("ColorInactive", new Color(2f, 2f, 2f, 1f));
     yield return new WaitForSeconds(seconds);
     shapeRenderer.material.SetColor("ColorInactive", defaultColor); //new Color(0.106f, 0.251f, 0.357f, 0.000f));
   }
 
-  public void HighlightMeRainbow(float seconds) {
-    soundFxController.PlayStimuliSound();
-    StartCoroutine(ChangeToRainbowAndBack(seconds));
+  public void FlashMeGreenSeconds(float seconds) {
+    StartCoroutine(FlashGreenSeconds(seconds));
   }
 
-  public IEnumerator ChangeToRainbowAndBack(float seconds) {
+  IEnumerator FlashGreenSeconds(float seconds) {
     Color defaultColor = shapeRenderer.material.GetColor("ColorInactive");
-    Color randomColor = GetRandomColor();
-    shapeRenderer.material.SetColor("ColorInactive", randomColor);
-    
-    yield return new WaitForSeconds(seconds);
-    shapeRenderer.material.SetColor("ColorInactive", defaultColor); //new Color(0.106f, 0.251f, 0.357f, 0.000f));
+    float timeIncrement = seconds/4;
+
+    for (float i = 0; i < seconds; i+=timeIncrement) {
+      shapeRenderer.material.SetColor("ColorInactive", Color.green*2);
+      yield return new WaitForSeconds(timeIncrement/2);
+      shapeRenderer.material.SetColor("ColorInactive", defaultColor);
+      yield return new WaitForSeconds(timeIncrement/2);
+    }
+
+    this.Fade(false);
   }
 
   public void HighlightMeColor(float seconds, Color color) {
@@ -174,13 +177,7 @@ public class Cell : MonoBehaviour {
     shapeRenderer.material.SetColor("ColorInactive", defaultColor); //new Color(0.106f, 0.251f, 0.357f, 0.000f));
   }
 
-  Color GetRandomColor() {
-    List<Color> colors = new List<Color>{Color.blue, Color.green, Color.magenta, Color.red, Color.yellow};
-    int randInt = Random.Range(0, colors.Count);
-    if (randInt == 0) gridController.timedBlue.TimedBlueCell();
-    Color randomColor = colors[randInt];
-    return randomColor*3;
-  }
+
 
   public void Fade(bool toggle) {
     if (toggle) {
@@ -230,4 +227,26 @@ public class Cell : MonoBehaviour {
   public void ToggleCross(bool toggle) {
     GetComponentInChildren<PulseCross>().Toggle(toggle);
   }
+
+    // public void HighlightMeRainbow(float seconds) {
+  //   soundFxController.PlayStimuliSound();
+  //   StartCoroutine(ChangeToRainbowAndBack(seconds));
+  // }
+
+  // public IEnumerator ChangeToRainbowAndBack(float seconds) {
+  //   Color defaultColor = shapeRenderer.material.GetColor("ColorInactive");
+  //   Color randomColor = GetRandomColor();
+  //   shapeRenderer.material.SetColor("ColorInactive", randomColor);
+    
+  //   yield return new WaitForSeconds(seconds);
+  //   shapeRenderer.material.SetColor("ColorInactive", defaultColor); //new Color(0.106f, 0.251f, 0.357f, 0.000f));
+  // }
+
+    // Color GetRandomColor() {
+  //   List<Color> colors = new List<Color>{Color.blue, Color.green, Color.magenta, Color.red, Color.yellow};
+  //   int randInt = Random.Range(0, colors.Count);
+  //   if (randInt == 0) gridController.timedBlue.TimedBlueCell();
+  //   Color randomColor = colors[randInt];
+  //   return randomColor*3;
+  // }
 }

@@ -192,10 +192,10 @@ public class GridController : MonoBehaviour {
 
   public void Score() {
     UIController uiController = FindObjectOfType<UIController>();
-    uiController.scoreBarX.playerScoreSlider.value = 4f;
+    uiController.scoreBarX.playerScoreSlider.value = 14f;
     uiController.scoreBarO.playerScoreSlider.value = 4f;
     GameController gameController = FindObjectOfType<GameController>();
-    gameController.playerX.score = 4;
+    gameController.playerX.score = 14;
     gameController.playerO.score = 4;
   }
 
