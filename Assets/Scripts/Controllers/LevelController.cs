@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour {
   public LevelSettings[] levels;
-  TimerController timerController;
-  ConditionController conditionController;
-  AutoTurnEnderController autoTurnEnderController;
-  UIController uIController;
-  SceneController sceneController;
+  public TimerController timerController;
+  public ConditionController conditionController;
+  public AutoTurnEnderController autoTurnEnderController;
+  public UIController uIController;
+  public SceneController sceneController;
   public int lastLevelIndex = 0;
 
-  
+  public static LevelController instance;
 
   void Awake() {
-    timerController = FindObjectOfType<TimerController>();
-    conditionController = FindObjectOfType<ConditionController>();
-    autoTurnEnderController = FindObjectOfType<AutoTurnEnderController>();
-    uIController = FindObjectOfType<UIController>();
-    sceneController = FindObjectOfType<SceneController>();
+    FindReferences();
+    
+    
     lastLevelIndex = sceneController.GetMemory();
     uIController.UpdateCurrentLevelText(lastLevelIndex);
     autoTurnEnderController.Init(levels[0]);
@@ -28,10 +26,26 @@ public class LevelController : MonoBehaviour {
     conditionController.levelSettings = levels[lastLevelIndex];
     conditionController.LoadLevelSettings();
     // dataPoster.InitializeGame(levels[0]);
+
+    if (instance != null) {
+        Destroy(gameObject);
+        return;
+    }
+
+    instance = this;
+    DontDestroyOnLoad(gameObject);
+  }
+
+  public void FindReferences() {
+    timerController = FindObjectOfType<TimerController>();
+    conditionController = FindObjectOfType<ConditionController>();
+    autoTurnEnderController = FindObjectOfType<AutoTurnEnderController>();
+    uIController = FindObjectOfType<UIController>();
+    sceneController = FindObjectOfType<SceneController>();
   }
 
   public void LoadNextLevel() {
-    
+    FindReferences();
     lastLevelIndex++;
     
     if (lastLevelIndex > levels.Length - 1) {

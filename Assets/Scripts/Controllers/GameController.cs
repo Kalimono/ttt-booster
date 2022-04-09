@@ -68,6 +68,7 @@ public class GameController : MonoBehaviour {
     // autoTurnEnderController.Init(levelController.levels[0]);
     // dataPoster.InitializeGame(levelController.levels[0]);
     // Debug.Log("awake");
+    if(sceneController.GetMemory() > 0) levelController.LoadNextLevel();
   }
 
   void Start() {
@@ -165,7 +166,7 @@ public class GameController : MonoBehaviour {
       //   return;
       // }
 
-      levelController.LoadNextLevel();
+      
       sceneController.LoadSurveyScene();
       // buttonToactivate = uiController.restartButton;
       // buttonToactivate.SetActive(true);

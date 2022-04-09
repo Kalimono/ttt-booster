@@ -64776,7 +64776,6 @@ Transform:
   - {fileID: 1361358250}
   - {fileID: 417686696}
   - {fileID: 1381950431}
-  - {fileID: 928624244}
   - {fileID: 1552246065}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -74974,12 +74973,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928624243}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 13.467609, y: 17.706167, z: -2.936512}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 653400480}
-  m_RootOrder: 14
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &928624245
 MonoBehaviour:
@@ -74996,6 +74995,11 @@ MonoBehaviour:
   levels:
   - {fileID: 11400000, guid: 08b4d748c5ef56846818775d8fc5bafc, type: 2}
   - {fileID: 11400000, guid: 066917ee781fd1b4db301b8b97d6e701, type: 2}
+  timerController: {fileID: 0}
+  conditionController: {fileID: 0}
+  autoTurnEnderController: {fileID: 0}
+  uIController: {fileID: 0}
+  sceneController: {fileID: 0}
   lastLevelIndex: 0
 --- !u!1 &930457470
 GameObject:
@@ -123624,7 +123628,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 653400480}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1552246066
 MonoBehaviour:
@@ -147615,6 +147619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conds: 0
   gameController: {fileID: 435993992}
+  levelController: {fileID: 928624245}
 --- !u!1 &1827576019
 GameObject:
   m_ObjectHideFlags: 0

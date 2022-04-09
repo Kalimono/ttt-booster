@@ -58,6 +58,10 @@ public class TimerController : MonoBehaviour {
 
   public float currentTimeout;
 
+  void Awake() {
+    furHatCommunication = FindObjectOfType<FurHatCommunication>();
+  }
+
   void Update() {
     if (activeTimer != null && !pause) {
       timeElapsed = System.DateTime.Now.Subtract(timerStarted).TotalMilliseconds;
