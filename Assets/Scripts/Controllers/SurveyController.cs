@@ -31,16 +31,18 @@ public class SurveyController : MonoBehaviour {
         sceneController = FindObjectOfType<SceneController>();
         // Debug.Log(sceneController);
         // finishedButton.onClick.RemoveAllListeners();
-        finishedButton.onClick.AddListener(delegate {sceneController.LoadGameScene();});
+        finishedButton.onClick.AddListener(delegate {FinishedButtonClick();});
         Initialize();
         pleasureSlider.onValueChanged.AddListener(delegate {pleasureSliderChange();});
         arousalSlider.onValueChanged.AddListener(delegate {arousalSliderChange();});
         dominanceSlider.onValueChanged.AddListener(delegate {dominanceSliderChange();});
     }
 
-    // void FinishedButtonClick() {
-    //     sceneController.ChangeScene();
-    // }
+    void FinishedButtonClick() {
+        WriteString(pleasureValue.ToString() + "," + arousalValue.ToString() + "," + dominanceValue.ToString());
+        sceneController.LoadGameScene();
+        
+    }
 
     void pleasureSliderChange() {
         pleasureValue = pleasureSlider.value;

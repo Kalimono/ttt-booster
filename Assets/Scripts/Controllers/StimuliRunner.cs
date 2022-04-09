@@ -34,7 +34,7 @@ public class StimuliRunner : MonoBehaviour {
         // if(additionalRainbowStimuli < 3) additionalRainbowStimuli = 3;
         float additionalRainbowStimuli = (currenTrialTimeOut == 15000f) ? 12f : 4f;
         // Debug.Log("additional from function: " + additionalRainbowStimuli.ToString());
-        // float additionalRainbowStimuli = 3;
+        // float additionalRainbowStimuli = 2;
         return (int)additionalRainbowStimuli;
     }
 

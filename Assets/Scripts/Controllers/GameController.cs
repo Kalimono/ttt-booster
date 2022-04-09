@@ -55,12 +55,16 @@ public class GameController : MonoBehaviour {
   // public bool strategicElements = true;
   // public Image stratstatus;
 
+  int nTrialsCond = 1;
+  public int nConds;
 
 
   void Awake() {
     cursorController = FindObjectOfType<CursorController>();
     timer = FindObjectOfType<TimerController>();
     timer.onTimerFinished += OnTimerFinished;
+    nConds = levelController.levels.Length;
+    Debug.Log(levelController.levels.Length);
     // autoTurnEnderController.Init(levelController.levels[0]);
     // dataPoster.InitializeGame(levelController.levels[0]);
     // Debug.Log("awake");
@@ -99,13 +103,14 @@ public class GameController : MonoBehaviour {
     activePlayer = playerX;
     uiController.ShowRoundsWonMarkers(true);
     uiController.ResetScoreBarMarkers();
+    uiController.ResetRoundsWonMarkers();
     ResetPoints();
     turnNum = 0;
   }
 
   public void StartGame() {
     // Debug.Log("start game");
-    
+    uiController.ResetScoreBarMarkers();
     winningPlayer = playerNull;
     ResetGameState();
     PreStartTurn();
@@ -140,77 +145,46 @@ public class GameController : MonoBehaviour {
     }
   }
 
-  // void OnTimerFinished(GameEvent gameEvent) { ###
-  //   if (!roundActive) return;
-
-  //   switch (gameEvent) {
-  //     case GameEvent.PresentSquare:
-  //       StartTurn();
-  //       break;
-  //     case GameEvent.PresentStimuli:
-  //       HideStimuli();
-  //       break;
-  //     case GameEvent.TraceCondition:
-  //       ActivatePlayerInteraction();
-  //       break;
-  //     case GameEvent.Turn:
-  //       EndTurn();//false); ###
-  //       break;
-  //     case GameEvent.EndTurnDelay:
-  //       PresentBoardState();
-  //       break;
-  //     case GameEvent.ShowGameState:
-  //       PreStartTurn();
-  //       break;
-  //   }
-  // }
-
   public GameValue GetPlayerSide() {
     return activePlayer.value;
   }
 
+
   void PreStartTurn() {
     // sceneController.LoadSurveyScene();
     if(conditionFinished) {
-      GameObject buttonToactivate; // = (totalTurn < 72) ? uiController.restartButton : uiController.restartGameButton;
+      // GameObject buttonToactivate;
 
-      if(totalTurn < 96) {
-        buttonToactivate = uiController.restartButton;
-      } else {
-        buttonToactivate = uiController.restartGameButton;
-        // furHatCommunication.SendEnd();
-      }
+      // if(totalTurn >= nTrialsCond*nConds) {
+        
+      // // } else {
+      //   // buttonToactivate = uiController.restartGameButton;
+      //   uiController.SetGameOverText(playerX); 
+      //   furHatCommunication.SendEnd();
+      //   GameOver(playerX);
+      //   return;
+      // }
 
-      buttonToactivate.SetActive(true);
-      uiController.SetGameOverText(playerX); 
+      levelController.LoadNextLevel();
+      sceneController.LoadSurveyScene();
+      // buttonToactivate = uiController.restartButton;
+      // buttonToactivate.SetActive(true);
+      // uiController.SetGameOverText(playerX); 
       conditionFinished = false;
-      turnNum = 0;
-      GameOver(playerX);
-      // levelController.LoadNextLevel();
-      // sceneController.LoadSurveyScene();
+      // turnNum = 0;
+      // GameOver(playerX);
+      
       return;
-      // sceneController.SwitchToSurveyScene(3f);
+    } else {
+      gridController.ToggleFadeAllCells(false);
+      gridController.SetCellValueVisibiltyToggle(false);
+      roundActive = true;
+      gridController.lastCellInteractedWith = null;
+      squareController.PrepareStimuliPhase();
+      squareController.FlashMiddleCell(.5f);
+      // cursorController.CenterAndLockCursor();
+      timer.StartNextTimer();
     }
-    // squareController.Initialize();
-    // Debug.Log(sceneController.memory);
-    // sceneController.ChangeScene();
-    // rTimeBlue.Clear();
-    gridController.ToggleFadeAllCells(false);
-    // if(winningPlayer != playerNull) {
-    //   GameOver(winningPlayer);
-    //   return;
-    // }
-    gridController.SetCellValueVisibiltyToggle(false);
-    roundActive = true;
-    gridController.lastCellInteractedWith = null;
-    // uiController.ShowTurnPanelActivePlayer(activePlayer);
-    squareController.PrepareStimuliPhase();
-    squareController.FlashMiddleCell(.5f);
-    cursorController.CenterAndLockCursor();
-
-    
-
-    timer.StartNextTimer();
   }
 
   void StimuliPhase() {
@@ -278,7 +252,7 @@ public class GameController : MonoBehaviour {
     uiController.UpdateTotalTurn(totalTurn);
 
     // if(totalTurn == 96) GameOver(playerX);
-    if(turnNum == 48) conditionFinished = true;
+    if(turnNum == nTrialsCond) conditionFinished = true;
     // if(turnNum > 1) sceneController.SwitchToSurveyScene();
     // } ###
     timer.StartNextTimer();

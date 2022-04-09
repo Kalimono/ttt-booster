@@ -1,61 +1,52 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour {
-    public int memory;
-    // public int currentSceneIndex = 0;
+    public static int memory;
+    public int conds;
     public static SceneController instance;
+    public GameController gameController;
 
     void Awake() {
-        // Debug.Log(Application.persistentDataPath);
-       if (instance != null) {
+        if (instance != null) {
             Destroy(gameObject);
             return;
         }
+
+        conds = gameController.nConds;
 
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
-    // public void ChangeScene() {
-    //     int sceneToLoad;
-        
-    //     if(currentSceneIndex == 0) {
-    //         memory++;
-    //         // Debug.Log("mem: " + memory.ToString());
-    //         sceneToLoad = 1;
-    //         currentSceneIndex = 1;
-    //     } else {
-    //         sceneToLoad = 0;
-    //         currentSceneIndex = 0;
-    //     }
-    //     // if(sceneToLoad == 1)
-        
-	// 	SceneManager.LoadScene(sceneToLoad);
-	// }
-
     public void LoadGameScene() {
-        IncrementMemory();
+        
+        if(memory >= conds) {
+            LoadEnd();
+            return;
+        }
         SceneManager.LoadScene(0);
     }
 
     public void LoadSurveyScene() {
+        IncrementMemory();
         SceneManager.LoadScene(1);
     }
 
     void IncrementMemory() {
         memory++;
-        if(memory > 2) memory = 0;
+        // if(memory > 2) memory = 0;
     }
 
-    // public void SwitchToSurveyScene(float delay) {
-    //     StartCoroutine(SwitchAfterDelay(delay));
-    // }
+    public int GetMemory() {
+        return memory;
+    }
 
-    // IEnumerator SwitchAfterDelay(float delay) {
-    //     yield return new WaitForSeconds(delay);
-    //     ChangeScene();
-    // }
+    public void LoadEnd() {
+        SceneManager.LoadScene(2);
+  }
+
 }

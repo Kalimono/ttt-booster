@@ -19,25 +19,28 @@ public class LevelController : MonoBehaviour {
     autoTurnEnderController = FindObjectOfType<AutoTurnEnderController>();
     uIController = FindObjectOfType<UIController>();
     sceneController = FindObjectOfType<SceneController>();
-    lastLevelIndex = sceneController.memory;
+    lastLevelIndex = sceneController.GetMemory();
     uIController.UpdateCurrentLevelText(lastLevelIndex);
     autoTurnEnderController.Init(levels[0]);
 
     timerController.levelSettings = levels[0];
+
     conditionController.levelSettings = levels[lastLevelIndex];
     conditionController.LoadLevelSettings();
     // dataPoster.InitializeGame(levels[0]);
   }
 
   public void LoadNextLevel() {
+    
     lastLevelIndex++;
+    
     if (lastLevelIndex > levels.Length - 1) {
       lastLevelIndex = 0;
     }
 
     timerController.levelSettings = levels[lastLevelIndex];
     conditionController.levelSettings = levels[lastLevelIndex];
-
+    conditionController.levelValueText.text = lastLevelIndex.ToString();
     // uIController.UpdateCurrentLevelText(lastLevelIndex+1);
     conditionController.LoadLevelSettings();
   }

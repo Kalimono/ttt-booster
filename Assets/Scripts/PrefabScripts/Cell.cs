@@ -74,16 +74,6 @@ public class Cell : MonoBehaviour {
   public void OnClick() {
     gridController.lastCellInteractedWith = this;
 
-    // if(ReductionInteractionActive) {
-    //   GetComponent<DisappearCellValue>().DisappearCell(this);
-    //   ReductionInteractionActive = false;
-    //   particleEffect.Play();
-    //   attackOpponentController.TacticalTimerBarToggle(false);
-    //   uiController.DisableChoiceText();
-    //   // gridController.DisableCellInteraction();
-    //   // reduceOpponentController.EndReductionEvent();
-    // }
-    
     if (interactable) {
       
       interactable = false;

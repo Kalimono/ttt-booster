@@ -70,12 +70,10 @@ public class ScoreBar : MonoBehaviour {
   public void Clicked() {
     attackOpponentController.EndReductionEvent();
     Debug.Log("Clicked " +  myName);
-    // GetComponentInChildren<ThresholdMarker>().ReduceOpponentScoreBy(1);
     Player PlayerScore = (myName == "X") ? gameController.playerX : gameController.playerO;
     ScoreBar myScoreBar = (myName == "X") ? uiController.scoreBarX : uiController.scoreBarO;
     myScoreBar.ReduceScoreBar(2f);
     PlayerScore.score--;
-    // ReduceScore(2f, 1f);
   }
 
   void SetTurnPanelText() {
@@ -87,7 +85,6 @@ public class ScoreBar : MonoBehaviour {
   }
 
   public void ReduceScoreBar(float duration) {
-    Debug.Log("reduct");
     StartCoroutine(ReduceScore(duration, 1f));
   }
 
@@ -120,13 +117,9 @@ public class ScoreBar : MonoBehaviour {
   }
 
   IEnumerator ReduceScore(float pulseTime, float amount) {
-    Debug.Log("reducing");
     WaitForSecondsRealtime wait = new WaitForSecondsRealtime(pulseTime*1.15f / 100);
-    // yield return waitForSecond;
-    // PlayScoreLossAudio();
     float targetScore = (playerScoreSlider.value - amount < 0) ? 0 : playerScoreSlider.value - amount;
     scoreFillEffects.Pulse(scoreFillEffects.silver, pulseTime);
-    // pulsatingReduction = true;
     while (playerScoreSlider.value > targetScore) {
       playerScoreSlider.value -= amount / 100;
       yield return wait;
@@ -154,10 +147,9 @@ public class ScoreBar : MonoBehaviour {
   }
 
   public void DarkenRoundsWon() {
-    for (int i = 0; i < roundsWon; i++) {
-      SpriteRenderer renderer = roundMarkers[i].GetComponent<SpriteRenderer>();
+    foreach(GameObject roundMarker in roundMarkers) {
+      SpriteRenderer renderer = roundMarker.GetComponent<SpriteRenderer>();
       Color newColor = renderer.color;
-      Debug.Log(newColor.a);
       newColor.a = 0.235f;
       renderer.color = newColor;
     }

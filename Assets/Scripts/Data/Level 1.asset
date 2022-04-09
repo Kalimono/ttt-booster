@@ -23,5 +23,5 @@ MonoBehaviour:
     timeout: 5000
   - gameEvent: 4
     timeout: 4000
-  stimuliLength: 4
+  stimuliLength: 6
   responseOptions: 2

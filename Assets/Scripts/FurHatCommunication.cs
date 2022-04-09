@@ -7,7 +7,17 @@ using UnityEngine.Networking;
 
 
 public class FurHatCommunication : MonoBehaviour {
+   public static FurHatCommunication instance;
 
+    void Awake() {
+       if (instance != null) {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
   public class Message {
     // public string message;
@@ -49,6 +59,8 @@ public class FurHatCommunication : MonoBehaviour {
     public string id;
   }
 
+ 
+
   public void DebugSend() {
     SendOutcome(1);
   }
@@ -64,7 +76,7 @@ public class FurHatCommunication : MonoBehaviour {
     Message m = new Message();
     m.CreateMessage(notcomeStringList[outcome]);
     String message = m.SaveToString();
-    Debug.Log(message);
+    // Debug.Log(message);
     StartCoroutine(PostEvent("/", message, FURHAT_URL));
   }
 
