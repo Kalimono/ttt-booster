@@ -1,0 +1,2 @@
+Turn;level;correctResponse;nResponses;ISI;reactionTime;blueFailOut;blueFailMiss;blueResponse1;blueResponse2
+0;0;1;2;15000;1,76479;0;2;2,009531;2,003673

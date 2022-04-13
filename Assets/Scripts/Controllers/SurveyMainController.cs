@@ -42,11 +42,11 @@ public class SurveyMainController : MonoBehaviour {
     }
 
     void FinishedButtonClick() {
-        WriteString(mentallyValue.ToString() + "," + 
-                    physicallyValue.ToString() + "," + 
-                    temporalValue.ToString() + "," + 
-                    performanceValue.ToString() + "," + 
-                    effortValue.ToString() + "," + 
+        WriteString(mentallyValue.ToString() + ";" + 
+                    physicallyValue.ToString() + ";" + 
+                    temporalValue.ToString() + ";" + 
+                    performanceValue.ToString() + ";" + 
+                    effortValue.ToString() + ";" + 
                     frustrationValue.ToString());
         sceneController.LoadGameScene();
         
@@ -76,14 +76,8 @@ public class SurveyMainController : MonoBehaviour {
         frustrationValue = frustrationSlider.value;
     }
 
-    void DisableImageArray(Image[] array) {
-        foreach(Image im in array) {
-            im.enabled = false;
-        }
-    }
-
     public void WriteString(string dataString) {
-        string filePath = path + "/" + fileName + ".txt";
+        string filePath = path + "/" + fileName + ".csv";
 
         StreamWriter writer = new StreamWriter(filePath, true);
         writer.WriteLine(dataString);

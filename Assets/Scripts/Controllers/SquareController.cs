@@ -117,20 +117,6 @@ public class SquareController : MonoBehaviour {
     nAdditionalRainbowstimuli = stimuliRunner.GetNAdditionalRainbowStimuli(currenTrialTimeOut, conditionController.stimuliLifetime);
     currentAdditionalRainbowCells =  GetRainbowCells(currentPosition, stimuliRunner.GetNAdditionalRainbowStimuli(currenTrialTimeOut, conditionController.stimuliLifetime));
     AddCellsToCurrentRainbowStimuliCells(currentAdditionalRainbowCells);
-
-    // Debug.Log("Targetcells: " + targetCells[0].position.ToString() + ", " + targetCells[1].position.ToString() + ", " + targetCells[2].position.ToString() + ", " + targetCells[3].position.ToString());
-
-    // string resp = "Responses: ";
-    // string stim = "Stimuli: ";
-    // string corr = "Correct: " + correctCell.position.ToString();
-
-    // foreach(Cell respo in incorrectResponses) resp += respo.position.ToString() + " ";
-    // foreach(Cell stimu in currentStimuliCells) stim += stimu.position.ToString() + " ";
-
-    // Debug.Log(corr);
-    // Debug.Log(resp);
-    // Debug.Log(stim);
-    // Debug.Log("next");
   }
 
   Cell GetCellFromGridToSkip(Cell[,] grid) {
@@ -146,9 +132,7 @@ public class SquareController : MonoBehaviour {
       } else {
         incorrectResponses.Add(GetAdditionalDistractor(position));
       }
-      
     }
-    // Debug.Log(incorrectResponses.Count);
   }
 
   void ClearPreviousRound() {

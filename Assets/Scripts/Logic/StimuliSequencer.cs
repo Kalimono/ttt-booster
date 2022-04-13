@@ -129,10 +129,13 @@ public static class StimuliSequencer {
     } else {
       maxIndex = sequenceLength-1;
     }
+
     int index = Random.Range(0, maxIndex);
-    // Debug.Log(index);
     colorSequence[index] = Color.blue;
-    // Debug.Log("returns list of length: " + colorSequence.Count.ToString());
+
+    int index2 = Random.Range(0, maxIndex);
+    colorSequence[index2] = Color.blue;
+
     return colorSequence;
   }
 

@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour {
   public DataSave dataSave;
   public CursorController cursorController;
   public FurHatCommunication furHatCommunication;
+  public iMotionsCommunications iMotionsCommunications;
 
   private TimerController timer;
 
@@ -55,7 +56,7 @@ public class GameController : MonoBehaviour {
   // public bool strategicElements = true;
   // public Image stratstatus;
 
-  int nTrialsCond = 1;
+  public int nTrialsCond;
   public int nConds;
 
 
@@ -64,7 +65,7 @@ public class GameController : MonoBehaviour {
     timer = FindObjectOfType<TimerController>();
     timer.onTimerFinished += OnTimerFinished;
     nConds = levelController.levels.Length;
-    Debug.Log(levelController.levels.Length);
+    // Debug.Log(levelController.levels.Length);
     // autoTurnEnderController.Init(levelController.levels[0]);
     // dataPoster.InitializeGame(levelController.levels[0]);
     // Debug.Log("awake");
@@ -183,7 +184,7 @@ public class GameController : MonoBehaviour {
       gridController.lastCellInteractedWith = null;
       squareController.PrepareStimuliPhase();
       squareController.FlashMiddleCell(.5f);
-      // cursorController.CenterAndLockCursor();
+      cursorController.CenterAndLockCursor();
       timer.StartNextTimer();
     }
   }

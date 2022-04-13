@@ -39,7 +39,7 @@ public class SurveyController : MonoBehaviour {
     }
 
     void FinishedButtonClick() {
-        WriteString(pleasureValue.ToString() + "," + arousalValue.ToString() + "," + dominanceValue.ToString());
+        WriteString(pleasureValue.ToString() + ";" + arousalValue.ToString() + ";" + dominanceValue.ToString());
         sceneController.LoadGameScene();
         
     }
@@ -69,12 +69,12 @@ public class SurveyController : MonoBehaviour {
     }
 
     public void SwitchToGameScene() {
-        WriteString(pleasureValue.ToString() + "," + arousalValue.ToString() + "," + dominanceValue.ToString());
+        WriteString(pleasureValue.ToString() + ";" + arousalValue.ToString() + ";" + dominanceValue.ToString());
 		SceneManager.LoadScene(0);
     }
 
     public void WriteString(string dataString) {
-        string filePath = path + "/" + fileName + ".txt";
+        string filePath = path + "/" + fileName + ".csv";
 
         StreamWriter writer = new StreamWriter(filePath, true);
         writer.WriteLine(dataString);

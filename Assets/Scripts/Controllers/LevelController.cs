@@ -17,6 +17,7 @@ public class LevelController : MonoBehaviour {
     FindReferences();
     
     
+    
     lastLevelIndex = sceneController.GetMemory();
     uIController.UpdateCurrentLevelText(lastLevelIndex);
     autoTurnEnderController.Init(levels[0]);

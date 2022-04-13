@@ -3608,7 +3608,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -15.9, y: -136}
-  m_SizeDelta: {x: 840, y: 5}
+  m_SizeDelta: {x: 840, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &459193253
 MonoBehaviour:
@@ -4287,7 +4287,7 @@ RectTransform:
   m_GameObject: {fileID: 520414286}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 2000706854}
   m_RootOrder: 0
@@ -4783,12 +4783,12 @@ MonoBehaviour:
   performanceSlider: {fileID: 1447077456}
   effortSlider: {fileID: 459193253}
   frustrationSlider: {fileID: 1672769010}
-  mentallyValue: 2.54
-  physicallyValue: 0
-  temporalValue: 0
-  performanceValue: 0
-  effortValue: 0
-  frustrationValue: 0
+  mentallyValue: 11
+  physicallyValue: 11
+  temporalValue: 11
+  performanceValue: 11
+  effortValue: 11
+  frustrationValue: 11
   finishedButton: {fileID: 841463668}
   sceneController: {fileID: 0}
 --- !u!4 &592534412
@@ -6747,7 +6747,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.23921569}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -8091,7 +8091,7 @@ RectTransform:
   m_GameObject: {fileID: 1019400818}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 1716624027}
   m_RootOrder: 0
@@ -9382,7 +9382,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -15.9, y: 312}
-  m_SizeDelta: {x: 840, y: 5}
+  m_SizeDelta: {x: 840, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1105843993
 MonoBehaviour:
@@ -9698,7 +9698,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -15.9, y: 88}
-  m_SizeDelta: {x: 840, y: 5}
+  m_SizeDelta: {x: 840, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1135830547
 MonoBehaviour:
@@ -10324,7 +10324,7 @@ RectTransform:
   m_GameObject: {fileID: 1187068457}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 20114412}
   m_RootOrder: 0
@@ -10533,7 +10533,7 @@ RectTransform:
   m_GameObject: {fileID: 1249285381}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 76912782}
   m_RootOrder: 0
@@ -10683,7 +10683,7 @@ RectTransform:
   m_GameObject: {fileID: 1269382547}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 1802090243}
   m_RootOrder: 0
@@ -11904,7 +11904,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -15.9, y: -24}
-  m_SizeDelta: {x: 840, y: 5}
+  m_SizeDelta: {x: 840, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1447077456
 MonoBehaviour:
@@ -13281,7 +13281,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -15.9, y: -248}
-  m_SizeDelta: {x: 840, y: 5}
+  m_SizeDelta: {x: 840, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1672769010
 MonoBehaviour:
@@ -15856,7 +15856,7 @@ RectTransform:
   m_GameObject: {fileID: 2098076666}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 1063123243}
   m_RootOrder: 0
@@ -16117,7 +16117,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -15.9, y: 200}
-  m_SizeDelta: {x: 840, y: 5}
+  m_SizeDelta: {x: 840, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2138734794
 MonoBehaviour:

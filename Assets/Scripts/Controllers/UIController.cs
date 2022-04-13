@@ -28,6 +28,7 @@ public class UIController : MonoBehaviour {
 
   public TextMeshProUGUI currentLevel;
   public TextMeshProUGUI currentTotalTurn;
+  public TextMeshProUGUI totalTurns;
 
   // public InputField urlInput;
 
@@ -39,6 +40,10 @@ public class UIController : MonoBehaviour {
   //   Debug.Log(urlInput.text.ToString());
   //   furHatCommunication.FURHAT_URL = urlInput.text.ToString();
   // }
+
+  void Start() {
+    totalTurns.text = gameController.nTrialsCond.ToString();
+  }
 
   public void UpdateTotalTurn(int currentTurn) {
     currentTotalTurn.text = currentTurn.ToString();
