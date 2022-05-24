@@ -154,6 +154,7 @@ public class GameController : MonoBehaviour {
 
   void PreStartTurn() {
     // sceneController.LoadSurveyScene();
+    // iMotionsCommunications.SendStartMarker();
     if(conditionFinished) {
       // GameObject buttonToactivate;
 
@@ -185,6 +186,7 @@ public class GameController : MonoBehaviour {
       squareController.PrepareStimuliPhase();
       squareController.FlashMiddleCell(.5f);
       cursorController.CenterAndLockCursor();
+      // iMotionsCommunications.SendStartMarker();
       timer.StartNextTimer();
     }
   }
@@ -197,6 +199,8 @@ public class GameController : MonoBehaviour {
   }
 
   void TraceCondition() { 
+    // iMotionsCommunications.SendStopMarker();
+    // iMotionsCommunications.SendEndMarker();
     gridController.SetCellValueVisibiltyToggle(false);
     timer.StartNextTimer();
   }

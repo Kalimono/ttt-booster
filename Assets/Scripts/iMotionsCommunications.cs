@@ -1,62 +1,64 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Net.Sockets;
 using UnityEngine;
-using TMPro;
+// using System.Net;
+// using System.Net.Sockets;
+// using System.Text;
+using UnityEngine.Networking;
 
 public class iMotionsCommunications : MonoBehaviour {
-    public String Host = "localhost";
-    public Int32 Port = 8089;
-    TcpClient mySocket = null;
-    NetworkStream theStream = null;
-    StreamWriter theWriter = null;
+    private string IP = "127.0.0.1";
+    // private int PORT = 8089;
 
-    public TextMeshProUGUI onText;
+    public string startMessage = "/imotions/start";
+    public string endMessage = "/imotions/stop";
+
+    public static iMotionsCommunications instance;
 
     void Awake() {
-        onText.text = "ON";
+       if (instance != null) {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
-    void Start()
-    {
+
+    [System.Serializable]
+    class ApiResponse {
+        public string id;
+    }
+
+    // public void SendEvent() {
+    //     StartCoroutine(PostEvent("http://localhost:4000/imotions/start"));
+    // }
+
+    public void SendStartMarker() {
+        StartCoroutine(PostEvent("http://localhost:4000/imotions/start"));
+    }
+
+    public void SendStopMarker() {
+        StartCoroutine(PostEvent("http://localhost:4000/imotions/stop"));
+    }
+
+    IEnumerator PostEvent(string url) {
+        using (UnityWebRequest www = new UnityWebRequest(url, "GET")) {
+        // byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
+        // www.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
+        // www.downloadHandler = new DownloadHandlerBuffer();
+        www.SetRequestHeader("Content-Type", "application/json");
+        yield return www.SendWebRequest();
         
-        // mySocket = new TcpClient();
-        // if (SetupSocket())
-        // {   
-        //     onText.text = "ON";
-        //     Debug.Log("socket is set up");
-        // }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (!mySocket.Connected)
-        {
-            SetupSocket();
+        if (www.result == UnityWebRequest.Result.Success) {
+            Debug.Log("Success");
+            ApiResponse response = JsonUtility.FromJson<ApiResponse>(www.downloadHandler.text);
+        } else {
+            Debug.Log(www.error);
         }
-    }
-    public bool SetupSocket()
-    {
-        try
-        {
-            mySocket.Connect(Host, Port);
-            theStream = mySocket.GetStream();
-            theWriter = new StreamWriter(theStream);
-            Byte[] sendBytes = System.Text.Encoding.UTF8.GetBytes("yah!! it works");
-            mySocket.GetStream().Write(sendBytes, 0, sendBytes.Length);
-            Debug.Log("socket is sent");
-            return true;
         }
-        catch (Exception e)
-        {
-            Debug.Log("Socket error: " + e);
-            return false;
-        }
-    }
-    private void OnApplicationQuit()
-    {
-        if (mySocket != null && mySocket.Connected)
-            mySocket.Close();
-    }
+    }  
 }
+  
+
