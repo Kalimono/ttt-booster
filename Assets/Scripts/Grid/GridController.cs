@@ -75,37 +75,31 @@ public class GridController : MonoBehaviour {
       }
   }
 
-  public void EnableOpponentCellsForClear() {
+  public void EnableOpponentCellsForClear() { //decr
     List<Cell> opponentCells = GetOpponentCells();
 
     foreach(Cell cell in opponentCells) {
       cell.ReductionInteractionActive = true;
       SetSingleCellValueVisibiltyToggle(cell, true);
       cell.shapeRenderer.material = cell.highlightInteract;
-      cell.ToggleCross(true);
     }
   }
 
-  internal void ClickRandomOpponentCell() {
+  internal void ClickRandomOpponentCell() { //decr
     List<Cell> opponentCells = GetOpponentCells();
     opponentCells[Random.Range(0, opponentCells.Count-1)].OnClick();
   }
 
 
-  public void DisableOpponentCellsForClear() {
+  public void DisableOpponentCellsForClear() { //decr
     foreach(Cell cell in grid) {
       cell.ReductionInteractionActive = false;
       SetSingleCellValueVisibiltyToggle(cell, false);
       cell.shapeRenderer.material = cell.gridCell;
-      cell.ToggleCross(false);
     }
   }
 
-      // cell.shapeRenderer.material.SetColor("ColorInactive", new Color(91/255, 107/255, 188/255)*2.2f);
-      // cell.shapeRenderer.material.SetColor("ColorInactive", new Color(27/255, 64/255, 91/255));
-
-  public List<Cell> GetOpponentCells() {
-    // Debug.Log(lastCellInteractedWith);
+  public List<Cell> GetOpponentCells() { //decr
     GameValue valueToLookFor = (lastCellInteractedWith.value == GameValue.Cross) ? GameValue.Nought : GameValue.Cross;
     List<Cell> cellList = new List<Cell>();
 

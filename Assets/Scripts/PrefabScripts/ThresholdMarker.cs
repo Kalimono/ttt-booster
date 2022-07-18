@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ThresholdMarker : MonoBehaviour {
+public class ThresholdMarker : MonoBehaviour { //decr
   public PulseScoreMarker pulseScoreMarker;
   GameController gameController;
   UIController uiController;
-  AttackOpponentController attackOpponentController;
 
   public ScoreBar scoreBarX;
   public ScoreBar scoreBarO;
@@ -27,10 +26,9 @@ public class ThresholdMarker : MonoBehaviour {
     pulseScoreMarker = GetComponent<PulseScoreMarker>();
     gameController = FindObjectOfType<GameController>();
     uiController = FindObjectOfType<UIController>();
-    attackOpponentController = FindObjectOfType<AttackOpponentController>();
   }
 
-  public void ThresholdPassed() {
+  public void ThresholdPassed() { //decr
     // thresholdMarkerAudioSource.PlayOneShot(thresholdSound);
     // pulseScoreMarker.StartPulse(pulseTime);
 
@@ -41,19 +39,19 @@ public class ThresholdMarker : MonoBehaviour {
     // }
   }
 
-  public void AttackOpponentScoreBar() {
+  public void AttackOpponentScoreBar() { // decr
     ScoreBar opponentScoreBar = GetOpponentScoreBar();
     opponentScoreBar.ReduceScoreBar(pulseTime);
     ReduceOpponentScoreBy(1);
   }
 
-  public ScoreBar GetOpponentScoreBar() {
+  public ScoreBar GetOpponentScoreBar() { //decr
     Player activePlayer = gameController.activePlayer;
     ScoreBar opponentScoreBar = (activePlayer == gameController.playerX) ? uiController.scoreBarO : uiController.scoreBarX;
     return opponentScoreBar;
   }
 
-  public void ReduceOpponentScoreBy(int amount) {
+  public void ReduceOpponentScoreBy(int amount) { //decr
     Player opponent = (gameController.activePlayer == gameController.playerX) ? gameController.playerO : gameController.playerX;
     opponent.score -= amount;
   }

@@ -10,7 +10,6 @@ public class UIController : MonoBehaviour {
   public GridController gridController;
   public GameLogic gameLogic;
   public FurHatCommunication furHatCommunication;
-  public LineSpawner lineSpawner;
 
   public ScoreBar scoreBarX;
   public ScoreBar scoreBarO;
@@ -29,17 +28,6 @@ public class UIController : MonoBehaviour {
   public TextMeshProUGUI currentLevel;
   public TextMeshProUGUI currentTotalTurn;
   public TextMeshProUGUI totalTurns;
-
-  // public InputField urlInput;
-
-  // void Start() {
-  //   urlInput.onValueChanged.AddListener(delegate {UrlInputValueChangeCheck(); });
-  // }
-
-  // void UrlInputValueChangeCheck() {
-  //   Debug.Log(urlInput.text.ToString());
-  //   furHatCommunication.FURHAT_URL = urlInput.text.ToString();
-  // }
 
   void Start() {
     totalTurns.text = gameController.nTrialsCond.ToString();
@@ -112,7 +100,6 @@ public class UIController : MonoBehaviour {
 
   public void HighlightWin(Player player) {
     ChangeWinningCellMaterial();
-    lineSpawner.DrawLineBetweenCells(gameLogic.winningListOfLists);
     if (player.score > 14) ChangeWinningScoreBarToHighlight();
   }
 
@@ -121,22 +108,8 @@ public class UIController : MonoBehaviour {
     lastPlayerScoreBar.fill.material = lastPlayerScoreBar.highlightMaterial;
   }
 
-  // public void HideMarkersAndFadeNonWinningCells() {
-  //   gridController.ToggleFadeAllCells(true);
-  //   gridController.SetCellValueVisibiltyToggle(false);
-  //   foreach (List<Cell> cellList in gameLogic.winningListOfLists) {
-  //     foreach (Cell cell in cellList) {
-  //       SpriteRenderer vDisp = cell.valueDisplayer.GetComponent<SpriteRenderer>();
-  //       vDisp.enabled = true;
-  //       vDisp.sprite = (gameController.winningPlayer == gameController.playerX) ? cell.crossSprite : cell.noughtSprite;
-  //       cell.Fade(false);
-  //     }
-  //   }
-  // }
-
   public void FlashCellsCloseWin() {
     gameLogic.checkGridForCloseWin(gridController.grid);
-    // StartCoroutine(CloseToWinningWave(gameLogic.closeToWinningListOfLists));
     FlashCloseToWinning();
   }
 
@@ -144,7 +117,6 @@ public class UIController : MonoBehaviour {
     if (gameLogic.closeToWinningListOfLists == null) return;
     foreach (List<Cell> cellList in gameLogic.closeToWinningListOfLists) {
       foreach (Cell cell in cellList) {
-        // Debug.Log(cell);
         cell.GetComponent<FlashCell>().FlashWhite();
       }
     }

@@ -29,7 +29,6 @@ public class GameController : MonoBehaviour {
   public AutoTurnEnderController autoTurnEnderController;
   public GameLogic gameLogic;
   public SquareController squareController;
-  public LineSpawner lineSpawner;
   public DataPoster dataPoster;
   public DotController dotController;
   public SceneController sceneController;

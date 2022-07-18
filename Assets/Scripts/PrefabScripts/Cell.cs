@@ -25,7 +25,6 @@ public class Cell : MonoBehaviour {
   public SoundFxController soundFxController;
   public DotController dotController;
   public TimerController timerController;
-  public AttackOpponentController attackOpponentController;
   public FurHatCommunication furHatCommunication;
   public DataSave dataSave;
 
@@ -60,7 +59,6 @@ public class Cell : MonoBehaviour {
     dotController = FindObjectOfType<DotController>();
     timerController = FindObjectOfType<TimerController>();
     uiController = FindObjectOfType<UIController>();
-    attackOpponentController = FindObjectOfType<AttackOpponentController>();
     furHatCommunication = FindObjectOfType<FurHatCommunication>();
     dataSave = FindObjectOfType<DataSave>();
   }
@@ -216,30 +214,4 @@ public class Cell : MonoBehaviour {
   void RemoveValueMarker() {
     NullValue();
   }
-
-  public void ToggleCross(bool toggle) {
-    GetComponentInChildren<PulseCross>().Toggle(toggle);
-  }
-
-    // public void HighlightMeRainbow(float seconds) {
-  //   soundFxController.PlayStimuliSound();
-  //   StartCoroutine(ChangeToRainbowAndBack(seconds));
-  // }
-
-  // public IEnumerator ChangeToRainbowAndBack(float seconds) {
-  //   Color defaultColor = shapeRenderer.material.GetColor("ColorInactive");
-  //   Color randomColor = GetRandomColor();
-  //   shapeRenderer.material.SetColor("ColorInactive", randomColor);
-    
-  //   yield return new WaitForSeconds(seconds);
-  //   shapeRenderer.material.SetColor("ColorInactive", defaultColor); //new Color(0.106f, 0.251f, 0.357f, 0.000f));
-  // }
-
-    // Color GetRandomColor() {
-  //   List<Color> colors = new List<Color>{Color.blue, Color.green, Color.magenta, Color.red, Color.yellow};
-  //   int randInt = Random.Range(0, colors.Count);
-  //   if (randInt == 0) gridController.timedBlue.TimedBlueCell();
-  //   Color randomColor = colors[randInt];
-  //   return randomColor*3;
-  // }
 }

@@ -10,7 +10,6 @@ public class ScoreBar : MonoBehaviour {
   public GridController gridController;
   public UIController uiController;
   public TimerController timerController;
-  public AttackOpponentController attackOpponentController;
 
   public Image fill;
   public Material highlightMaterial;
@@ -27,7 +26,6 @@ public class ScoreBar : MonoBehaviour {
   public TextMeshProUGUI turnPanelText;
   public GameObject roundMarker;
   public GameObject[] roundMarkers;
-  // public GameObject crosses;
 
   public GameObject meshCollider;
 
@@ -43,14 +41,11 @@ public class ScoreBar : MonoBehaviour {
   public void EnableInteraction() {
     meshCollider.SetActive(true);
     fill.material = highlightInteract;
-    GetComponentInChildren<PulseCross>().Toggle(true);
   }
 
   public void DisableInteraction() {
     meshCollider.SetActive(false);
     fill.material = defaultMaterialFill;
-    GetComponentInChildren<PulseCross>().Toggle(false);
-    attackOpponentController.TacticalTimerBarToggle(false);
     uiController.DisableChoiceText();
   }
 
@@ -62,13 +57,11 @@ public class ScoreBar : MonoBehaviour {
     gridController = FindObjectOfType<GridController>();
     uiController = FindObjectOfType<UIController>();
     timerController = FindObjectOfType<TimerController>();
-    attackOpponentController = FindObjectOfType<AttackOpponentController>();
     SetTurnPanelText();
     defaultMaterialFill = fill.material;
   }
 
   public void Clicked() {
-    attackOpponentController.EndReductionEvent();
     Debug.Log("Clicked " +  myName);
     Player PlayerScore = (myName == "X") ? gameController.playerX : gameController.playerO;
     ScoreBar myScoreBar = (myName == "X") ? uiController.scoreBarX : uiController.scoreBarO;
