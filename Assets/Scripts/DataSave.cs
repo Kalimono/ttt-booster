@@ -47,9 +47,6 @@ public class DataSave : MonoBehaviour {
             whiteCorrect.ToString() + ";" + 
             (conditionController.nResponses+1).ToString() + ";" + 
             isi.ToString()  + ";" + 
-            // reactionTime.ToString()  + ";" + 
-            // blueFailOut.ToString()  + ";" +
-            // blueFailMiss.ToString()  + ";" + 
             FloatToCommaString(reactionTime)  + ";" + 
             FloatToCommaString(blueFailOut)  + ";" +
             FloatToCommaString(blueFailMiss)  + ";" + 
