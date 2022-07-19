@@ -8,11 +8,6 @@ public class SquareController : MonoBehaviour {
   public Image[] squarePositions;
   public GameObject squares;
   public GridController gridController;
-  public SoundFxController soundFxController;
-  // public StimuliSequencer stimuliSequencer;
-  public GameController gameController;
-  public GameLogic gameLogic;
-  public UIController uiController;
   public StimuliRunner stimuliRunner;
   public GridCreator gridCreator;
   public ConditionController conditionController;

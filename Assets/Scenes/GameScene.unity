@@ -5549,54 +5549,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28509459}
   m_Mesh: {fileID: 2534964839176971238, guid: bbb25456ac7f45a419f3e20e7493a3f7, type: 3}
---- !u!1 &31533527
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 31533528}
-  - component: {fileID: 31533529}
-  m_Layer: 0
-  m_Name: AutoTurnEnderController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &31533528
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31533527}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 653400480}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &31533529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31533527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3f6feaad4953974daa32c529e2c992c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  squareController: {fileID: 457380153}
-  successPercentage: 100
-  toggleAutoPlay: 0
-  autoPlayStatus: {fileID: 1322975372}
 --- !u!1 &36287168
 GameObject:
   m_ObjectHideFlags: 0
@@ -18435,7 +18387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ebcb5232acb4947b145ff3455e56ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridController: {fileID: 1655465171}
   gameController: {fileID: 435993992}
   rowLenToWin: 3
 --- !u!1 &195575127
@@ -54841,7 +54792,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 653400480}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &417686697
 MonoBehaviour:
@@ -55411,7 +55362,6 @@ MonoBehaviour:
   gridController: {fileID: 1655465171}
   soundFxController: {fileID: 359302237}
   uiController: {fileID: 1791705149}
-  autoTurnEnderController: {fileID: 31533529}
   gameLogic: {fileID: 194972617}
   squareController: {fileID: 457380153}
   dataPoster: {fileID: 616513002}
@@ -55435,7 +55385,7 @@ MonoBehaviour:
   turnNum: 0
   currentRound: 0
   totalTurn: 0
-  nTrialsCond: 48
+  nTrialsCond: 1
   nConds: 2
 --- !u!1 &452289823
 GameObject:
@@ -64043,7 +63993,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 653400480}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &616513002
 MonoBehaviour:
@@ -65164,7 +65114,6 @@ Transform:
   - {fileID: 194972616}
   - {fileID: 457380152}
   - {fileID: 1464228612}
-  - {fileID: 31533528}
   - {fileID: 616513001}
   - {fileID: 417686696}
   - {fileID: 1381950431}
@@ -75655,7 +75604,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 066917ee781fd1b4db301b8b97d6e701, type: 2}
   timerController: {fileID: 0}
   conditionController: {fileID: 0}
-  autoTurnEnderController: {fileID: 0}
   uIController: {fileID: 0}
   sceneController: {fileID: 0}
   lastLevelIndex: 0
@@ -111758,7 +111706,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 653400480}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1381950432
 MonoBehaviour:
@@ -112018,7 +111966,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 31533529}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AutoTurnEnderController, Scripts
         m_MethodName: ToggleAutoPlay
         m_Mode: 1
@@ -124418,7 +124366,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 653400480}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1552246066
 MonoBehaviour:
@@ -125887,7 +125835,6 @@ MonoBehaviour:
   gameLogic: {fileID: 194972617}
   lastCellInteractedWith: {fileID: 0}
   rotation: 0
-  soundFxController: {fileID: 359302237}
   uIController: {fileID: 1791705149}
   timedBlue: {fileID: 1655465172}
 --- !u!114 &1655465172
@@ -148177,8 +148124,6 @@ MonoBehaviour:
   padding: 2
   cellPrefab: {fileID: 860993273973693780, guid: d4d87d74be6b3413dab2b4897d903d1d, type: 3}
   squareController: {fileID: 457380153}
-  dotController: {fileID: 1464228613}
-  gameController: {fileID: 435993992}
   gridController: {fileID: 1655465171}
 --- !u!4 &1814902102
 Transform:

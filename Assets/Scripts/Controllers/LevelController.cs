@@ -6,7 +6,6 @@ public class LevelController : MonoBehaviour {
   public LevelSettings[] levels;
   public TimerController timerController;
   public ConditionController conditionController;
-  public AutoTurnEnderController autoTurnEnderController;
   public UIController uIController;
   public SceneController sceneController;
   public int lastLevelIndex = 0;
@@ -16,17 +15,13 @@ public class LevelController : MonoBehaviour {
   void Awake() {
     FindReferences();
     
-    
-    
     lastLevelIndex = sceneController.GetMemory();
     uIController.UpdateCurrentLevelText(lastLevelIndex);
-    autoTurnEnderController.Init(levels[0]);
 
     timerController.levelSettings = levels[0];
 
     conditionController.levelSettings = levels[lastLevelIndex];
     conditionController.LoadLevelSettings();
-    // dataPoster.InitializeGame(levels[0]);
 
     if (instance != null) {
         Destroy(gameObject);
@@ -40,7 +35,6 @@ public class LevelController : MonoBehaviour {
   public void FindReferences() {
     timerController = FindObjectOfType<TimerController>();
     conditionController = FindObjectOfType<ConditionController>();
-    autoTurnEnderController = FindObjectOfType<AutoTurnEnderController>();
     uIController = FindObjectOfType<UIController>();
     sceneController = FindObjectOfType<SceneController>();
   }

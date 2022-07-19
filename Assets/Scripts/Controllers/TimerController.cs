@@ -39,12 +39,10 @@ public class TimerController : MonoBehaviour {
   public LevelSettings levelSettings;
   public ConditionController conditionController;
   public StimuliRunner stimuliRunner;
-  public SquareController squareController;
   public FurHatCommunication furHatCommunication;
   public GridController gridController;
 
   private double timeElapsed;
-  // private float currentTimerLength;
   private Coroutine activeTimer;
 
   private System.DateTime timerStarted;
@@ -99,9 +97,6 @@ public class TimerController : MonoBehaviour {
     }
     float timeOut = timer.timeout;
 
-    // if (timer.gameEvent == GameEvent.TraceCondition) {
-    //   timeOut = squareController.currenTrialTimeOut;
-    //   }
     if (timer.gameEvent == GameEvent.Response) timeOut = conditionController.responseTime; 
 
     yield return new WaitForSeconds(timeOut / 1000);

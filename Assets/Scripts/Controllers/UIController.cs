@@ -9,7 +9,6 @@ public class UIController : MonoBehaviour {
   public GameController gameController;
   public GridController gridController;
   public GameLogic gameLogic;
-  public FurHatCommunication furHatCommunication;
 
   public ScoreBar scoreBarX;
   public ScoreBar scoreBarO;

@@ -11,7 +11,6 @@ public class GridController : MonoBehaviour {
   public Cell lastCellInteractedWith;
   public bool rotation = false;
 
-  public SoundFxController soundFxController;
   public UIController uIController;
   public TimedBlue timedBlue;
 

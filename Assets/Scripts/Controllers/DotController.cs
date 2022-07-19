@@ -9,9 +9,7 @@ public enum OutcomeColor {
 }
 
 public class DotController : MonoBehaviour {
-  public GridController gridController;
   public SoundFxController soundFxController;
-  public GameController gameController;
 
   public Image dotStatus;
 
@@ -19,7 +17,6 @@ public class DotController : MonoBehaviour {
   public bool toggleDot;
 
   public void SetOutcome(Cell cell) {
-    // int area = cell.outcomeArea;
     if (!toggleDot) cell.outcomeArea = StimuliSequencer.GetNonDifferentialOutcome();
 
     if (cell.outcomeArea == 1 || cell.outcomeArea == 3) {
@@ -36,11 +33,6 @@ public class DotController : MonoBehaviour {
 
     cell.outcome.sprite = cell.outcomes[cell.outcomeArea];
     cell.correctResponseSound = soundFxController.outcomeSounds[cell.outcomeArea];
-
-    // if (gameController.activePlayer == gameController.playerO) {
-    //   cell.outcomeValue = 2;
-    //   cell.correctResponseSound = soundFxController.AICorrect;
-    // }
   }
 
   public void SetDotOutcomes(List<Cell> targetCellList) {

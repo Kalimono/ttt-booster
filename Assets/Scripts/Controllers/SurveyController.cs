@@ -29,8 +29,6 @@ public class SurveyController : MonoBehaviour {
 
     void Awake() {
         sceneController = FindObjectOfType<SceneController>();
-        // Debug.Log(sceneController);
-        // finishedButton.onClick.RemoveAllListeners();
         finishedButton.onClick.AddListener(delegate {FinishedButtonClick();});
         Initialize();
         pleasureSlider.onValueChanged.AddListener(delegate {pleasureSliderChange();});

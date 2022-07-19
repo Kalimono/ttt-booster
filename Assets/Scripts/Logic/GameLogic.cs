@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameLogic : MonoBehaviour {
-  public GridController gridController;
   public GameController gameController;
   public List<List<Cell>> winningListOfLists = new List<List<Cell>>();
   public List<List<Cell>> closeToWinningListOfLists = new List<List<Cell>>();

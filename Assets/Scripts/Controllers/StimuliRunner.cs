@@ -6,7 +6,6 @@ using System.Linq;
 public class StimuliRunner : MonoBehaviour {
     public bool runningStims = false;
 
-    SoundFxController soundFxController;
     ConditionController conditionController;
     TimerController timerController;
     SquareController squareController;
@@ -14,7 +13,6 @@ public class StimuliRunner : MonoBehaviour {
     DataSave dataSave;
 
     void Awake() {
-        soundFxController = FindObjectOfType<SoundFxController>();
         conditionController = FindObjectOfType<ConditionController>();
         timerController = FindObjectOfType<TimerController>();
         squareController = FindObjectOfType<SquareController>();

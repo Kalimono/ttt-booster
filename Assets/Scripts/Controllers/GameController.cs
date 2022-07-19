@@ -26,7 +26,6 @@ public class GameController : MonoBehaviour {
 
   public SoundFxController soundFxController;
   public UIController uiController;
-  public AutoTurnEnderController autoTurnEnderController;
   public GameLogic gameLogic;
   public SquareController squareController;
   public DataPoster dataPoster;
@@ -65,7 +64,6 @@ public class GameController : MonoBehaviour {
     timer.onTimerFinished += OnTimerFinished;
     nConds = levelController.levels.Length;
     // Debug.Log(levelController.levels.Length);
-    // autoTurnEnderController.Init(levelController.levels[0]);
     // dataPoster.InitializeGame(levelController.levels[0]);
     // Debug.Log("awake");
     if(sceneController.GetMemory() > 0) levelController.LoadNextLevel();

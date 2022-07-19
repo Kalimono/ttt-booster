@@ -13,8 +13,6 @@ public class GridCreator : MonoBehaviour {
   public GameObject cellPrefab;
 
   public SquareController squareController;
-  public DotController dotController;
-  public GameController gameController;
   public GridController gridController;
 
   Vector3 currentGridPosition;
