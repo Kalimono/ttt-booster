@@ -68,7 +68,6 @@ public class TimerController : MonoBehaviour {
   }
 
   public void StartNextTimer() {
-    // Debug.Log(levelSettings.timers[lastTimerIndex].gameEvent);
     StartTimer(levelSettings.timers[lastTimerIndex]);
 
     lastTimerIndex++;
@@ -85,7 +84,6 @@ public class TimerController : MonoBehaviour {
 
   void StartTimer(Timer timer) {
     timerBarSlider.maxValue = timer.timeout/10;
-    // Debug.Log(timer.gameEvent);
     activeTimer = StartCoroutine(WaitForTimeout(timer));
   }
 
@@ -114,7 +112,6 @@ public class TimerController : MonoBehaviour {
   }
 
   public void AbortTimer() {
-    // Debug.Log("aborting");
     StopCoroutine(activeTimer);
   }
 
@@ -128,7 +125,6 @@ public class TimerController : MonoBehaviour {
   }
 
   public void TimerBarUpdate() {
-    // timerBarSlider.maxValue = 500;
     timerBarSlider.value = timerBarSlider.maxValue - (float)Math.Round(timeElapsed / 10);
   }
 }

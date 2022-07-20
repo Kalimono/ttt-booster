@@ -29,7 +29,6 @@ public class SceneController : MonoBehaviour {
             return;
         }
         SceneManager.LoadScene(0);
-        
     }
 
     public void LoadSurveyScene() {
@@ -39,7 +38,6 @@ public class SceneController : MonoBehaviour {
 
     void IncrementMemory() {
         memory++;
-        // if(memory > 2) memory = 0;
     }
 
     public int GetMemory() {
@@ -49,5 +47,4 @@ public class SceneController : MonoBehaviour {
     public void LoadEnd() {
         SceneManager.LoadScene(2);
   }
-
 }

@@ -74,52 +74,52 @@ public class UIController : MonoBehaviour {
     }
   }
 
-   public void ResetRoundsWonMarkers() {
+  public void ResetRoundsWonMarkers() {
     foreach (ScoreBar scorebar in FindObjectsOfType<ScoreBar>()) {
       scorebar.DarkenRoundsWon();
     }
   }
 
-  public void ResetScoreBarMarkers() {
-    foreach (ScoreBar scoreBar in FindObjectsOfType<ScoreBar>()) {
-      scoreBar.ResetScoreBar();
-    }
-  }
+  // public void ResetScoreBarMarkers() {
+  //   foreach (ScoreBar scoreBar in FindObjectsOfType<ScoreBar>()) {
+  //     scoreBar.ResetScoreBar();
+  //   }
+  // }
 
-  void ChangeWinningCellMaterial() { //cell
-    gameLogic.checkGridForWinningCells(gridController.grid);
-    gridController.SetBoardInteractable(false);
+  // void ChangeWinningCellMaterial() { //cell
+  //   gameLogic.checkGridForWinningCells(gridController.grid);
+  //   gridController.SetBoardInteractable(false);
 
-    foreach (List<Cell> cellList in gameLogic.winningListOfLists) {
-      foreach (Cell cell in cellList) {
-        cell.shapeRenderer.material = cell.winningCellHighlight;
-      }
-    }
-  }
+  //   foreach (List<Cell> cellList in gameLogic.winningListOfLists) {
+  //     foreach (Cell cell in cellList) {
+  //       cell.shapeRenderer.material = cell.winningCellHighlight;
+  //     }
+  //   }
+  // }
 
-  public void HighlightWin(Player player) {
-    ChangeWinningCellMaterial();
-    if (player.score > 14) ChangeWinningScoreBarToHighlight();
-  }
+  // public void HighlightWin(Player player) {
+  //   ChangeWinningCellMaterial();
+  //   if (player.score > 14) ChangeWinningScoreBarToHighlight();
+  // }
 
-  void ChangeWinningScoreBarToHighlight() {
-    ScoreBar lastPlayerScoreBar = (gameController.activePlayer == gameController.playerX) ? scoreBarO : scoreBarX;
-    lastPlayerScoreBar.fill.material = lastPlayerScoreBar.highlightMaterial;
-  }
+  // void ChangeWinningScoreBarToHighlight() {
+  //   ScoreBar lastPlayerScoreBar = (gameController.activePlayer == gameController.playerX) ? scoreBarO : scoreBarX;
+  //   lastPlayerScoreBar.fill.material = lastPlayerScoreBar.highlightMaterial;
+  // }
 
-  public void FlashCellsCloseWin() {
-    gameLogic.checkGridForCloseWin(gridController.grid);
-    FlashCloseToWinning();
-  }
+  // public void FlashCellsCloseWin() {
+  //   gameLogic.checkGridForCloseWin(gridController.grid);
+  //   FlashCloseToWinning();
+  // }
 
-  public void FlashCloseToWinning() {
-    if (gameLogic.closeToWinningListOfLists == null) return;
-    foreach (List<Cell> cellList in gameLogic.closeToWinningListOfLists) {
-      foreach (Cell cell in cellList) {
-        cell.GetComponent<FlashCell>().FlashWhite();
-      }
-    }
-  }
+  // public void FlashCloseToWinning() {
+  //   if (gameLogic.closeToWinningListOfLists == null) return;
+  //   foreach (List<Cell> cellList in gameLogic.closeToWinningListOfLists) {
+  //     foreach (Cell cell in cellList) {
+  //       cell.GetComponent<FlashCell>().FlashWhite();
+  //     }
+  //   }
+  // }
 
   public void UpdateCurrentLevelText(int newLevel) {
     currentLevel.text = newLevel.ToString();

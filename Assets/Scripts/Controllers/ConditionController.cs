@@ -44,15 +44,12 @@ public class ConditionController : MonoBehaviour {
     public float level = 1;
 
     GridCreator gridCreator;
-    // GameController gameController;
 
     void Awake() {
         gridCreator = FindObjectOfType<GridCreator>();
         levelSettings = FindObjectOfType<LevelSettings>();
         levelController = FindObjectOfType<LevelController>();
         dotController = FindObjectOfType<DotController>();
-        // gameController = FindObjectOfType<GameController>();
-        // Debug.Log(nStimuli);
     }
 
     public void LoadLevelSettings() {

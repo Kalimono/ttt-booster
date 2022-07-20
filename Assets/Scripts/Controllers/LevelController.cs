@@ -50,7 +50,6 @@ public class LevelController : MonoBehaviour {
     timerController.levelSettings = levels[lastLevelIndex];
     conditionController.levelSettings = levels[lastLevelIndex];
     conditionController.levelValueText.text = lastLevelIndex.ToString();
-    // uIController.UpdateCurrentLevelText(lastLevelIndex+1);
     conditionController.LoadLevelSettings();
   }
 
@@ -58,8 +57,6 @@ public class LevelController : MonoBehaviour {
     timerController.levelSettings = levels[level-1];
     conditionController.levelSettings = levels[level-1];
     conditionController.LoadLevelSettings();
-    // conditionController.levelSlider.value = level-1;
-    // conditionController.levelSliderChange();
   }
 
 }

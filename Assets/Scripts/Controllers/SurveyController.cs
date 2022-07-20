@@ -84,7 +84,6 @@ public class SurveyController : MonoBehaviour {
         path = "tictactoc++_Data/Data/" + fileName;
         
         if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-        // WriteString("Turn, level, correctResponse, nResponses, ISI, reactionTime, blueResponse1, blueResponse2");
     }
 
     string GetTimeNowString() {
