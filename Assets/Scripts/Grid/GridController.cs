@@ -74,41 +74,6 @@ public class GridController : MonoBehaviour {
       }
   }
 
-  public void EnableOpponentCellsForClear() { //decr
-    List<Cell> opponentCells = GetOpponentCells();
-
-    foreach(Cell cell in opponentCells) {
-      cell.ReductionInteractionActive = true;
-      SetSingleCellValueVisibiltyToggle(cell, true);
-      cell.shapeRenderer.material = cell.highlightInteract;
-    }
-  }
-
-  internal void ClickRandomOpponentCell() { //decr
-    List<Cell> opponentCells = GetOpponentCells();
-    opponentCells[Random.Range(0, opponentCells.Count-1)].OnClick();
-  }
-
-
-  public void DisableOpponentCellsForClear() { //decr
-    foreach(Cell cell in grid) {
-      cell.ReductionInteractionActive = false;
-      SetSingleCellValueVisibiltyToggle(cell, false);
-      cell.shapeRenderer.material = cell.gridCell;
-    }
-  }
-
-  public List<Cell> GetOpponentCells() { //decr
-    GameValue valueToLookFor = (lastCellInteractedWith.value == GameValue.Cross) ? GameValue.Nought : GameValue.Cross;
-    List<Cell> cellList = new List<Cell>();
-
-    foreach(Cell cell in grid) {
-      if (cell.value == valueToLookFor) cellList.Add(cell); 
-    }
-
-    return cellList;
-  }
-
   public void Populate() {
     for (int i = 0; i < 3; i++) {
         grid[i, i].value = GameValue.Cross;

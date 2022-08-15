@@ -32,7 +32,6 @@ public class PulseScoreMarker : MonoBehaviour {
     if (pulse) {
       lerpColor = Color.Lerp(diamond, gold, Mathf.PingPong(Time.time, .75f));
       markerImage.material.SetColor("_EmissionColor", lerpColor / 25);
-      // if (!pulsating) Stop();
     }
   }
 

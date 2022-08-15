@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-
-
 public class FurHatCommunication : MonoBehaviour {
    public static FurHatCommunication instance;
 
@@ -20,11 +18,9 @@ public class FurHatCommunication : MonoBehaviour {
     }
 
   public class Message {
-    // public string message;
     public string message;
 
     public void CreateMessage(string anOutcome) {
-      // message = aMessage;
       message = anOutcome;
     }
 

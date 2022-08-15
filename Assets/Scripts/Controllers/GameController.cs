@@ -88,14 +88,11 @@ public class GameController : MonoBehaviour {
     uiController.restartButton.SetActive(false);
     activePlayer = playerX;
     uiController.ShowRoundsWonMarkers(true);
-    uiController.ResetScoreBarMarkers();
-    uiController.ResetRoundsWonMarkers();
     ResetPoints();
     turnNum = 0;
   }
 
   public void StartGame() {
-    uiController.ResetScoreBarMarkers();
     winningPlayer = playerNull;
     ResetGameState();
     PreStartTurn();

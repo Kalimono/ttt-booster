@@ -59,16 +59,6 @@ public class DataPoster : MonoBehaviour {
     SendHi();
   }
 
-  public void InitializeGame(LevelSettings levelSettings) {
-    // StartGame(JsonUtility.ToJson(levelSettings));
-  }
-
-  public void SendTurn(int TurnNum, int round, bool dot, int differentialOutcome, int squarePosition, int stimuliPosition, float reactionTime, string player, bool successMove, int timeOut, int cornerDist, int distractorIndex) {
-    // TurnData turn = new TurnData(TurnNum, round, dot, differentialOutcome, squarePosition, stimuliPosition, reactionTime, player, successMove, timeOut, cornerDist, distractorIndex, currentGame.gameID);
-    // string jsonTurnData = JsonUtility.ToJson(turn);
-    // SendTurn(jsonTurnData);
-  }
-
   public void SendGameOver() {
     StartCoroutine(PostData("/game/end", "{}", API_URL));
   }

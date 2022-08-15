@@ -20,11 +20,9 @@ public class Cell : MonoBehaviour {
   private GameController gameController;
   public UIController uiController;
   public SquareController squareController;
-  public GameLogic gameLogic;
   public GridController gridController;
   public SoundFxController soundFxController;
   public DotController dotController;
-  public TimerController timerController;
   public FurHatCommunication furHatCommunication;
   public DataSave dataSave;
 
@@ -46,18 +44,15 @@ public class Cell : MonoBehaviour {
   public int outcomeValue;
   public int outcomeArea;
 
-  public bool ReductionInteractionActive;
   public GameObject cross;
 
   private void Awake() {
     gameController = FindObjectOfType<GameController>();
     squareController = FindObjectOfType<SquareController>();
-    gameLogic = FindObjectOfType<GameLogic>();
     rotateMe = FindObjectOfType<RotateMe>();
     gridController = FindObjectOfType<GridController>();
     soundFxController = FindObjectOfType<SoundFxController>();
     dotController = FindObjectOfType<DotController>();
-    timerController = FindObjectOfType<TimerController>();
     uiController = FindObjectOfType<UIController>();
     furHatCommunication = FindObjectOfType<FurHatCommunication>();
     dataSave = FindObjectOfType<DataSave>();

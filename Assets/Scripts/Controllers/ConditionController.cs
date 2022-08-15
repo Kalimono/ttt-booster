@@ -31,7 +31,6 @@ public class ConditionController : MonoBehaviour {
     public TextMeshProUGUI dotValueText;
     public TextMeshProUGUI levelValueText;
 
-
     public float stimuliLifetime = 15;
     public float timeBetweenStimuli = 0;
     public float traceCondition = 2;
@@ -54,7 +53,6 @@ public class ConditionController : MonoBehaviour {
 
     public void LoadLevelSettings() {
         nResponses = levelSettings.responseOptions;
-
         nStimuli = levelSettings.stimuliLength;
         nRainbowStim = nStimuli;
     }
@@ -133,7 +131,6 @@ public class ConditionController : MonoBehaviour {
             dotValueText.text = "OFF";
             dotController.toggleDot = false;
         }
-        
 	}
 
     public void levelSliderChange() {

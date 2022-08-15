@@ -67,12 +67,6 @@ public class DataSave : MonoBehaviour {
         return dataString;
     }
 
-        // FloatToCommaString(reactionTime)  + ";" + 
-        // FloatToCommaString(blueFailOut)  + ";" +
-        // FloatToCommaString(blueFailMiss)  + ";" + 
-
-        // FloatToCommaString(rTime);
-
     public void WriteRoundDataString() {
         WriteString(GetRoundDataString());
     }
@@ -108,5 +102,4 @@ public class DataSave : MonoBehaviour {
 
         return commaFloatString;
     }
-
 }

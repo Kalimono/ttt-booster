@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TimedBlue : MonoBehaviour {
-
     public SoundFxController soundFxController;
     public GameController gameController;
     public DataSave dataSave;
@@ -40,9 +39,7 @@ public class TimedBlue : MonoBehaviour {
     }
 
     public void TimedBlueCell() {
-        // Debug.Log("bluetime");
         blueTime = true;
         time = 0f;
-        // uIController.ToggleBlueText(true);
     }
 }
