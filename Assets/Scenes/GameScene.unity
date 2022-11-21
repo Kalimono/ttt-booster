@@ -55377,7 +55377,7 @@ MonoBehaviour:
   turnNum: 0
   currentRound: 0
   totalTurn: 0
-  nTrialsCond: 2
+  nTrialsCond: 8
   nConds: 3
 --- !u!1 &452289823
 GameObject:
@@ -148257,7 +148257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conds: 0
   gameController: {fileID: 435993992}
-  furHatCommunication: {fileID: 0}
+  furHatCommunication: {fileID: 2034113406}
 --- !u!1 &1827576019
 GameObject:
   m_ObjectHideFlags: 0

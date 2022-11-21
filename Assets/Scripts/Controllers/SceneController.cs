@@ -14,6 +14,7 @@ public class SceneController : MonoBehaviour {
     void Awake() {
         if (instance != null) {
             Destroy(gameObject);
+            furHatCommunication = FindObjectOfType<FurHatCommunication>();
             return;
         }
 
@@ -26,7 +27,7 @@ public class SceneController : MonoBehaviour {
     }
 
     public void LoadGameScene() {
-        
+        Debug.Log(memory);
         if(memory >= conds) {
             LoadEnd();
             return;

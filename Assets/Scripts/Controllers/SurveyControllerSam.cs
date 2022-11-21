@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using System.IO;
 
-public class SurveyController3 : MonoBehaviour {
+public class SurveyControllerSam : MonoBehaviour {
     public Slider pleasureSlider;
     public Slider arousalSlider;
     public Slider dominanceSlider;

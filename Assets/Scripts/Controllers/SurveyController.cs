@@ -23,10 +23,11 @@ public class SurveyController : MonoBehaviour {
     }
 
     void FinishedButtonClick() {
-        sceneController.LoadGameScene();
+        // sceneController.LoadGameScene();
+        SceneManager.LoadScene(0);
     }
 
-    public void SwitchToGameScene() {
-		SceneManager.LoadScene(0);
-    }
+    // public void SwitchToGameScene() {
+		
+    // }
 }
