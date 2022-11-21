@@ -138,7 +138,7 @@ public class GameController : MonoBehaviour {
       gridController.lastCellInteractedWith = null;
       squareController.PrepareStimuliPhase();
       squareController.FlashMiddleCell(.5f);
-      cursorController.CenterAndLockCursor();
+      // cursorController.CenterAndLockCursor();
       timer.StartNextTimer();
     }
   }

@@ -11738,11 +11738,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 131530665}
@@ -11761,7 +11759,6 @@ MonoBehaviour:
   outcome: {fileID: 672957523}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 1051159396}
 --- !u!114 &131530664
 MonoBehaviour:
@@ -18677,7 +18674,6 @@ MonoBehaviour:
   levelSettings: {fileID: 0}
   conditionController: {fileID: 417686697}
   stimuliRunner: {fileID: 1381950432}
-  squareController: {fileID: 457380153}
   furHatCommunication: {fileID: 2034113406}
   gridController: {fileID: 1655465171}
   lastTimerIndex: 0
@@ -49538,11 +49534,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 391024085}
@@ -49561,7 +49555,6 @@ MonoBehaviour:
   outcome: {fileID: 2146033601}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 2049460824}
 --- !u!114 &391024084
 MonoBehaviour:
@@ -54830,7 +54823,7 @@ MonoBehaviour:
   dotValueText: {fileID: 1994301430}
   levelValueText: {fileID: 38938595}
   stimuliLifetime: 750
-  timeBetweenStimuli: 0
+  timeBetweenStimuli: 100
   traceCondition: 2000
   responseTime: 5000
   gridSize: 5
@@ -55362,7 +55355,6 @@ MonoBehaviour:
   gridController: {fileID: 1655465171}
   soundFxController: {fileID: 359302237}
   uiController: {fileID: 1791705149}
-  gameLogic: {fileID: 194972617}
   squareController: {fileID: 457380153}
   dataPoster: {fileID: 616513002}
   dotController: {fileID: 1464228613}
@@ -55385,8 +55377,8 @@ MonoBehaviour:
   turnNum: 0
   currentRound: 0
   totalTurn: 0
-  nTrialsCond: 1
-  nConds: 2
+  nTrialsCond: 2
+  nConds: 3
 --- !u!1 &452289823
 GameObject:
   m_ObjectHideFlags: 0
@@ -55519,7 +55511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &452876410
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55648,10 +55640,6 @@ MonoBehaviour:
   - {fileID: 1256324825}
   squares: {fileID: 0}
   gridController: {fileID: 1655465171}
-  soundFxController: {fileID: 359302237}
-  gameController: {fileID: 435993992}
-  gameLogic: {fileID: 194972617}
-  uiController: {fileID: 1791705149}
   stimuliRunner: {fileID: 457380154}
   gridCreator: {fileID: 0}
   conditionController: {fileID: 417686697}
@@ -56051,11 +56039,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 458938094}
@@ -56074,7 +56060,6 @@ MonoBehaviour:
   outcome: {fileID: 641158659}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 232426611}
 --- !u!114 &458938093
 MonoBehaviour:
@@ -56911,11 +56896,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 504873896}
@@ -56934,7 +56917,6 @@ MonoBehaviour:
   outcome: {fileID: 790739251}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 1485629177}
 --- !u!114 &504873895
 MonoBehaviour:
@@ -62033,7 +62015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &526193992
 RectTransform:
   m_ObjectHideFlags: 0
@@ -62918,7 +62900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &569119768
 RectTransform:
   m_ObjectHideFlags: 0
@@ -62941,7 +62923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -577.3, y: -68.6}
+  m_AnchoredPosition: {x: -577.3, y: 449.6}
   m_SizeDelta: {x: 240, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &569119769
@@ -63311,11 +63293,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 594020951}
@@ -63334,7 +63314,6 @@ MonoBehaviour:
   outcome: {fileID: 868801706}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 1068855003}
 --- !u!114 &594020950
 MonoBehaviour:
@@ -63451,11 +63430,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 600657077}
@@ -63474,7 +63451,6 @@ MonoBehaviour:
   outcome: {fileID: 1329209531}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 255392432}
 --- !u!114 &600657076
 MonoBehaviour:
@@ -63960,7 +63936,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.43, y: -371.59}
+  m_AnchoredPosition: {x: -236.9, y: -371.59}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &616513000
@@ -65014,11 +64990,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 651669907}
@@ -65037,7 +65011,6 @@ MonoBehaviour:
   outcome: {fileID: 1503058556}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 1165063472}
 --- !u!114 &651669906
 MonoBehaviour:
@@ -70267,11 +70240,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 669015936}
@@ -70290,7 +70261,6 @@ MonoBehaviour:
   outcome: {fileID: 25992968}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 1452739577}
 --- !u!114 &669015935
 MonoBehaviour:
@@ -70565,11 +70535,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 676407828}
@@ -70588,7 +70556,6 @@ MonoBehaviour:
   outcome: {fileID: 1180798829}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 1988581721}
 --- !u!114 &676407827
 MonoBehaviour:
@@ -73153,11 +73120,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 807136481}
@@ -73176,7 +73141,6 @@ MonoBehaviour:
   outcome: {fileID: 248098819}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 1573905310}
 --- !u!114 &807136480
 MonoBehaviour:
@@ -73725,7 +73689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &865316185
 RectTransform:
   m_ObjectHideFlags: 0
@@ -73952,7 +73916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &867014038
 RectTransform:
   m_ObjectHideFlags: 0
@@ -75491,11 +75455,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 923250741}
@@ -75514,7 +75476,6 @@ MonoBehaviour:
   outcome: {fileID: 737350611}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 1818917582}
 --- !u!114 &923250740
 MonoBehaviour:
@@ -75600,8 +75561,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 11400000, guid: 08b4d748c5ef56846818775d8fc5bafc, type: 2}
-  - {fileID: 11400000, guid: 066917ee781fd1b4db301b8b97d6e701, type: 2}
+  - {fileID: 11400000, guid: a5a9220b8745591418a0f1001b61a1ae, type: 2}
+  - {fileID: 11400000, guid: a5a9220b8745591418a0f1001b61a1ae, type: 2}
+  - {fileID: 11400000, guid: a5a9220b8745591418a0f1001b61a1ae, type: 2}
   timerController: {fileID: 0}
   conditionController: {fileID: 0}
   uIController: {fileID: 0}
@@ -75709,11 +75671,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 941731931}
@@ -75732,7 +75692,6 @@ MonoBehaviour:
   outcome: {fileID: 1367739410}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 1960902092}
 --- !u!114 &941731930
 MonoBehaviour:
@@ -75922,11 +75881,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 961189228}
@@ -75945,7 +75902,6 @@ MonoBehaviour:
   outcome: {fileID: 620574421}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 1776765643}
 --- !u!114 &961189227
 MonoBehaviour:
@@ -91054,7 +91010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1045841417
 RectTransform:
   m_ObjectHideFlags: 0
@@ -96457,7 +96413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1094013578
 RectTransform:
   m_ObjectHideFlags: 0
@@ -97225,11 +97181,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 1159490806}
@@ -97248,7 +97202,6 @@ MonoBehaviour:
   outcome: {fileID: 504294052}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 562690397}
 --- !u!114 &1159490805
 MonoBehaviour:
@@ -103071,11 +103024,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 1210847303}
@@ -103094,7 +103045,6 @@ MonoBehaviour:
   outcome: {fileID: 151796784}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 361116767}
 --- !u!114 &1210847302
 MonoBehaviour:
@@ -103284,11 +103234,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 1224228014}
@@ -103307,7 +103255,6 @@ MonoBehaviour:
   outcome: {fileID: 1467928875}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 2035104312}
 --- !u!114 &1224228013
 MonoBehaviour:
@@ -109298,7 +109245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1286236723
 RectTransform:
   m_ObjectHideFlags: 0
@@ -109859,11 +109806,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 1320657152}
@@ -109882,7 +109827,6 @@ MonoBehaviour:
   outcome: {fileID: 885378609}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 1537965279}
 --- !u!114 &1320657151
 MonoBehaviour:
@@ -111359,11 +111303,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 1367540067}
@@ -111382,7 +111324,6 @@ MonoBehaviour:
   outcome: {fileID: 2080041611}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 616984216}
 --- !u!114 &1367540066
 MonoBehaviour:
@@ -112275,7 +112216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1446030743
 RectTransform:
   m_ObjectHideFlags: 0
@@ -112298,7 +112239,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -577.3, y: 231.41}
+  m_AnchoredPosition: {x: -577.3, y: 378.64}
   m_SizeDelta: {x: 240, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1446030744
@@ -112858,9 +112799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6f8c1f2baec854b999c0708ac232cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridController: {fileID: 1655465171}
   soundFxController: {fileID: 359302237}
-  gameController: {fileID: 435993992}
   dotStatus: {fileID: 2016434434}
   toggleDot: 1
 --- !u!1 &1467928872
@@ -118828,11 +118767,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 1506433730}
@@ -118851,7 +118788,6 @@ MonoBehaviour:
   outcome: {fileID: 1505776140}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 1440095541}
 --- !u!114 &1506433729
 MonoBehaviour:
@@ -125523,7 +125459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1624543462
 RectTransform:
   m_ObjectHideFlags: 0
@@ -125954,7 +125890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1667581286
 RectTransform:
   m_ObjectHideFlags: 0
@@ -126200,11 +126136,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 1677532122}
@@ -126223,7 +126157,6 @@ MonoBehaviour:
   outcome: {fileID: 99269249}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 990003679}
 --- !u!114 &1677532121
 MonoBehaviour:
@@ -126926,11 +126859,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 1728480248}
@@ -126949,7 +126880,6 @@ MonoBehaviour:
   outcome: {fileID: 1898363143}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 1957434522}
 --- !u!114 &1728480247
 MonoBehaviour:
@@ -132545,7 +132475,6 @@ MonoBehaviour:
   gameController: {fileID: 435993992}
   gridController: {fileID: 1655465171}
   gameLogic: {fileID: 194972617}
-  furHatCommunication: {fileID: 2034113406}
   scoreBarX: {fileID: 1085693469}
   scoreBarO: {fileID: 599210043}
   gameOverPanel: {fileID: 886016718}
@@ -148328,7 +148257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conds: 0
   gameController: {fileID: 435993992}
-  levelController: {fileID: 928624245}
+  furHatCommunication: {fileID: 0}
 --- !u!1 &1827576019
 GameObject:
   m_ObjectHideFlags: 0
@@ -150163,11 +150092,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 1955911509}
@@ -150186,7 +150113,6 @@ MonoBehaviour:
   outcome: {fileID: 1503603867}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 730432229}
 --- !u!114 &1955911508
 MonoBehaviour:
@@ -156008,11 +155934,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 2022506906}
@@ -156031,7 +155955,6 @@ MonoBehaviour:
   outcome: {fileID: 777805005}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 686773845}
 --- !u!114 &2022506905
 MonoBehaviour:
@@ -156953,11 +156876,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 2055858964}
@@ -156976,7 +156897,6 @@ MonoBehaviour:
   outcome: {fileID: 186101865}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 2022751141}
 --- !u!114 &2055858963
 MonoBehaviour:
@@ -157274,7 +157194,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -577.3, y: -144}
+  m_AnchoredPosition: {x: -577.3, y: 518.1}
   m_SizeDelta: {x: 240, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2076684700
@@ -158151,11 +158071,9 @@ MonoBehaviour:
   value: 0
   uiController: {fileID: 0}
   squareController: {fileID: 0}
-  gameLogic: {fileID: 0}
   gridController: {fileID: 0}
   soundFxController: {fileID: 0}
   dotController: {fileID: 0}
-  timerController: {fileID: 0}
   furHatCommunication: {fileID: 0}
   dataSave: {fileID: 0}
   rotateMe: {fileID: 2102984570}
@@ -158174,7 +158092,6 @@ MonoBehaviour:
   outcome: {fileID: 1226065139}
   outcomeValue: 0
   outcomeArea: 0
-  ReductionInteractionActive: 0
   cross: {fileID: 565037010}
 --- !u!114 &2102984569
 MonoBehaviour:

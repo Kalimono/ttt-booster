@@ -84,6 +84,7 @@ public class Cell : MonoBehaviour {
 
         dataSave.whiteCorrect = 1;
         
+        furHatCommunication.IncrementCorrectResponse();
         
         uiController.UpdateScoreBar();
 

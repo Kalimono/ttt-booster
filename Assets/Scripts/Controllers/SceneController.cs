@@ -9,6 +9,7 @@ public class SceneController : MonoBehaviour {
     public int conds;
     public static SceneController instance;
     public GameController gameController;
+    public FurHatCommunication furHatCommunication;
 
     void Awake() {
         if (instance != null) {
@@ -20,6 +21,8 @@ public class SceneController : MonoBehaviour {
 
         instance = this;
         DontDestroyOnLoad(gameObject);
+
+        furHatCommunication = FindObjectOfType<FurHatCommunication>();
     }
 
     public void LoadGameScene() {
@@ -33,6 +36,7 @@ public class SceneController : MonoBehaviour {
 
     public void LoadSurveyScene() {
         IncrementMemory();
+        furHatCommunication.SendPerformance();
         SceneManager.LoadScene(1);
     }
 

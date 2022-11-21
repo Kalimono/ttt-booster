@@ -32,7 +32,7 @@ public class ConditionController : MonoBehaviour {
     public TextMeshProUGUI levelValueText;
 
     public float stimuliLifetime = 15;
-    public float timeBetweenStimuli = 0;
+    public float timeBetweenStimuli = 2;
     public float traceCondition = 2;
     public float responseTime = 5;
     public float gridSize = 1;

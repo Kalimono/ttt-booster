@@ -8,6 +8,7 @@ public class LevelController : MonoBehaviour {
   public ConditionController conditionController;
   public UIController uIController;
   public SceneController sceneController;
+
   public int lastLevelIndex = 0;
 
   public static LevelController instance;
@@ -37,6 +38,7 @@ public class LevelController : MonoBehaviour {
     conditionController = FindObjectOfType<ConditionController>();
     uIController = FindObjectOfType<UIController>();
     sceneController = FindObjectOfType<SceneController>();
+    
   }
 
   public void LoadNextLevel() {

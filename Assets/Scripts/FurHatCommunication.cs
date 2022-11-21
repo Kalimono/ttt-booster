@@ -7,6 +7,8 @@ using UnityEngine.Networking;
 public class FurHatCommunication : MonoBehaviour {
    public static FurHatCommunication instance;
 
+   int nCorrect;
+
     void Awake() {
        if (instance != null) {
             Destroy(gameObject);
@@ -55,10 +57,16 @@ public class FurHatCommunication : MonoBehaviour {
     public string id;
   }
 
- 
-
   public void DebugSend() {
     SendOutcome(1);
+  }
+
+  public void SendPerformance() {
+    Message m = new Message();
+    m.CreateMessage(outcomeStringList[nCorrect/8]);
+    String message = m.SaveToString();
+    StartCoroutine(PostEvent("/", message, FURHAT_URL));
+    nCorrect = 0;
   }
 
   public void SendOutcome(int outcome) {
@@ -117,5 +125,9 @@ public class FurHatCommunication : MonoBehaviour {
         Debug.Log(www.error);
       }
     }
+  }
+
+  public void IncrementCorrectResponse() {
+   nCorrect++;
   }
 }
