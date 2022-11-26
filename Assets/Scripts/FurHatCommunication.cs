@@ -63,7 +63,7 @@ public class FurHatCommunication : MonoBehaviour {
 
   public void SendPerformance() {
     Message m = new Message();
-    m.CreateMessage(outcomeStringList[nCorrect/8]);
+    m.CreateMessage(nCorrect.ToString());
     String message = m.SaveToString();
     StartCoroutine(PostEvent("/", message, FURHAT_URL));
     nCorrect = 0;

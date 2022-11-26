@@ -5,10 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour {
-    public static int memory;
-    public int conds;
+    public int memory = 0;
+    public int conds = 3;
     public static SceneController instance;
-    public GameController gameController;
     public FurHatCommunication furHatCommunication;
 
     void Awake() {
@@ -18,30 +17,36 @@ public class SceneController : MonoBehaviour {
             return;
         }
 
-        conds = gameController.nConds;
+
 
         instance = this;
         DontDestroyOnLoad(gameObject);
 
         furHatCommunication = FindObjectOfType<FurHatCommunication>();
+        Debug.Log("awake");
     }
 
     public void LoadGameScene() {
-        Debug.Log(memory);
-        if(memory >= conds) {
-            LoadEnd();
+        IncrementMemory();
+
+        if(memory == conds) {
+            LoadSAMScene();
+            return;
+        }
+        if(memory > conds) {
+            LoadEndScene();
             return;
         }
         SceneManager.LoadScene(0);
     }
 
-    public void LoadSurveyScene() {
-        IncrementMemory();
+    public void LoadPauseScene() {
+        
         furHatCommunication.SendPerformance();
         SceneManager.LoadScene(1);
     }
 
-    void IncrementMemory() {
+    private void IncrementMemory() {
         memory++;
     }
 
@@ -49,7 +54,11 @@ public class SceneController : MonoBehaviour {
         return memory;
     }
 
-    public void LoadEnd() {
+    private void LoadEndScene() {
+        SceneManager.LoadScene(3);
+    }
+
+    private void LoadSAMScene() {
         SceneManager.LoadScene(2);
-  }
+    }
 }

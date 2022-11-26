@@ -127,7 +127,7 @@ public class GameController : MonoBehaviour {
 
   void PreStartTurn() {
     if(conditionFinished) {
-      sceneController.LoadSurveyScene();
+      sceneController.LoadPauseScene();
       conditionFinished = false;
       
       return;

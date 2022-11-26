@@ -18,16 +18,9 @@ public class SurveyController : MonoBehaviour {
     void Awake() {
         sceneController = FindObjectOfType<SceneController>();
         finishedButton.onClick.AddListener(delegate {FinishedButtonClick();});
-
-        
     }
 
     void FinishedButtonClick() {
-        // sceneController.LoadGameScene();
-        SceneManager.LoadScene(0);
+        sceneController.LoadGameScene();
     }
-
-    // public void SwitchToGameScene() {
-		
-    // }
 }
